@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yanika Snack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        :root {
+            --cream: #FFF7EA;
+            --orange: #F99D23;
+            --orange-light: #FFE9CC;
+            --text-dark: #5C3A1E;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+        }
+        .btn-wa {
+            background-color: #25D366;
+        }
+        .btn-wa:hover {
+            background-color: #128C7E;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-[#F99D23]">Yanika Snack</h1>
+            <div class="hidden md:flex space-x-6">
+                <a href="#beranda" class="font-medium hover:text-[#F99D23]">Beranda</a>
+                <a href="#produk" class="font-medium hover:text-[#F99D23]">Produk</a>
+                <a href="#tentang" class="font-medium hover:text-[#F99D23]">Tentang</a>
+                <a href="#kontak" class="font-medium hover:text-[#F99D23]">Kontak</a>
+            </div>
+            <button class="md:hidden text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="py-16 md:py-24">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-[clamp(1.8rem,5vw,3.5rem)] font-bold mb-6">Cemilan Enak & Lezat<br>Untuk Keluarga Tercinta</h2>
+            <p class="text-lg mb-8 max-w-2xl mx-auto">Yanika Snack menyediakan berbagai macam camilan sehat, renyah, dan tentunya halal berkualitas.</p>
+            <a href="#produk" class="inline-block bg-[#F99D23] text-white px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition">Lihat Produk</a>
+        </div>
+    </section>
+
+    <!-- Produk Section -->
+    <section id="produk" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-bold text-center mb-12">Produk Kami</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Produk 1 -->
+                <div class="bg-[#FFF7EA] rounded-xl p-4 shadow-sm hover:shadow-md transition">
+                    <div class="w-full h-48 bg-[#FFE9CC] rounded-lg mb-4 flex items-center justify-center">
+                        <i class="fa fa-picture-o text-4xl text-[#F99D23]"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Keripik Singkong</h4>
+                    <p class="text-gray-600 mb-4">Renyah & Gurih</p>
+                    <p class="text-lg font-bold text-[#F99D23] mb-4">Rp 15.000</p>
+                    <a href="https://wa.me/6285721349673?text=Halo%20Yanika%20Snack,%20saya%20mau%20pesan%20Keripik%20Singkong" class="block w-full text-center btn-wa text-white py-2 rounded-lg font-medium">
+                        <i class="fa fa-whatsapp mr-2"></i>Pesan Sekarang
+                    </a>
+                </div>
+                <!-- Produk 2 -->
+                <div class="bg-[#FFF7EA] rounded-xl p-4 shadow-sm hover:shadow-md transition">
+                    <div class="w-full h-48 bg-[#FFE9CC] rounded-lg mb-4 flex items-center justify-center">
+                        <i class="fa fa-picture-o text-4xl text-[#F99D23]"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Basreng</h4>
+                    <p class="text-gray-600 mb-4">Pedas & Gurih</p>
+                    <p class="text-lg font-bold text-[#F99D23] mb-4">Rp 18.000</p>
+                    <a href="https://wa.me/6285721349673?text=Halo%20Yanika%20Snack,%20saya%20mau%20pesan%20Basreng" class="block w-full text-center btn-wa text-white py-2 rounded-lg font-medium">
+                        <i class="fa fa-whatsapp mr-2"></i>Pesan Sekarang
+                    </a>
+                </div>
+                <!-- Produk 3 -->
+                <div class="bg-[#FFF7EA] rounded-xl p-4 shadow-sm hover:shadow-md transition">
+                    <div class="w-full h-48 bg-[#FFE9CC] rounded-lg mb-4 flex items-center justify-center">
+                        <i class="fa fa-picture-o text-4xl text-[#F99D23]"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Makaroni</h4>
+                    <p class="text-gray-600 mb-4">Renyah & Bumbu Pas</p>
+                    <p class="text-lg font-bold text-[#F99D23] mb-4">Rp 12.000</p>
+                    <a href="https://wa.me/6285721349673?text=Halo%20Yanika%20Snack,%20saya%20mau%20pesan%20Makaroni" class="block w-full text-center btn-wa text-white py-2 rounded-lg font-medium">
+                        <i class="fa fa-whatsapp mr-2"></i>Pesan Sekarang
+                    </a>
+                </div>
+                <!-- Produk 4 -->
+                <div class="bg-[#FFF7EA] rounded-xl p-4 shadow-sm hover:shadow-md transition">
+                    <div class="w-full h-48 bg-[#FFE9CC] rounded-lg mb-4 flex items-center justify-center">
+                        <i class="fa fa-picture-o text-4xl text-[#F99D23]"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Kacang Telur</h4>
+                    <p class="text-gray-600 mb-4">Manis & Renyah</p>
+                    <p class="text-lg font-bold text-[#F99D23] mb-4">Rp 14.000</p>
+                    <a href="https://wa.me/6285721349673?text=Halo%20Yanika%20Snack,%20saya%20mau%20pesan%20Kacang%20Telur" class="block w-full text-center btn-wa text-white py-2 rounded-lg font-medium">
+                        <i class="fa fa-whatsapp mr-2"></i>Pesan Sekarang
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tentang Kami -->
+    <section id="tentang" class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h3 class="text-3xl font-bold mb-6">Tentang Yanika Snack</h3>
+                <p class="text-lg leading-relaxed mb-4">Yanika Snack adalah usaha rumahan yang menyediakan berbagai macam camilan berkualitas. Kami selalu menjaga rasa, kebersihan, dan kepuasan pelanggan.</p>
+                <p class="text-lg leading-relaxed">Semua produk kami dibuat dengan bahan pilihan tanpa pengawet buatan. Aman dikonsumsi oleh seluruh anggota keluarga.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak -->
+    <section id="kontak" class="py-16 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-3xl font-bold mb-6">Hubungi Kami</h3>
+            <p class="text-lg mb-8">Pemesanan & Informasi silakan hubungi:</p>
+            <a href="https://wa.me/6285721349673" target="_blank" class="inline-flex items-center btn-wa text-white px-8 py-3 rounded-full text-lg font-semibold">
+                <i class="fa fa-whatsapp mr-3 fa-lg"></i> 0857-2134-9673
+            </a>
+            <p class="mt-6 text-gray-600">Lokasi: Bandung, Jawa Barat</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#5C3A1E] text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg font-semibold mb-2">Yanika Snack</p>
+            <p class="text-sm opacity-80">© 2026 Yanika Snack. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
