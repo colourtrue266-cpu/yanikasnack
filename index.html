@@ -3,142 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yanika Snack</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>Yanika Snack - Jajanan Kiloan</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        :root {
-            --cream: #FFF7EA;
-            --orange: #F99D23;
-            --orange-light: #FFE9CC;
-            --text-dark: #5C3A1E;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--cream);
-            color: var(--text-dark);
-        }
-        .btn-wa {
-            background-color: #25D366;
-        }
-        .btn-wa:hover {
-            background-color: #128C7E;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: #fff9f0; color: #333; line-height: 1.6; padding-bottom: 100px; }
+        header { background: linear-gradient(135deg, #ff6b35, #f7931e); color: white; padding: 1.5rem; text-align: center; position: sticky; top: 0; z-index: 99; }
+        header h1 { font-size: 1.5rem; margin-bottom: 0.2rem; }
+        
+        .pencarian { max-width: 500px; margin: 1rem auto; position: relative; }
+        .pencarian input { width: 100%; padding: 0.9rem 1rem 0.9rem 3rem; border: none; border-radius: 30px; font-size: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); outline: none; }
+        .pencarian::before { content: "🔍"; position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 1.1rem; }
+        
+        .keranjang-icon { position: fixed; top: 15px; right: 15px; background: #25d366; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; z-index: 100; box-shadow: 0 3px 10px rgba(0,0,0,0.2); }
+        .jumlah-badge { position: absolute; top: -5px; right: -5px; background: red; color: white; font-size: 12px; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem 1.5rem; }
+        .produk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+        .produk-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.3s; }
+        .produk-card.hilang { display: none; }
+        .produk-card:hover { transform: translateY(-3px); }
+        .produk-img { width: 100%; height: 200px; object-fit: cover; background: #f5f5f5; }
+        .produk-info { padding: 1rem; }
+        .produk-nama { font-size: 1rem; font-weight: 600; margin-bottom: 0.6rem; }
+        
+        .tidak-ditemukan { text-align: center; padding: 3rem; color: #888; font-size: 1.1rem; }
+        
+        .pilihan-berat { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.8rem; }
+        .opsi-berat { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0.8rem; border: 2px solid #eee; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+        .opsi-berat:hover { border-color: #ff6b35; background: #fff9f0; }
+        .opsi-berat.terpilih { border-color: #ff6b35; background: #fff0e6; }
+        .berat-label { font-weight: 600; font-size: 0.95rem; }
+        .berat-harga { font-weight: 700; color: #e63946; font-size: 0.95rem; }
+        
+        .btn-tambah { display: block; width: 100%; background: #ff6b35; color: white; border: none; padding: 0.7rem; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; }
+        .btn-tambah:disabled { background: #ccc; cursor: not-allowed; }
+        .btn-tambah:hover:not(:disabled) { background: #e85a24; }
+        
+        /* MODAL KERANJANG */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 200; justify-content: center; align-items: flex-start; padding-top: 50px; }
+        .modal-buka { display: flex; }
+        .modal-kotak { background: white; border-radius: 12px; width: 90%; max-width: 500px; overflow: hidden; }
+        .modal-header { background: #ff6b35; color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
+        .btn-tutup { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+        .modal-body { padding: 1rem; max-height: 60vh; overflow-y: auto; }
+        
+        .keranjang-kosong { text-align: center; padding: 2rem; color: #888; }
+        .item-keranjang { display: flex; align-items: center; gap: 0.8rem; padding: 0.8rem 0; border-bottom: 1px solid #eee; }
+        .item-info { flex: 1; }
+        .item-nama { font-weight: 600; font-size: 0.95rem; }
+        .item-harga { font-size: 0.9rem; color: #666; }
+        .item-jumlah { display: flex; align-items: center; gap: 0.5rem; }
+        .btn-kecil { width: 28px; height: 28px; border-radius: 50%; border: none; background: #eee; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+        .btn-hapus { background: #ffdddd; color: #e63946; }
+        
+        .modal-footer { padding: 1rem; border-top: 1px solid #eee; }
+        .total-baris { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; }
+        .btn-kirim { display: block; width: 100%; background: #25d366; color: white; border: none; padding: 0.9rem; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; text-decoration: none; text-align: center; }
+        .btn-kirim:hover { background: #1fb855; }
     </style>
 </head>
-<body class="min-h-screen">
-    <!-- Navbar -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-[#F99D23]">Yanika Snack</h1>
-            <div class="hidden md:flex space-x-6">
-                <a href="#beranda" class="font-medium hover:text-[#F99D23]">Beranda</a>
-                <a href="#produk" class="font-medium hover:text-[#F99D23]">Produk</a>
-                <a href="#tentang" class="font-medium hover:text-[#F99D23]">Tentang</a>
-                <a href="#kontak" class="font-medium hover:text-[#F99D23]">Kontak</a>
+<body>
+
+<header>
+    <h1>🧡 Yanika Snack</h1>
+    <p>Jajanan Kiloan & Camilan Renyah — Langsung dari Bandung</p>
+    <div class="keranjang-icon" onclick="bukaKeranjang()">
+        🛒
+        <span class="jumlah-badge" id="badge-jumlah">0</span>
+    </div>
+</header>
+
+<!-- KOTAK PENCARIAN -->
+<div class="pencarian">
+    <input type="text" id="kotak-cari" placeholder="Cari produk... 🔍" oninput="cariProduk()">
+</div>
+
+<div class="container">
+    <div class="produk-grid" id="daftar-produk"></div>
+    <p class="tidak-ditemukan" id="pesan-kosong" style="display:none;">😥 Produk tidak ditemukan</p>
+</div>
+
+<!-- MODAL KERANJANG -->
+<div class="modal-overlay" id="modal-keranjang" onclick="if(event.target === this) tutupKeranjang()">
+    <div class="modal-kotak">
+        <div class="modal-header">
+            <h3>🛒 Keranjang Belanja</h3>
+            <button class="btn-tutup" onclick="tutupKeranjang()">&times;</button>
+        </div>
+        <div class="modal-body" id="isi-keranjang">
+            <p class="keranjang-kosong">Keranjang masih kosong 😊</p>
+        </div>
+        <div class="modal-footer" id="footer-keranjang" style="display: none;">
+            <div class="total-baris">
+                <span>Total:</span>
+                <span id="total-harga">Rp 0</span>
             </div>
-            <button class="md:hidden text-2xl">
-                <i class="fa fa-bars"></i>
-            </button>
+            <a href="#" id="link-wa" target="_blank" class="btn-kirim">💬 Pesan via WhatsApp</a>
         </div>
-    </nav>
+    </div>
+</div>
 
-    <!-- Hero Section -->
-    <section id="beranda" class="py-16 md:py-24">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-[clamp(1.8rem,5vw,3.5rem)] font-bold mb-6">Cemilan Enak & Lezat<br>Untuk Keluarga Tercinta</h2>
-            <p class="text-lg mb-8 max-w-2xl mx-auto">Yanika Snack menyediakan berbagai macam camilan sehat, renyah, dan tentunya halal berkualitas.</p>
-            <a href="#produk" class="inline-block bg-[#F99D23] text-white px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition">Lihat Produk</a>
-        </div>
-    </section>
+<script>
+// ==============================================
+// ✅ DAFTAR PRODUK & HARGA — EDIT BAGIAN INI
+// ==============================================
+const produk = [
+    { nama: "Keripik Singkong Chuba Balado", g250: 15000, g500: 25000, g1000: 45000, foto: "img/chuba-balado.jpg" },
+    { nama: "Comring", g250: 13000, g500: 22000, g1000: 40000, foto: "img/comring.jpg" },
+    { nama: "Pangsit Bawang", g250: 12000, g500: 20000, g1000: 37000, foto: "img/pangsit-bawang.jpg" },
+    { nama: "Pangsit Gunggek Pedas", g250: 14000, g500: 23000, g1000: 42000, foto: "img/pangsit-gunggek.jpg" },
+    { nama: "Lanting", g250: 11000, g500: 18000, g1000: 33000, foto: "img/lanting.jpg" },
+    { nama: "Basreng Ori Gurih", g250: 14000, g500: 24000, g1000: 44000, foto: "img/basreng-ori.jpg" },
+    { nama: "Basreng Pedas Daun Jeruk", g250: 15000, g500: 25000, g1000: 45000, foto: "img/basreng-pedas.jpg" },
+    { nama: "Basreng Stik Daun Jeruk", g250: 15000, g500: 25000, g1000: 45000, foto: "img/basreng-stik.jpg" },
+    { nama: "Makaroni Cikruh", g250: 12000, g500: 20000, g1000: 37000, foto: "img/makaroni-cikruh.jpg" },
+    { nama: "Makaroni Pedas Mini", g250: 11500, g500: 19000, g1000: 35000, foto: "img/makaroni-pedas.jpg" },
+    { nama: "Makaroni Mini Keju", g250: 11500, g500: 19000, g1000: 35000, foto: "img/makaroni-keju.jpg" },
+    { nama: "Kue Liliput", g250: 10000, g500: 16000, g1000: 30000, foto: "img/kue-liliput.jpg" },
+    { nama: "Sumpia Udang", g250: 13000, g500: 22000, g1000: 40000, foto: "img/sumpia-udang.jpg" },
+    { nama: "Kripca Cabe Ijo", g250: 11000, g500: 18000, g1000: 33000, foto: "img/kripca-ijo.jpg" },
+    { nama: "Kripca Cabe Merah", g250: 11000, g500: 18000, g1000: 33000, foto: "img/kripca-merah.jpg" },
+    { nama: "Kripca Ori", g250: 10000, g500: 16000, g1000: 30000, foto: "img/kripca-ori.jpg" }
+];
 
-    <!-- Produk Section -->
-    <section id="produk" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h3 class="text-3xl font-bold text-center mb-12">Produk Kami</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Produk 1 -->
-                <div class="bg-[#FFF7EA] rounded-xl p-4 shadow-sm hover:shadow-md transition">
-                    <div class="w-full h-48 bg-[#FFE9CC] rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fa fa-picture-o text-4xl text-[#F99D23]"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-2">Keripik Singkong</h4>
-                    <p class="text-gray-600 mb-4">Renyah & Gurih</p>
-                    <p class="text-lg font-bold text-[#F99D23] mb-4">Rp 15.000</p>
-                    <a href="https://wa.me/6285721349673?text=Halo%20Yanika%20Snack,%20saya%20mau%20pesan%20Keripik%20Singkong" class="block w-full text-center btn-wa text-white py-2 rounded-lg font-medium">
-                        <i class="fa fa-whatsapp mr-2"></i>Pesan Sekarang
-                    </a>
+const noWA = "6285721349673"; // nomor WhatsApp
+
+// ==============================================
+// 🔍 FUNGSI PENCARIAN
+// ==============================================
+function cariProduk() {
+    const kataKunci = document.getElementById('kotak-cari').value.toLowerCase();
+    const pesanKosong = document.getElementById('pesan-kosong');
+    let adaYangMuncul = false;
+    
+    produk.forEach((item, index) => {
+        const kartu = document.getElementById(`kartu-${index}`);
+        const cocok = item.nama.toLowerCase().includes(kataKunci);
+        
+        if (kataKunci === '' || cocok) {
+            kartu.classList.remove('hilang');
+            adaYangMuncul = true;
+        } else {
+            kartu.classList.add('hilang');
+        }
+    });
+    
+    pesanKosong.style.display = adaYangMuncul ? 'none' : 'block';
+}
+
+// ==============================================
+// 🛒 SISTEM KERANJANG — JANGAN UBAH
+// ==============================================
+let keranjang = [];
+let pilihanBerat = {};
+
+// Tampilkan semua produk
+const daftarProduk = document.getElementById('daftar-produk');
+produk.forEach((item, index) => {
+    pilihanBerat[index] = null;
+    
+    const kartu = document.createElement('div');
+    kartu.className = 'produk-card';
+    kartu.id = `kartu-${index}`;
+    kartu.innerHTML = `
+        <img src="${item.foto}" alt="${item.nama}" class="produk-img">
+        <div class="produk-info">
+            <h3 class="produk-nama">${item.nama}</h3>
+            <div class="pilihan-berat">
+                <div class="opsi-berat" onclick="pilihBerat(${index}, 'g250', ${item.g250})">
+                    <span class="berat-label">250 gram</span>
+                    <span class="berat-harga">Rp ${item.g250.toLocaleString('id-ID')}</span>
                 </div>
-                <!-- Produk 2 -->
-                <div class="bg-[#FFF7EA] rounded-xl p-4 shadow-sm hover:shadow-md transition">
-                    <div class="w-full h-48 bg-[#FFE9CC] rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fa fa-picture-o text-4xl text-[#F99D23]"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-2">Basreng</h4>
-                    <p class="text-gray-600 mb-4">Pedas & Gurih</p>
-                    <p class="text-lg font-bold text-[#F99D23] mb-4">Rp 18.000</p>
-                    <a href="https://wa.me/6285721349673?text=Halo%20Yanika%20Snack,%20saya%20mau%20pesan%20Basreng" class="block w-full text-center btn-wa text-white py-2 rounded-lg font-medium">
-                        <i class="fa fa-whatsapp mr-2"></i>Pesan Sekarang
-                    </a>
+                <div class="opsi-berat" onclick="pilihBerat(${index}, 'g500', ${item.g500})">
+                    <span class="berat-label">500 gram</span>
+                    <span class="berat-harga">Rp ${item.g500.toLocaleString('id-ID')}</span>
                 </div>
-                <!-- Produk 3 -->
-                <div class="bg-[#FFF7EA] rounded-xl p-4 shadow-sm hover:shadow-md transition">
-                    <div class="w-full h-48 bg-[#FFE9CC] rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fa fa-picture-o text-4xl text-[#F99D23]"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-2">Makaroni</h4>
-                    <p class="text-gray-600 mb-4">Renyah & Bumbu Pas</p>
-                    <p class="text-lg font-bold text-[#F99D23] mb-4">Rp 12.000</p>
-                    <a href="https://wa.me/6285721349673?text=Halo%20Yanika%20Snack,%20saya%20mau%20pesan%20Makaroni" class="block w-full text-center btn-wa text-white py-2 rounded-lg font-medium">
-                        <i class="fa fa-whatsapp mr-2"></i>Pesan Sekarang
-                    </a>
-                </div>
-                <!-- Produk 4 -->
-                <div class="bg-[#FFF7EA] rounded-xl p-4 shadow-sm hover:shadow-md transition">
-                    <div class="w-full h-48 bg-[#FFE9CC] rounded-lg mb-4 flex items-center justify-center">
-                        <i class="fa fa-picture-o text-4xl text-[#F99D23]"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-2">Kacang Telur</h4>
-                    <p class="text-gray-600 mb-4">Manis & Renyah</p>
-                    <p class="text-lg font-bold text-[#F99D23] mb-4">Rp 14.000</p>
-                    <a href="https://wa.me/6285721349673?text=Halo%20Yanika%20Snack,%20saya%20mau%20pesan%20Kacang%20Telur" class="block w-full text-center btn-wa text-white py-2 rounded-lg font-medium">
-                        <i class="fa fa-whatsapp mr-2"></i>Pesan Sekarang
-                    </a>
+                <div class="opsi-berat" onclick="pilihBerat(${index}, 'g1000', ${item.g1000})">
+                    <span class="berat-label">1000 gram (1kg)</span>
+                    <span class="berat-harga">Rp ${item.g1000.toLocaleString('id-ID')}</span>
                 </div>
             </div>
+            <button class="btn-tambah" id="btn-tambah-${index}" onclick="tambahKeKeranjang(${index})" disabled>➕ Pilih berat dulu</button>
         </div>
-    </section>
+    `;
+    daftarProduk.appendChild(kartu);
+});
 
-    <!-- Tentang Kami -->
-    <section id="tentang" class="py-16">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto text-center">
-                <h3 class="text-3xl font-bold mb-6">Tentang Yanika Snack</h3>
-                <p class="text-lg leading-relaxed mb-4">Yanika Snack adalah usaha rumahan yang menyediakan berbagai macam camilan berkualitas. Kami selalu menjaga rasa, kebersihan, dan kepuasan pelanggan.</p>
-                <p class="text-lg leading-relaxed">Semua produk kami dibuat dengan bahan pilihan tanpa pengawet buatan. Aman dikonsumsi oleh seluruh anggota keluarga.</p>
+// Pilih berat
+function pilihBerat(index, beratKey, harga) {
+    const item = produk[index];
+    pilihanBerat[index] = { beratKey, beratLabel: beratKey === 'g250' ? '250g' : beratKey === 'g500' ? '500g' : '1kg', harga };
+    
+    const opsi = document.querySelectorAll(`#kartu-${index} .opsi-berat`);
+    opsi.forEach((el, i) => {
+        el.classList.remove('terpilih');
+        const key = ['g250', 'g500', 'g1000'][i];
+        if (key === beratKey) el.classList.add('terpilih');
+    });
+    
+    const btn = document.getElementById(`btn-tambah-${index}`);
+    btn.disabled = false;
+    btn.innerHTML = `➕ Tambah ke Keranjang (${pilihanBerat[index].beratLabel})`;
+}
+
+// Tambah ke keranjang
+function tambahKeKeranjang(index) {
+    const item = produk[index];
+    const pilih = pilihanBerat[index];
+    if (!pilih) return;
+    
+    const idUnik = `${index}-${pilih.beratKey}`;
+    const diKeranjang = keranjang.find(k => k.idUnik === idUnik);
+    
+    if (diKeranjang) {
+        diKeranjang.jumlah++;
+    } else {
+        keranjang.push({
+            idUnik,
+            nama: item.nama,
+            berat: pilih.beratLabel,
+            hargaSatuan: pilih.harga,
+            jumlah: 1
+        });
+    }
+    updateKeranjang();
+}
+
+function ubahJumlah(idUnik, tambah) {
+    const item = keranjang.find(k => k.idUnik === idUnik);
+    if (item) {
+        item.jumlah += tambah;
+        if (item.jumlah <= 0) hapusDariKeranjang(idUnik);
+    }
+    updateKeranjang();
+}
+
+function hapusDariKeranjang(idUnik) {
+    keranjang = keranjang.filter(k => k.idUnik !== idUnik);
+    updateKeranjang();
+}
+
+function updateKeranjang() {
+    const totalItem = keranjang.reduce((sum, i) => sum + i.jumlah, 0);
+    document.getElementById('badge-jumlah').textContent = totalItem;
+    
+    const isi = document.getElementById('isi-keranjang');
+    const footer = document.getElementById('footer-keranjang');
+    
+    if (keranjang.length === 0) {
+        isi.innerHTML = '<p class="keranjang-kosong">Keranjang masih kosong 😊</p>';
+        footer.style.display = 'none';
+        return;
+    }
+    
+    footer.style.display = 'block';
+    isi.innerHTML = keranjang.map(item => `
+        <div class="item-keranjang">
+            <div class="item-info">
+                <div class="item-nama">${item.nama} (${item.berat})</div>
+                <div class="item-harga">Rp ${item.hargaSatuan.toLocaleString('id-ID')} × ${item.jumlah} = Rp ${(item.hargaSatuan * item.jumlah).toLocaleString('id-ID')}</div>
+            </div>
+            <div class="item-jumlah">
+                <button class="btn-kecil" onclick="ubahJumlah('${item.idUnik}', -1)">−</button>
+                <span>${item.jumlah}</span>
+                <button class="btn-kecil" onclick="ubahJumlah('${item.idUnik}', 1)">+</button>
+                <button class="btn-kecil btn-hapus" onclick="hapusDariKeranjang('${item.idUnik}')">🗑</button>
             </div>
         </div>
-    </section>
+    `).join('');
+    
+    const total = keranjang.reduce((sum, i) => sum + (i.hargaSatuan * i.jumlah), 0);
+    document.getElementById('total-harga').textContent = `Rp ${total.toLocaleString('id-ID')}`;
+    
+    const pesan = keranjang.map(i => `✅ ${i.nama} (${i.berat}) × ${i.jumlah} = Rp ${(i.hargaSatuan * i.jumlah).toLocaleString('id-ID')}`).join('\n');
+    const teksWA = encodeURIComponent(`Halo Yanika Snack! 👋\n\nSaya mau pesan:\n${pesan}\n\n📦 Total: Rp ${total.toLocaleString('id-ID')}\nTerima kasih! 😊`);
+    document.getElementById('link-wa').href = `https://wa.me/${noWA}?text=${teksWA}`;
+}
 
-    <!-- Kontak -->
-    <section id="kontak" class="py-16 bg-white">
-        <div class="container mx-auto px-4 text-center">
-            <h3 class="text-3xl font-bold mb-6">Hubungi Kami</h3>
-            <p class="text-lg mb-8">Pemesanan & Informasi silakan hubungi:</p>
-            <a href="https://wa.me/6285721349673" target="_blank" class="inline-flex items-center btn-wa text-white px-8 py-3 rounded-full text-lg font-semibold">
-                <i class="fa fa-whatsapp mr-3 fa-lg"></i> 0857-2134-9673
-            </a>
-            <p class="mt-6 text-gray-600">Lokasi: Bandung, Jawa Barat</p>
-        </div>
-    </section>
+function bukaKeranjang() {
+    document.getElementById('modal-keranjang').classList.add('modal-buka');
+}
 
-    <!-- Footer -->
-    <footer class="bg-[#5C3A1E] text-white py-8">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-lg font-semibold mb-2">Yanika Snack</p>
-            <p class="text-sm opacity-80">© 2026 Yanika Snack. All rights reserved.</p>
-        </div>
-    </footer>
+function tutupKeranjang() {
+    document.getElementById('modal-keranjang').classList.remove('modal-buka');
+}
+</script>
+
 </body>
 </html>
