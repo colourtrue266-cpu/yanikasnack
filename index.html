@@ -8,9 +8,12 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
         body { background: #fff8e1; color: #333; }
         
-        header { background: #d84315; color: white; padding: 20px; text-align: center; }
+        header { background: #d84315; color: white; padding: 20px; text-align: center; position: relative; }
         header h1 { font-size: 28px; }
         header p { margin-top: 5px; opacity: 0.9; }
+        
+        .keranjang-icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 26px; cursor: pointer; background: rgba(255,255,255,0.2); padding: 8px 12px; border-radius: 50px; }
+        .jumlah-keranjang { position: absolute; top: -5px; right: -5px; background: #ff0000; color: white; font-size: 12px; font-weight: bold; padding: 2px 7px; border-radius: 50%; }
         
         .kategori { display: flex; justify-content: center; gap: 15px; padding: 20px; background: #ffe0b2; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; }
         .tombol-kategori { padding: 12px 25px; border: none; border-radius: 25px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; }
@@ -19,19 +22,47 @@
         .tombol-kategori:hover { transform: scale(1.05); }
         
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .produk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .produk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
         .kartu-produk { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: 0.3s; }
         .kartu-produk:hover { transform: translateY(-5px); }
         .foto-produk { width: 100%; height: 180px; object-fit: cover; background: #ffe0b2; }
         .info-produk { padding: 15px; }
         .nama-produk { font-size: 18px; font-weight: bold; margin-bottom: 8px; }
-        .harga { color: #d84315; font-size: 17px; font-weight: bold; margin-bottom: 10px; }
-        .beli { display: block; width: 100%; background: #25d366; color: white; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; }
-        .beli:hover { background: #128c7e; }
+        .harga { color: #d84315; font-size: 17px; font-weight: bold; margin-bottom: 10px; min-height: 24px; }
+        
+        .pilihan-berat { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+        .btn-berat { flex: 1; min-width: 70px; padding: 8px 4px; border: 2px solid #ddd; background: white; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: bold; transition: 0.2s; }
+        .btn-berat.terpilih { border-color: #d84315; background: #fff3e0; color: #d84315; }
+        .btn-berat:hover { border-color: #d84315; }
+        
+        .tambah-keranjang { display: block; width: 100%; background: #ff9500; color: white; text-align: center; padding: 10px; border-radius: 8px; border: none; font-size: 15px; font-weight: bold; cursor: pointer; margin-bottom: 8px; }
+        .tambah-keranjang:hover { background: #e68600; }
+        .beli-langsung { display: block; width: 100%; background: #25d366; color: white; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 15px; }
+        .beli-langsung:hover { background: #128c7e; }
         
         .kategori-bagian { display: none; }
         .kategori-bagian.tampil { display: block; }
         .kategori-bagian h2 { text-align: center; margin-bottom: 25px; color: #d84315; }
+        
+        /* MODAL KERANJANG */
+        .modal-latar { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 200; justify-content: center; align-items: center; }
+        .modal-latar.tampil { display: flex; }
+        .modal-isi { background: white; border-radius: 12px; width: 90%; max-width: 450px; max-height: 80vh; overflow: hidden; }
+        .modal-header { background: #d84315; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .tutup { font-size: 28px; cursor: pointer; line-height: 1; }
+        .modal-body { padding: 20px; overflow-y: auto; max-height: 60vh; }
+        .item-keranjang { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; flex-wrap: wrap; gap: 8px; }
+        .info-item { flex: 1; min-width: 150px; }
+        .nama-item { font-weight: bold; font-size: 15px; }
+        .berat-item { font-size: 13px; color: #888; }
+        .harga-item { color: #d84315; font-size: 14px; }
+        .jumlah-item { display: flex; align-items: center; gap: 8px; }
+        .jumlah-item button { width: 26px; height: 26px; border: none; background: #ddd; border-radius: 50%; cursor: pointer; font-weight: bold; }
+        .hapus-item { color: red; cursor: pointer; font-size: 18px; }
+        .total { font-size: 18px; font-weight: bold; text-align: right; margin-top: 15px; padding-top: 15px; border-top: 2px solid #eee; }
+        .tombol-pesan { display: block; width: 100%; background: #25d366; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        .tombol-pesan:hover { background: #128c7e; }
+        .kosong { text-align: center; color: #888; padding: 20px; }
         
         .peringatan { background:#fff3cd; border:2px solid #ffc107; border-radius:8px; padding:1rem; margin: 2rem 0; text-align:center; }
         .peringatan h3 { color:#856404; margin-bottom: 0.5rem; }
@@ -48,6 +79,9 @@
 <header>
     <h1>🏠 YANIKA SNACK</h1>
     <p>Cemilan Enak & Oleh-Oleh Khas Bandung</p>
+    <div class="keranjang-icon" onclick="bukaKeranjang()">
+        🛒 <span class="jumlah-keranjang" id="jumlah-keranjang">0</span>
+    </div>
 </header>
 
 <div class="kategori">
@@ -61,48 +95,78 @@
         <h2>🍪 Daftar Cemilan</h2>
         <div class="produk-grid">
             
-            <div class="kartu-produk">
+            <div class="kartu-produk" data-id="pangsit">
                 <img src="img/Pangsit.png" alt="Pangsit" class="foto-produk">
                 <div class="info-produk">
                     <div class="nama-produk">Pangsit Kering</div>
-                    <div class="harga">Rp 5.000</div>
-                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Pangsit dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                    <div class="pilihan-berat">
+                        <button class="btn-berat terpilih" onclick="pilihBerat(this, 5000, '250g')">250g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 9000, '500g')">500g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 16000, '1000g')">1000g</button>
+                    </div>
+                    <div class="harga" id="harga-pangsit">Rp 5.000</div>
+                    <button class="tambah-keranjang" onclick="tambahKeKeranjang('Pangsit Kering')">➕ Masuk Keranjang</button>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Pangsit dong" class="beli-langsung" target="_blank">Beli Langsung</a>
                 </div>
             </div>
             
-            <div class="kartu-produk">
+            <div class="kartu-produk" data-id="basreng-stik-pedas">
                 <img src="img/basreng-stik-pedas.png" alt="Basreng Stik Pedas" class="foto-produk">
                 <div class="info-produk">
                     <div class="nama-produk">Basreng Stik Pedas</div>
-                    <div class="harga">Rp 8.000</div>
-                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Basreng Stik Pedas dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                    <div class="pilihan-berat">
+                        <button class="btn-berat terpilih" onclick="pilihBerat(this, 8000, '250g')">250g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 14000, '500g')">500g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 25000, '1000g')">1000g</button>
+                    </div>
+                    <div class="harga" id="harga-basreng-stik-pedas">Rp 8.000</div>
+                    <button class="tambah-keranjang" onclick="tambahKeKeranjang('Basreng Stik Pedas')">➕ Masuk Keranjang</button>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Basreng Stik Pedas dong" class="beli-langsung" target="_blank">Beli Langsung</a>
                 </div>
             </div>
             
-            <div class="kartu-produk">
+            <div class="kartu-produk" data-id="basreng-tipis-ori">
                 <img src="img/basreng-tipis-ori.png" alt="Basreng Tipis Original" class="foto-produk">
                 <div class="info-produk">
                     <div class="nama-produk">Basreng Tipis Original</div>
-                    <div class="harga">Rp 8.000</div>
-                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Basreng Tipis Original dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                    <div class="pilihan-berat">
+                        <button class="btn-berat terpilih" onclick="pilihBerat(this, 8000, '250g')">250g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 14000, '500g')">500g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 25000, '1000g')">1000g</button>
+                    </div>
+                    <div class="harga" id="harga-basreng-tipis-ori">Rp 8.000</div>
+                    <button class="tambah-keranjang" onclick="tambahKeKeranjang('Basreng Tipis Original')">➕ Masuk Keranjang</button>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Basreng Tipis Original dong" class="beli-langsung" target="_blank">Beli Langsung</a>
                 </div>
             </div>
             
-            <div class="kartu-produk">
+            <div class="kartu-produk" data-id="basreng-tipis-pedas">
                 <img src="img/basreng-tipis-pedas.png" alt="Basreng Tipis Pedas" class="foto-produk">
                 <div class="info-produk">
                     <div class="nama-produk">Basreng Tipis Pedas</div>
-                    <div class="harga">Rp 8.000</div>
-                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Basreng Tipis Pedas dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                    <div class="pilihan-berat">
+                        <button class="btn-berat terpilih" onclick="pilihBerat(this, 8000, '250g')">250g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 14000, '500g')">500g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 25000, '1000g')">1000g</button>
+                    </div>
+                    <div class="harga" id="harga-basreng-tipis-pedas">Rp 8.000</div>
+                    <button class="tambah-keranjang" onclick="tambahKeKeranjang('Basreng Tipis Pedas')">➕ Masuk Keranjang</button>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Basreng Tipis Pedas dong" class="beli-langsung" target="_blank">Beli Langsung</a>
                 </div>
             </div>
             
-            <div class="kartu-produk">
+            <div class="kartu-produk" data-id="comring">
                 <img src="img/comring.png" alt="Comring Bawang" class="foto-produk">
                 <div class="info-produk">
                     <div class="nama-produk">Comring Bawang</div>
-                    <div class="harga">Rp 4.000</div>
-                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Comring dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                    <div class="pilihan-berat">
+                        <button class="btn-berat terpilih" onclick="pilihBerat(this, 4000, '250g')">250g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 7000, '500g')">500g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 13000, '1000g')">1000g</button>
+                    </div>
+                    <div class="harga" id="harga-comring">Rp 4.000</div>
+                    <button class="tambah-keranjang" onclick="tambahKeKeranjang('Comring Bawang')">➕ Masuk Keranjang</button>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Comring dong" class="beli-langsung" target="_blank">Beli Langsung</a>
                 </div>
             </div>
             
@@ -114,48 +178,78 @@
         <h2>🎁 Oleh-Oleh Khas Bandung</h2>
         <div class="produk-grid">
             
-            <div class="kartu-produk">
+            <div class="kartu-produk" data-id="keripik-chuba-balado">
                 <img src="img/keripik-chuba-balado.png" alt="Keripik Singkong Balado" class="foto-produk">
                 <div class="info-produk">
                     <div class="nama-produk">Keripik Singkong Balado</div>
-                    <div class="harga">Rp 8.000</div>
-                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Keripik Singkong Balado dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                    <div class="pilihan-berat">
+                        <button class="btn-berat terpilih" onclick="pilihBerat(this, 8000, '250g')">250g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 15000, '500g')">500g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 28000, '1000g')">1000g</button>
+                    </div>
+                    <div class="harga" id="harga-keripik-chuba-balado">Rp 8.000</div>
+                    <button class="tambah-keranjang" onclick="tambahKeKeranjang('Keripik Singkong Balado')">➕ Masuk Keranjang</button>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Keripik Singkong Balado dong" class="beli-langsung" target="_blank">Beli Langsung</a>
                 </div>
             </div>
             
-            <div class="kartu-produk">
+            <div class="kartu-produk" data-id="keripik-chuba-keju">
                 <img src="img/keripik-chuba-keju.png" alt="Keripik Singkong Keju" class="foto-produk">
                 <div class="info-produk">
                     <div class="nama-produk">Keripik Singkong Keju</div>
-                    <div class="harga">Rp 8.000</div>
-                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Keripik Singkong Keju dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                    <div class="pilihan-berat">
+                        <button class="btn-berat terpilih" onclick="pilihBerat(this, 8000, '250g')">250g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 15000, '500g')">500g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 28000, '1000g')">1000g</button>
+                    </div>
+                    <div class="harga" id="harga-keripik-chuba-keju">Rp 8.000</div>
+                    <button class="tambah-keranjang" onclick="tambahKeKeranjang('Keripik Singkong Keju')">➕ Masuk Keranjang</button>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Keripik Singkong Keju dong" class="beli-langsung" target="_blank">Beli Langsung</a>
                 </div>
             </div>
             
-            <div class="kartu-produk">
+            <div class="kartu-produk" data-id="keripik-pisang-gurih">
                 <img src="img/keripik-pisang-gurih.png" alt="Keripik Pisang Gurih" class="foto-produk">
                 <div class="info-produk">
                     <div class="nama-produk">Keripik Pisang Gurih</div>
-                    <div class="harga">Rp 7.000</div>
-                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Keripik Pisang Gurih dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                    <div class="pilihan-berat">
+                        <button class="btn-berat terpilih" onclick="pilihBerat(this, 7000, '250g')">250g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 13000, '500g')">500g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 24000, '1000g')">1000g</button>
+                    </div>
+                    <div class="harga" id="harga-keripik-pisang-gurih">Rp 7.000</div>
+                    <button class="tambah-keranjang" onclick="tambahKeKeranjang('Keripik Pisang Gurih')">➕ Masuk Keranjang</button>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Keripik Pisang Gurih dong" class="beli-langsung" target="_blank">Beli Langsung</a>
                 </div>
             </div>
             
-            <div class="kartu-produk">
+            <div class="kartu-produk" data-id="keripik-pisang-madu">
                 <img src="img/keripik-pisang-madu.png" alt="Keripik Pisang Madu" class="foto-produk">
                 <div class="info-produk">
                     <div class="nama-produk">Keripik Pisang Madu</div>
-                    <div class="harga">Rp 7.000</div>
-                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Keripik Pisang Madu dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                    <div class="pilihan-berat">
+                        <button class="btn-berat terpilih" onclick="pilihBerat(this, 7000, '250g')">250g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 13000, '500g')">500g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 24000, '1000g')">1000g</button>
+                    </div>
+                    <div class="harga" id="harga-keripik-pisang-madu">Rp 7.000</div>
+                    <button class="tambah-keranjang" onclick="tambahKeKeranjang('Keripik Pisang Madu')">➕ Masuk Keranjang</button>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Keripik Pisang Madu dong" class="beli-langsung" target="_blank">Beli Langsung</a>
                 </div>
             </div>
             
-            <div class="kartu-produk">
+            <div class="kartu-produk" data-id="keripik-singkong-bawang">
                 <img src="img/keripik-singkong-bawang.png" alt="Keripik Singkong Bawang" class="foto-produk">
                 <div class="info-produk">
                     <div class="nama-produk">Keripik Singkong Bawang</div>
-                    <div class="harga">Rp 8.000</div>
-                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Keripik Singkong Bawang dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                    <div class="pilihan-berat">
+                        <button class="btn-berat terpilih" onclick="pilihBerat(this, 8000, '250g')">250g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 15000, '500g')">500g</button>
+                        <button class="btn-berat" onclick="pilihBerat(this, 28000, '1000g')">1000g</button>
+                    </div>
+                    <div class="harga" id="harga-keripik-singkong-bawang">Rp 8.000</div>
+                    <button class="tambah-keranjang" onclick="tambahKeKeranjang('Keripik Singkong Bawang')">➕ Masuk Keranjang</button>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Keripik Singkong Bawang dong" class="beli-langsung" target="_blank">Beli Langsung</a>
                 </div>
             </div>
             
@@ -178,23 +272,141 @@
     </div>
 </div>
 
+<!-- 🛒 MODAL KERANJANG -->
+<div class="modal-latar" id="modal-keranjang" onclick="if(event.target === this) tutupKeranjang()">
+    <div class="modal-isi">
+        <div class="modal-header">
+            <h3>🛒 Keranjang Belanja</h3>
+            <span class="tutup" onclick="tutupKeranjang()">&times;</span>
+        </div>
+        <div class="modal-body" id="isi-keranjang">
+            <p class="kosong">Keranjang kamu masih kosong 😊</p>
+        </div>
+    </div>
+</div>
+
 <footer>
     <p>© 2026 Yanika Snack — Semua Hak Dilindungi</p>
 </footer>
 
 <script>
+let keranjang = [];
+let beratTerpilih = {};
+
 function tampilkanKategori(id) {
-    // Sembunyikan semua bagian kategori
-    const semuaKategori = document.querySelectorAll('.kategori-bagian');
-    semuaKategori.forEach(k => k.classList.remove('tampil'));
-    
-    // Hapus status aktif dari semua tombol
-    const semuaTombol = document.querySelectorAll('.tombol-kategori');
-    semuaTombol.forEach(t => t.classList.remove('aktif'));
-    
-    // Tampilkan yang dipilih
+    document.querySelectorAll('.kategori-bagian').forEach(k => k.classList.remove('tampil'));
+    document.querySelectorAll('.tombol-kategori').forEach(t => t.classList.remove('aktif'));
     document.getElementById(id).classList.add('tampil');
     event.target.classList.add('aktif');
+}
+
+function pilihBerat(tombol, harga, berat) {
+    const kartu = tombol.closest('.kartu-produk');
+    const id = kartu.dataset.id;
+    
+    kartu.querySelectorAll('.btn-berat').forEach(btn => btn.classList.remove('terpilih'));
+    tombol.classList.add('terpilih');
+    
+    kartu.querySelector('.harga').textContent = 'Rp ' + harga.toLocaleString();
+    beratTerpilih[id] = { berat, harga };
+}
+
+function tambahKeKeranjang(nama) {
+    const kartu = event.target.closest('.kartu-produk');
+    const id = kartu.dataset.id;
+    const { berat, harga } = beratTerpilih[id] || Object.values(beratTerpilih).find(b => b) || { berat: '250g', harga: parseInt(kartu.querySelector('.harga').textContent.replace(/[^0-9]/g, '')) };
+    
+    const kunci = nama + ' (' + berat + ')';
+    const index = keranjang.findIndex(item => item.kunci === kunci);
+    
+    if (index !== -1) {
+        keranjang[index].jumlah += 1;
+    } else {
+        keranjang.push({ kunci, nama, berat, harga, jumlah: 1 });
+    }
+    
+    updateJumlahKeranjang();
+    bukaKeranjang();
+}
+
+function updateJumlahKeranjang() {
+    const total = keranjang.reduce((sum, item) => sum + item.jumlah, 0);
+    document.getElementById('jumlah-keranjang').textContent = total;
+}
+
+function bukaKeranjang() {
+    document.getElementById('modal-keranjang').classList.add('tampil');
+    renderKeranjang();
+}
+
+function tutupKeranjang() {
+    document.getElementById('modal-keranjang').classList.remove('tampil');
+}
+
+function renderKeranjang() {
+    const wadah = document.getElementById('isi-keranjang');
+    if (keranjang.length === 0) {
+        wadah.innerHTML = '<p class="kosong">Keranjang kamu masih kosong 😊</p>';
+        return;
+    }
+    
+    let html = '';
+    let totalSemua = 0;
+    
+    keranjang.forEach((item, indeks) => {
+        const subtotal = item.harga * item.jumlah;
+        totalSemua += subtotal;
+        html += `
+        <div class="item-keranjang">
+            <div class="info-item">
+                <div class="nama-item">${item.nama}</div>
+                <div class="berat-item">${item.berat}</div>
+                <div class="harga-item">Rp ${item.harga.toLocaleString()}</div>
+            </div>
+            <div class="jumlah-item">
+                <button onclick="ubahJumlah(${indeks}, -1)">−</button>
+                <span>${item.jumlah}</span>
+                <button onclick="ubahJumlah(${indeks}, 1)">+</button>
+            </div>
+            <div class="hapus-item" onclick="hapusItem(${indeks})">🗑️</div>
+        </div>`;
+    });
+    
+    html += `<div class="total">Total: Rp ${totalSemua.toLocaleString()}</div>`;
+    html += `<button class="tombol-pesan" onclick="kirimKeWhatsApp()">💬 Pesan via WhatsApp</button>`;
+    
+    wadah.innerHTML = html;
+}
+
+function ubahJumlah(indeks, perubahan) {
+    keranjang[indeks].jumlah += perubahan;
+    if (keranjang[indeks].jumlah <= 0) {
+        keranjang.splice(indeks, 1);
+    }
+    updateJumlahKeranjang();
+    renderKeranjang();
+}
+
+function hapusItem(indeks) {
+    keranjang.splice(indeks, 1);
+    updateJumlahKeranjang();
+    renderKeranjang();
+}
+
+function kirimKeWhatsApp() {
+    if (keranjang.length === 0) return;
+    
+    let pesan = 'Halo Kak! Saya mau pesan:\n\n';
+    let total = 0;
+    keranjang.forEach(item => {
+        const subtotal = item.harga * item.jumlah;
+        total += subtotal;
+        pesan += `✅ ${item.nama} — ${item.berat} × ${item.jumlah} = Rp ${subtotal.toLocaleString()}\n`;
+    });
+    pesan += `\n💰 Total: Rp ${total.toLocaleString()}`;
+    
+    const url = `https://wa.me/6285721349673?text=${encodeURIComponent(pesan)}`;
+    window.open(url, '_blank');
 }
 </script>
 
