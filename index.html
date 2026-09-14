@@ -12,7 +12,7 @@
         header h1 { font-size: 28px; }
         header p { margin-top: 5px; opacity: 0.9; }
         
-        .kategori { display: flex; justify-content: center; gap: 15px; padding: 20px; background: #ffe0b2; position: sticky; top: 0; z-index: 100; }
+        .kategori { display: flex; justify-content: center; gap: 15px; padding: 20px; background: #ffe0b2; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; }
         .tombol-kategori { padding: 12px 25px; border: none; border-radius: 25px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; }
         .tombol-kategori.aktif { background: #d84315; color: white; }
         .tombol-kategori:not(.aktif) { background: white; color: #d84315; border: 2px solid #d84315; }
@@ -22,7 +22,7 @@
         .produk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         .kartu-produk { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: 0.3s; }
         .kartu-produk:hover { transform: translateY(-5px); }
-        .foto-produk { height: 150px; background: #ffe0b2; display: flex; align-items: center; justify-content: center; font-size: 50px; }
+        .foto-produk { width: 100%; height: 180px; object-fit: cover; background: #ffe0b2; }
         .info-produk { padding: 15px; }
         .nama-produk { font-size: 18px; font-weight: bold; margin-bottom: 8px; }
         .harga { color: #d84315; font-size: 17px; font-weight: bold; margin-bottom: 10px; }
@@ -31,8 +31,16 @@
         
         .kategori-bagian { display: none; }
         .kategori-bagian.tampil { display: block; }
+        .kategori-bagian h2 { text-align: center; margin-bottom: 25px; color: #d84315; }
         
-        .kontak { text-align: center; padding: 30px; background: #d84315; color: white; margin-top: 40px; }
+        .peringatan { background:#fff3cd; border:2px solid #ffc107; border-radius:8px; padding:1rem; margin: 2rem 0; text-align:center; }
+        .peringatan h3 { color:#856404; margin-bottom: 0.5rem; }
+        
+        .kontak { text-align: center; padding: 30px; background: #d84315; color: white; margin-top: 40px; border-radius: 12px; }
+        .wa-link { display: inline-block; background: #25d366; color: white; padding: 10px 25px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-top: 10px; }
+        .wa-link:hover { background: #128c7e; }
+        
+        footer { text-align: center; padding: 20px; color: #777; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -42,51 +50,153 @@
     <p>Cemilan Enak & Oleh-Oleh Khas Bandung</p>
 </header>
 
-<!-- TOMBOL PILIH KATEGORI -->
 <div class="kategori">
     <button class="tombol-kategori aktif" onclick="tampilkanKategori('cemilan')">🍪 Cemilan</button>
     <button class="tombol-kategori" onclick="tampilkanKategori('oleholeh')">🎁 Oleh-Oleh Bandung</button>
 </div>
 
 <div class="container">
-    <!-- BAGIAN CEMILAN -->
+    <!-- 📦 CEMILAN -->
     <div id="cemilan" class="kategori-bagian tampil">
-        <h2 style="margin-bottom: 20px; text-align: center;">🍪 Daftar Cemilan</h2>
+        <h2>🍪 Daftar Cemilan</h2>
         <div class="produk-grid">
+            
             <div class="kartu-produk">
-                <div class="foto-produk">🍘</div>
+                <img src="img/Pangsit.png" alt="Pangsit" class="foto-produk">
                 <div class="info-produk">
-                    <div class="nama-produk">Keripik Singkong</div>
-                    <div class="harga">Rp 15.000</div>
-                    <a href="https://wa.me/6285721349673?text=Halo%2C%20saya%20mau%20pesan%20Keripik%20Singkong" class="beli">Pesan via WhatsApp</a>
+                    <div class="nama-produk">Pangsit Kering</div>
+                    <div class="harga">Rp 5.000</div>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Pangsit dong" class="beli" target="_blank">Pesan via WhatsApp</a>
                 </div>
             </div>
+            
             <div class="kartu-produk">
-                <div class="foto-produk">🍿</div>
+                <img src="img/basreng-stik-pedas.png" alt="Basreng Stik Pedas" class="foto-produk">
                 <div class="info-produk">
-                    <div class="nama-produk">Popcorn Karamel</div>
-                    <div class="harga">Rp 12.000</div>
-                    <a href="https://wa.me/6285721349673?text=Halo%2C%20saya%20mau%20pesan%20Popcorn%20Karamel" class="beli">Pesan via WhatsApp</a>
+                    <div class="nama-produk">Basreng Stik Pedas</div>
+                    <div class="harga">Rp 8.000</div>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Basreng Stik Pedas dong" class="beli" target="_blank">Pesan via WhatsApp</a>
                 </div>
             </div>
+            
             <div class="kartu-produk">
-                <div class="foto-produk">🥜</div>
+                <img src="img/basreng-tipis-ori.png" alt="Basreng Tipis Original" class="foto-produk">
                 <div class="info-produk">
-                    <div class="nama-produk">Kacang Bawang</div>
-                    <div class="harga">Rp 10.000</div>
-                    <a href="https://wa.me/6285721349673?text=Halo%2C%20saya%20mau%20pesan%20Kacang%20Bawang" class="beli">Pesan via WhatsApp</a>
+                    <div class="nama-produk">Basreng Tipis Original</div>
+                    <div class="harga">Rp 8.000</div>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Basreng Tipis Original dong" class="beli" target="_blank">Pesan via WhatsApp</a>
                 </div>
             </div>
+            
+            <div class="kartu-produk">
+                <img src="img/basreng-tipis-pedas.png" alt="Basreng Tipis Pedas" class="foto-produk">
+                <div class="info-produk">
+                    <div class="nama-produk">Basreng Tipis Pedas</div>
+                    <div class="harga">Rp 8.000</div>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Basreng Tipis Pedas dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                </div>
+            </div>
+            
+            <div class="kartu-produk">
+                <img src="img/comring.png" alt="Comring Bawang" class="foto-produk">
+                <div class="info-produk">
+                    <div class="nama-produk">Comring Bawang</div>
+                    <div class="harga">Rp 4.000</div>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Comring dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                </div>
+            </div>
+            
         </div>
     </div>
 
-    <!-- BAGIAN OLEH-OLEH BANDUNG -->
+    <!-- 🎁 OLEH-OLEH BANDUNG -->
     <div id="oleholeh" class="kategori-bagian">
-        <h2 style="margin-bottom: 20px; text-align: center;">🎁 Oleh-Oleh Khas Bandung</h2>
+        <h2>🎁 Oleh-Oleh Khas Bandung</h2>
         <div class="produk-grid">
+            
             <div class="kartu-produk">
-                <div class="foto-produk">🍰</div>
+                <img src="img/keripik-chuba-balado.png" alt="Keripik Singkong Balado" class="foto-produk">
                 <div class="info-produk">
-                    <div class="nama-produk">Brownies Kukus</div>
-                    <div class="harga">Rp 45.000</div>
-                    <a href="https://wa.me/6285721349673?text=Halo%2C%20sa
+                    <div class="nama-produk">Keripik Singkong Balado</div>
+                    <div class="harga">Rp 8.000</div>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Keripik Singkong Balado dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                </div>
+            </div>
+            
+            <div class="kartu-produk">
+                <img src="img/keripik-chuba-keju.png" alt="Keripik Singkong Keju" class="foto-produk">
+                <div class="info-produk">
+                    <div class="nama-produk">Keripik Singkong Keju</div>
+                    <div class="harga">Rp 8.000</div>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Keripik Singkong Keju dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                </div>
+            </div>
+            
+            <div class="kartu-produk">
+                <img src="img/keripik-pisang-gurih.png" alt="Keripik Pisang Gurih" class="foto-produk">
+                <div class="info-produk">
+                    <div class="nama-produk">Keripik Pisang Gurih</div>
+                    <div class="harga">Rp 7.000</div>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Keripik Pisang Gurih dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                </div>
+            </div>
+            
+            <div class="kartu-produk">
+                <img src="img/keripik-pisang-madu.png" alt="Keripik Pisang Madu" class="foto-produk">
+                <div class="info-produk">
+                    <div class="nama-produk">Keripik Pisang Madu</div>
+                    <div class="harga">Rp 7.000</div>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Keripik Pisang Madu dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                </div>
+            </div>
+            
+            <div class="kartu-produk">
+                <img src="img/keripik-singkong-bawang.png" alt="Keripik Singkong Bawang" class="foto-produk">
+                <div class="info-produk">
+                    <div class="nama-produk">Keripik Singkong Bawang</div>
+                    <div class="harga">Rp 8.000</div>
+                    <a href="https://wa.me/6285721349673?text=Halo Kak! Mau pesan Keripik Singkong Bawang dong" class="beli" target="_blank">Pesan via WhatsApp</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- ⚠️ PERINGATAN -->
+    <div class="peringatan">
+        <h3>⚠️ PENTING — Hindari Penipuan</h3>
+        <p><strong>Nomor WhatsApp RESMI Yanika Snack hanya: 0857-2134-9673</strong></p>
+        <p>❌ JANGAN transfer ke nomor lain | ✅ Kami kirim foto barang sebelum dikirim</p>
+    </div>
+
+    <!-- 📞 KONTAK -->
+    <div class="kontak">
+        <h2>📞 Ingin Pesan Banyak?</h2>
+        <p>Untuk pesanan grosir atau pertanyaan lainnya, silakan hubungi kami langsung:</p>
+        <a href="https://wa.me/6285721349673" class="wa-link" target="_blank">💬 Hubungi via WhatsApp</a>
+        <p style="margin-top: 1rem; font-weight: 500;">Nomor: 0857-2134-9673</p>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Yanika Snack — Semua Hak Dilindungi</p>
+</footer>
+
+<script>
+function tampilkanKategori(id) {
+    // Sembunyikan semua bagian kategori
+    const semuaKategori = document.querySelectorAll('.kategori-bagian');
+    semuaKategori.forEach(k => k.classList.remove('tampil'));
+    
+    // Hapus status aktif dari semua tombol
+    const semuaTombol = document.querySelectorAll('.tombol-kategori');
+    semuaTombol.forEach(t => t.classList.remove('aktif'));
+    
+    // Tampilkan yang dipilih
+    document.getElementById(id).classList.add('tampil');
+    event.target.classList.add('aktif');
+}
+</script>
+
+</body>
+</html>
