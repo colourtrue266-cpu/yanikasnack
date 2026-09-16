@@ -16,9 +16,8 @@
         .jumlah-keranjang { position: absolute; top: -5px; right: -5px; background: #ffeb3b; color: #d84315; font-size: 12px; font-weight: bold; padding: 2px 7px; border-radius: 50%; }
         
         .kategori { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; padding: 15px; background: #ffe0b2; position: sticky; top: 0; z-index: 99; }
-        .tombol-kategori { padding: 10px 20px; border: none; border-radius: 25px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; }
+        .tombol-kategori { padding: 10px 16px; border: none; border-radius: 25px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s; background: white; color: #555; }
         .tombol-kategori.aktif { background: #d84315; color: white; }
-        .tombol-kategori:not(.aktif) { background: white; color: #555; }
         .tombol-kategori:hover { transform: scale(1.05); }
         
         .pencarian { text-align: center; padding: 15px; }
@@ -65,430 +64,363 @@
 </header>
 
 <div class="kategori">
-    <button class="tombol-kategori aktif" onclick="filterKategori('semua')">Semua Produk</button>
-    <button class="tombol-kategori" onclick="filterKategori('cemilan')">Cemilan</button>
-    <button class="tombol-kategori" onclick="filterKategori('oleh-oleh')">Oleh-Oleh Bandung</button>
+    <button class="tombol-kategori aktif" id="btn-semua" onclick="pilihKategori('semua')">Semua</button>
+    <button class="tombol-kategori" id="btn-cemilan" onclick="pilihKategori('cemilan')">Cemilan</button>
+    <button class="tombol-kategori" id="btn-oleh-oleh" onclick="pilihKategori('oleh-oleh')">Oleh-Oleh Bandung</button>
+    <button class="tombol-kategori" id="btn-permen-coklat" onclick="pilihKategori('permen-coklat')">Permen & Coklat</button>
+    <button class="tombol-kategori" id="btn-kue-kering" onclick="pilihKategori('kue-kering')">Kue Kering</button>
 </div>
 
 <div class="pencarian">
-    <input type="text" id="cari" placeholder="🔍 Cari produk..." oninput="searchProduk()">
+    <input type="text" id="cari" placeholder="🔍 Cari produk..." oninput="cariProduk()">
 </div>
 
 <div class="daftar-produk" id="daftar-produk">
 
-    <!-- === CEMILAN === -->
-
+    <!-- ================ CEMILAN ================ -->
     <div class="produk" data-kategori="cemilan" data-nama="Telor Gabus Keju Special" data-harga250="22000" data-harga500="43000" data-harga1000="86000">
         <img src="telor-gabus-keju-special.png" alt="Telor Gabus Keju Special" loading="lazy">
         <h3>Telor Gabus Keju Special</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat1" value="250"> 250g - Rp 22.000</label>
-            <label><input type="radio" name="berat1" value="500"> 500g - Rp 43.000</label>
-            <label><input type="radio" name="berat1" value="1000"> 1000g - Rp 86.000</label>
+            <label><input type="radio" name="b1" value="250"> 250g - Rp 22.000</label>
+            <label><input type="radio" name="b1" value="500"> 500g - Rp 43.000</label>
+            <label><input type="radio" name="b1" value="1000"> 1000g - Rp 86.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="cemilan" data-nama="Sumpia Udang" data-harga250="12000" data-harga500="23000" data-harga1000="46000">
         <img src="sumpia-udang.png" alt="Sumpia Udang" loading="lazy">
         <h3>Sumpia Udang</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat2" value="250"> 250g - Rp 12.000</label>
-            <label><input type="radio" name="berat2" value="500"> 500g - Rp 23.000</label>
-            <label><input type="radio" name="berat2" value="1000"> 1000g - Rp 46.000</label>
+            <label><input type="radio" name="b2" value="250"> 250g - Rp 12.000</label>
+            <label><input type="radio" name="b2" value="500"> 500g - Rp 23.000</label>
+            <label><input type="radio" name="b2" value="1000"> 1000g - Rp 46.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="cemilan" data-nama="Liliput Wijen Special" data-harga250="20000" data-harga500="39000" data-harga1000="78000">
         <img src="liliput-wijen-special.png" alt="Liliput Wijen Special" loading="lazy">
         <h3>Liliput Wijen Special</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat3" value="250"> 250g - Rp 20.000</label>
-            <label><input type="radio" name="berat3" value="500"> 500g - Rp 39.000</label>
-            <label><input type="radio" name="berat3" value="1000"> 1000g - Rp 78.000</label>
+            <label><input type="radio" name="b3" value="250"> 250g - Rp 20.000</label>
+            <label><input type="radio" name="b3" value="500"> 500g - Rp 39.000</label>
+            <label><input type="radio" name="b3" value="1000"> 1000g - Rp 78.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="cemilan" data-nama="Makaroni Mini Keju" data-harga250="12000" data-harga500="23000" data-harga1000="46000">
         <img src="makaroni-mini-keju.png" alt="Makaroni Mini Keju" loading="lazy">
         <h3>Makaroni Mini Keju</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat4" value="250"> 250g - Rp 12.000</label>
-            <label><input type="radio" name="berat4" value="500"> 500g - Rp 23.000</label>
-            <label><input type="radio" name="berat4" value="1000"> 1000g - Rp 46.000</label>
+            <label><input type="radio" name="b4" value="250"> 250g - Rp 12.000</label>
+            <label><input type="radio" name="b4" value="500"> 500g - Rp 23.000</label>
+            <label><input type="radio" name="b4" value="1000"> 1000g - Rp 46.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="cemilan" data-nama="Makaroni Mini Pedas" data-harga250="12000" data-harga500="23000" data-harga1000="46000">
         <img src="makaroni-mini-pedas.png" alt="Makaroni Mini Pedas" loading="lazy">
         <h3>Makaroni Mini Pedas</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat5" value="250"> 250g - Rp 12.000</label>
-            <label><input type="radio" name="berat5" value="500"> 500g - Rp 23.000</label>
-            <label><input type="radio" name="berat5" value="1000"> 1000g - Rp 46.000</label>
+            <label><input type="radio" name="b5" value="250"> 250g - Rp 12.000</label>
+            <label><input type="radio" name="b5" value="500"> 500g - Rp 23.000</label>
+            <label><input type="radio" name="b5" value="1000"> 1000g - Rp 46.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="cemilan" data-nama="Basreng Stik Pedas" data-harga250="15000" data-harga500="29000" data-harga1000="58000">
         <img src="basreng-stik-pedas.png" alt="Basreng Stik Pedas" loading="lazy">
         <h3>Basreng Stik Pedas</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat6" value="250"> 250g - Rp 15.000</label>
-            <label><input type="radio" name="berat6" value="500"> 500g - Rp 29.000</label>
-            <label><input type="radio" name="berat6" value="1000"> 1000g - Rp 58.000</label>
+            <label><input type="radio" name="b6" value="250"> 250g - Rp 15.000</label>
+            <label><input type="radio" name="b6" value="500"> 500g - Rp 29.000</label>
+            <label><input type="radio" name="b6" value="1000"> 1000g - Rp 58.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="cemilan" data-nama="Makaroni Mini Cikruh" data-harga250="12000" data-harga500="23000" data-harga1000="46000">
         <img src="makaroni-mini-cikruh.png" alt="Makaroni Mini Cikruh" loading="lazy">
         <h3>Makaroni Mini Cikruh</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat7" value="250"> 250g - Rp 12.000</label>
-            <label><input type="radio" name="berat7" value="500"> 500g - Rp 23.000</label>
-            <label><input type="radio" name="berat7" value="1000"> 1000g - Rp 46.000</label>
+            <label><input type="radio" name="b7" value="250"> 250g - Rp 12.000</label>
+            <label><input type="radio" name="b7" value="500"> 500g - Rp 23.000</label>
+            <label><input type="radio" name="b7" value="1000"> 1000g - Rp 46.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="cemilan" data-nama="Basreng Tipis Pedas" data-harga250="15000" data-harga500="29000" data-harga1000="58000">
         <img src="basreng-tipis-pedas.png" alt="Basreng Tipis Pedas" loading="lazy">
         <h3>Basreng Tipis Pedas</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat8" value="250"> 250g - Rp 15.000</label>
-            <label><input type="radio" name="berat8" value="500"> 500g - Rp 29.000</label>
-            <label><input type="radio" name="berat8" value="1000"> 1000g - Rp 58.000</label>
+            <label><input type="radio" name="b8" value="250"> 250g - Rp 15.000</label>
+            <label><input type="radio" name="b8" value="500"> 500g - Rp 29.000</label>
+            <label><input type="radio" name="b8" value="1000"> 1000g - Rp 58.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="cemilan" data-nama="Basreng Tipis Ori" data-harga250="15000" data-harga500="29000" data-harga1000="58000">
         <img src="basreng-tipis-ori.png" alt="Basreng Tipis Ori" loading="lazy">
         <h3>Basreng Tipis Ori</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat9" value="250"> 250g - Rp 15.000</label>
-            <label><input type="radio" name="berat9" value="500"> 500g - Rp 29.000</label>
-            <label><input type="radio" name="berat9" value="1000"> 1000g - Rp 58.000</label>
+            <label><input type="radio" name="b9" value="250"> 250g - Rp 15.000</label>
+            <label><input type="radio" name="b9" value="500"> 500g - Rp 29.000</label>
+            <label><input type="radio" name="b9" value="1000"> 1000g - Rp 58.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="cemilan" data-nama="Lanting" data-harga250="10000" data-harga500="19000" data-harga1000="38000">
         <img src="lanting.png" alt="Lanting" loading="lazy">
         <h3>Lanting</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat10" value="250"> 250g - Rp 10.000</label>
-            <label><input type="radio" name="berat10" value="500"> 500g - Rp 19.000</label>
-            <label><input type="radio" name="berat10" value="1000"> 1000g - Rp 38.000</label>
+            <label><input type="radio" name="b10" value="250"> 250g - Rp 10.000</label>
+            <label><input type="radio" name="b10" value="500"> 500g - Rp 19.000</label>
+            <label><input type="radio" name="b10" value="1000"> 1000g - Rp 38.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="cemilan" data-nama="Pangsit Jeruk Pedas" data-harga250="10000" data-harga500="19000" data-harga1000="38000">
         <img src="pangsit-jeruk-pedas.png" alt="Pangsit Jeruk Pedas" loading="lazy">
         <h3>Pangsit Jeruk Pedas</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat11" value="250"> 250g - Rp 10.000</label>
-            <label><input type="radio" name="berat11" value="500"> 500g - Rp 19.000</label>
-            <label><input type="radio" name="berat11" value="1000"> 1000g - Rp 38.000</label>
+            <label><input type="radio" name="b11" value="250"> 250g - Rp 10.000</label>
+            <label><input type="radio" name="b11" value="500"> 500g - Rp 19.000</label>
+            <label><input type="radio" name="b11" value="1000"> 1000g - Rp 38.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="cemilan" data-nama="Pangsit" data-harga250="12000" data-harga500="23000" data-harga1000="46000">
         <img src="pangsit.png" alt="Pangsit" loading="lazy">
         <h3>Pangsit</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat12" value="250"> 250g - Rp 12.000</label>
-            <label><input type="radio" name="berat12" value="500"> 500g - Rp 23.000</label>
-            <label><input type="radio" name="berat12" value="1000"> 1000g - Rp 46.000</label>
+            <label><input type="radio" name="b12" value="250"> 250g - Rp 12.000</label>
+            <label><input type="radio" name="b12" value="500"> 500g - Rp 23.000</label>
+            <label><input type="radio" name="b12" value="1000"> 1000g - Rp 46.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="cemilan" data-nama="Comring" data-harga250="12000" data-harga500="23000" data-harga1000="46000">
         <img src="comring.png" alt="Comring" loading="lazy">
         <h3>Comring</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat13" value="250"> 250g - Rp 12.000</label>
-            <label><input type="radio" name="berat13" value="500"> 500g - Rp 23.000</label>
-            <label><input type="radio" name="berat13" value="1000"> 1000g - Rp 46.000</label>
+            <label><input type="radio" name="b13" value="250"> 250g - Rp 12.000</label>
+            <label><input type="radio" name="b13" value="500"> 500g - Rp 23.000</label>
+            <label><input type="radio" name="b13" value="1000"> 1000g - Rp 46.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="cemilan" data-nama="Keripik Chuba Balado" data-harga250="20000" data-harga500="39000" data-harga1000="78000">
         <img src="keripik-chuba-balado.png" alt="Keripik Chuba Balado" loading="lazy">
         <h3>Keripik Chuba Balado</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat14" value="250"> 250g - Rp 20.000</label>
-            <label><input type="radio" name="berat14" value="500"> 500g - Rp 39.000</label>
-            <label><input type="radio" name="berat14" value="1000"> 1000g - Rp 78.000</label>
+            <label><input type="radio" name="b14" value="250"> 250g - Rp 20.000</label>
+            <label><input type="radio" name="b14" value="500"> 500g - Rp 39.000</label>
+            <label><input type="radio" name="b14" value="1000"> 1000g - Rp 78.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="cemilan" data-nama="Kerupuk Chuba Keju" data-harga250="20000" data-harga500="39000" data-harga1000="78000">
         <img src="kerupuk-chuba-keju.png" alt="Kerupuk Chuba Keju" loading="lazy">
         <h3>Kerupuk Chuba Keju</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat15" value="250"> 250g - Rp 20.000</label>
-            <label><input type="radio" name="berat15" value="500"> 500g - Rp 39.000</label>
-            <label><input type="radio" name="berat15" value="1000"> 1000g - Rp 78.000</label>
+            <label><input type="radio" name="b15" value="250"> 250g - Rp 20.000</label>
+            <label><input type="radio" name="b15" value="500"> 500g - Rp 39.000</label>
+            <label><input type="radio" name="b15" value="1000"> 1000g - Rp 78.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
 
-    <!-- === OLEH-OLEH BANDUNG === -->
-
+    <!-- ================ OLEH-OLEH BANDUNG ================ -->
     <div class="produk" data-kategori="oleh-oleh" data-nama="Keripik Talas" data-harga250="15000" data-harga500="29000" data-harga1000="58000">
         <img src="keripik-talas.png" alt="Keripik Talas" loading="lazy">
         <h3>Keripik Talas</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat16" value="250"> 250g - Rp 15.000</label>
-            <label><input type="radio" name="berat16" value="500"> 500g - Rp 29.000</label>
-            <label><input type="radio" name="berat16" value="1000"> 1000g - Rp 58.000</label>
+            <label><input type="radio" name="b16" value="250"> 250g - Rp 15.000</label>
+            <label><input type="radio" name="b16" value="500"> 500g - Rp 29.000</label>
+            <label><input type="radio" name="b16" value="1000"> 1000g - Rp 58.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="oleh-oleh" data-nama="Keripik Pisang Gurih" data-harga250="15000" data-harga500="29000" data-harga1000="58000">
         <img src="keripik-pisang-gurih.png" alt="Keripik Pisang Gurih" loading="lazy">
         <h3>Keripik Pisang Gurih</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat17" value="250"> 250g - Rp 15.000</label>
-            <label><input type="radio" name="berat17" value="500"> 500g - Rp 29.000</label>
-            <label><input type="radio" name="berat17" value="1000"> 1000g - Rp 58.000</label>
+            <label><input type="radio" name="b17" value="250"> 250g - Rp 15.000</label>
+            <label><input type="radio" name="b17" value="500"> 500g - Rp 29.000</label>
+            <label><input type="radio" name="b17" value="1000"> 1000g - Rp 58.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="oleh-oleh" data-nama="Keripik Pisang Madu" data-harga250="15000" data-harga500="29000" data-harga1000="58000">
         <img src="keripik-pisang-madu.png" alt="Keripik Pisang Madu" loading="lazy">
         <h3>Keripik Pisang Madu</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat18" value="250"> 250g - Rp 15.000</label>
-            <label><input type="radio" name="berat18" value="500"> 500g - Rp 29.000</label>
-            <label><input type="radio" name="berat18" value="1000"> 1000g - Rp 58.000</label>
+            <label><input type="radio" name="b18" value="250"> 250g - Rp 15.000</label>
+            <label><input type="radio" name="b18" value="500"> 500g - Rp 29.000</label>
+            <label><input type="radio" name="b18" value="1000"> 1000g - Rp 58.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="oleh-oleh" data-nama="Telor Gabus Keju" data-harga250="12500" data-harga500="24000" data-harga1000="48000">
         <img src="telor-gabus-keju.png" alt="Telor Gabus Keju" loading="lazy">
         <h3>Telor Gabus Keju</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat19" value="250"> 250g - Rp 12.500</label>
-            <label><input type="radio" name="berat19" value="500"> 500g - Rp 24.000</label>
-            <label><input type="radio" name="berat19" value="1000"> 1000g - Rp 48.000</label>
+            <label><input type="radio" name="b19" value="250"> 250g - Rp 12.500</label>
+            <label><input type="radio" name="b19" value="500"> 500g - Rp 24.000</label>
+            <label><input type="radio" name="b19" value="1000"> 1000g - Rp 48.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="oleh-oleh" data-nama="Keripik Singkong Pedas Jadul" data-harga250="12500" data-harga500="24000" data-harga1000="48000">
         <img src="keripik-singkong-pedas-jadul.png" alt="Keripik Singkong Pedas Jadul" loading="lazy">
         <h3>Keripik Singkong Pedas Jadul</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat20" value="250"> 250g - Rp 12.500</label>
-            <label><input type="radio" name="berat20" value="500"> 500g - Rp 24.000</label>
-            <label><input type="radio" name="berat20" value="1000"> 1000g - Rp 48.000</label>
+            <label><input type="radio" name="b20" value="250"> 250g - Rp 12.500</label>
+            <label><input type="radio" name="b20" value="500"> 500g - Rp 24.000</label>
+            <label><input type="radio" name="b20" value="1000"> 1000g - Rp 48.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="oleh-oleh" data-nama="Keripik Singkong Bawang" data-harga250="12000" data-harga500="23000" data-harga1000="46000">
         <img src="keripik-singkong-bawang.png" alt="Keripik Singkong Bawang" loading="lazy">
         <h3>Keripik Singkong Bawang</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat21" value="250"> 250g - Rp 12.000</label>
-            <label><input type="radio" name="berat21" value="500"> 500g - Rp 23.000</label>
-            <label><input type="radio" name="berat21" value="1000"> 1000g - Rp 46.000</label>
+            <label><input type="radio" name="b21" value="250"> 250g - Rp 12.000</label>
+            <label><input type="radio" name="b21" value="500"> 500g - Rp 23.000</label>
+            <label><input type="radio" name="b21" value="1000"> 1000g - Rp 46.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="oleh-oleh" data-nama="Keripik Singkong Ori" data-harga250="10000" data-harga500="19000" data-harga1000="38000">
         <img src="keripik-singkong-ori.png" alt="Keripik Singkong Ori" loading="lazy">
         <h3>Keripik Singkong Ori</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat22" value="250"> 250g - Rp 10.000</label>
-            <label><input type="radio" name="berat22" value="500"> 500g - Rp 19.000</label>
-            <label><input type="radio" name="berat22" value="1000"> 1000g - Rp 38.000</label>
+            <label><input type="radio" name="b22" value="250"> 250g - Rp 10.000</label>
+            <label><input type="radio" name="b22" value="500"> 500g - Rp 19.000</label>
+            <label><input type="radio" name="b22" value="1000"> 1000g - Rp 38.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
     <div class="produk" data-kategori="oleh-oleh" data-nama="Keripik Singkong Kriwil" data-harga250="12000" data-harga500="23000" data-harga1000="46000">
         <img src="keripik-singkong-kriwil.png" alt="Keripik Singkong Kriwil" loading="lazy">
         <h3>Keripik Singkong Kriwil</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat23" value="250"> 250g - Rp 12.000</label>
-            <label><input type="radio" name="berat23" value="500"> 500g - Rp 23.000</label>
-            <label><input type="radio" name="berat23" value="1000"> 1000g - Rp 46.000</label>
+            <label><input type="radio" name="b23" value="250"> 250g - Rp 12.000</label>
+            <label><input type="radio" name="b23" value="500"> 500g - Rp 23.000</label>
+            <label><input type="radio" name="b23" value="1000"> 1000g - Rp 46.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
-    <div class="produk" data-kategori="oleh-oleh" data-nama="Semorong Lipat" data-harga250="12000" data-harga500="23000" data-harga1000="46000">
-        <img src="semorong-lipat.png" alt="Semorong Lipat" loading="lazy">
+    <div class="produk" data-kategori="oleh-oleh" data-nama="Semprong Lipat" data-harga250="12000" data-harga500="23000" data-harga1000="46000">
+        <img src="semprong-lipat.png" alt="Semprong Lipat" loading="lazy">
         <h3>Semprong Lipat</h3>
         <div class="pilihan-berat">
-            <label><input type="radio" name="berat24" value="250"> 250g - Rp 12.000</label>
-            <label><input type="radio" name="berat24" value="500"> 500g - Rp 23.000</label>
-            <label><input type="radio" name="berat24" value="1000"> 1000g - Rp 46.000</label>
+            <label><input type="radio" name="b24" value="250"> 250g - Rp 12.000</label>
+            <label><input type="radio" name="b24" value="500"> 500g - Rp 23.000</label>
+            <label><input type="radio" name="b24" value="1000"> 1000g - Rp 46.000</label>
         </div>
         <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-
-</div>
-
-<!-- === QRIS PEMBAYARAN === -->
-<div class="qris-box">
-    <h3>💳 Pembayaran QRIS</h3>
-    <p style="font-size: 14px; color: #666;">Scan QRIS di bawah ini untuk bayar</p>
-    <img src="qris-yanika.png" alt="QRIS Yanika Snack">
-    <p style="font-weight: bold; font-size: 16px; margin-top: 8px;">YANIKA SNACK</p>
-    <p style="font-size: 12px; color: #888;">NMID: ID1024323600014</p>
-    <p style="font-size: 13px; color: #25d366; margin-top: 8px;">✅ Bisa semua aplikasi pembayaran</p>
-</div>
-
-<!-- MODAL KERANJANG -->
-<div class="modal-keranjang" id="modal-keranjang">
-    <div class="isi-keranjang">
-        <div class="header-keranjang">
-            <h2>🛒 Keranjang Belanja</h2>
-            <span class="tutup" onclick="tutupKeranjang()">&times;</span>
+    <div class="produk" data-kategori="oleh-oleh" data-nama="Batagor Kering" data-harga250="17000" data-harga500="33000" data-harga1000="66000">
+        <img src="batagor-kering.png" alt="Batagor Kering" loading="lazy">
+        <h3>Batagor Kering</h3>
+        <div class="pilihan-berat">
+            <label><input type="radio" name="b25" value="250"> 250g - Rp 17.000</label>
+            <label><input type="radio" name="b25" value="500"> 500g - Rp 33.000</label>
+            <label><input type="radio" name="b25" value="1000"> 1000g - Rp 66.000</label>
         </div>
-        <ul id="daftar-keranjang"></ul>
-        <div class="total">Total: Rp <span id="total-harga">0</span></div>
-        <button class="tombol-pesan" onclick="kirimKeWA()">💬 Pesan via WhatsApp</button>
+        <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
     </div>
-</div>
-
-<footer>
-    📞 WA: <a href="https://wa.me/6285721349673" target="_blank">0857-2134-9673</a> | © 2026 Yanika Snack
-</footer>
-
-<script>
-let keranjang = [];
-
-function tambahKeKeranjang(tombol) {
-    const produk = tombol.closest('.produk');
-    const nama = produk.dataset.nama;
-    const beratTerpilih = produk.querySelector('input[type="radio"]:checked');
-    
-    if (!beratTerpilih) {
-        alert('⚠️ Pilih berat dulu ya Kak!');
-        return;
-    }
-    
-    const berat = beratTerpilih.value;
-    let harga;
-    if (berat === '250') harga = parseInt(produk.dataset.harga250);
-    else if (berat === '500') harga = parseInt(produk.dataset.harga500);
-    else harga = parseInt(produk.dataset.harga1000);
-    
-    keranjang.push({ nama, berat, harga });
-    updateKeranjang();
-    alert(`✅ "${nama}" (${berat}g) sudah ditambah ke keranjang!`);
-}
-
-function updateKeranjang() {
-    document.getElementById('jumlah-keranjang').textContent = keranjang.length;
-    const list = document.getElementById('daftar-keranjang');
-    list.innerHTML = '';
-    let total = 0;
-    
-    if (keranjang.length === 0) {
-        list.innerHTML = '<li class="kosong">Keranjang masih kosong ya Kak 😊</li>';
-    } else {
-        keranjang.forEach((item, indeks) => {
-            total += item.harga;
-            const li = document.createElement('li');
-            li.innerHTML = `
-                <div>
-                    <div><strong>${item.nama}</strong></div>
-                    <div>${item.berat}g - Rp ${item.harga.toLocaleString('id-ID')}</div>
-                </div>
-                <span class="hapus-item" onclick="hapusDariKeranjang(${indeks})">&times;</span>
-            `;
-            list.appendChild(li);
-        });
-    }
-    
-    document.getElementById('total-harga').textContent = total.toLocaleString('id-ID');
-}
-
-function hapusDariKeranjang(indeks) {
-    keranjang.splice(indeks, 1);
-    updateKeranjang();
-}
-
-function bukaKeranjang() {
-    document.getElementById('modal-keranjang').classList.add('buka');
-}
-
-function tutupKeranjang() {
-    document.getElementById('modal-keranjang').classList.remove('buka');
-}
-
-function kirimKeWA() {
-    if (keranjang.length === 0) {
-        alert('⚠️ Keranjang masih kosong!');
-        return;
-    }
-    
-    let pesan = "Halo Kak Yanika Snack! 👋 Saya mau pesan:\n\n";
-    let total = 0;
-    keranjang.forEach(item => {
-        pesan += `✅ ${item.nama} (${item.berat}g) - Rp ${item.harga.toLocaleString('id-ID')}\n`;
-        total += item.harga;
-    });
-    pesan += `\n💰 Total: Rp ${total.toLocaleString('id-ID')}`;
-    pesan += "\n\n💳 Pembayaran via QRIS: YANIKA SNACK (BSI)";
-    pesan += "\nScan QRIS di website kami atau kirim bukti transfer";
-    pesan += "\n\nMohon info ketersediaan & alamat pengiriman ya. Terima kasih! 😊";
-    
-    const url = `https://wa.me/6285721349673?text=${encodeURIComponent(pesan)}`;
-    window.open(url, '_blank');
-}
-
-function filterKategori(kategori) {
-    const tombol = document.querySelectorAll('.tombol-kategori');
-    tombol.forEach(btn => btn.classList.remove('aktif'));
-    event.target.classList.add('aktif');
-    
-    const produk = document.querySelectorAll('.produk');
-    produk.forEach(p => {
-        if (kategori === 'semua' || p.dataset.kategori === kategori) {
-            p.style.display = 'block';
-        } else {
-            p.style.display = 'none';
-        }
-    });
-}
-
-function searchProduk() {
-    const kata = document.getElementById('cari').value.toLowerCase();
-    const produk = document.querySelectorAll('.produk');
-    produk.forEach(p => {
-        const nama = p.dataset.nama.toLowerCase();
-        if (nama.includes(kata)) {
-            p.style.display = 'block';
-        } else {
-            p.style.display = 'none';
-        }
-    });
-}
-
-document.getElementById('modal-keranjang').addEventListener('click', function(e) {
-    if (e.target === this) tutupKeranjang();
-});
-</script>
-
-</body>
-</html>
+    <div class="produk" data-kategori="oleh-oleh" data-nama="Batagor Kering Pedas" data-harga250="15000" data-harga500="29000" data-harga1000="58000">
+        <img src="batagor-kering-pedas.png" alt="Batagor Kering Pedas" loading="lazy">
+        <h3>Batagor Kering Pedas</h3>
+        <div class="pilihan-berat">
+            <label><input type="radio" name="b26" value="250"> 250g - Rp 15.000</label>
+            <label><input type="radio" name="b26" value="500"> 500g - Rp 29.000</label>
+            <label><input type="radio" name="b26" value="1000"> 1000g - Rp 58.000</label>
+        </div>
+        <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
+    </div>
+    <div class="produk" data-kategori="oleh-oleh" data-nama="Basreng Bulat Pedas" data-harga250="15000" data-harga500="29000" data-harga1000="58000">
+        <img src="basreng-bulat-pedas.png" alt="Basreng Bulat Pedas" loading="lazy">
+        <h3>Basreng Bulat Pedas</h3>
+        <div class="pilihan-berat">
+            <label><input type="radio" name="b27" value="250"> 250g - Rp 15.000</label>
+            <label><input type="radio" name="b27" value="500"> 500g - Rp 29.000</label>
+            <label><input type="radio" name="b27" value="1000"> 1000g - Rp 58.000</label>
+        </div>
+        <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
+    </div>
+    <div class="produk" data-kategori="oleh-oleh" data-nama="Basreng Bulat Ori" data-harga250="15000" data-harga500="29000" data-harga1000="58000">
+        <img src="basreng-bulat-ori.png" alt="Basreng Bulat Ori" loading="lazy">
+        <h3>Basreng Bulat Ori</h3>
+        <div class="pilihan-berat">
+            <label><input type="radio" name="b28" value="250"> 250g - Rp 15.000</label>
+            <label><input type="radio" name="b28" value="500"> 500g - Rp 29.000</label>
+            <label><input type="radio" name="b28" value="1000"> 1000g - Rp 58.000</label>
+        </div>
+        <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
+    </div>
+    <div class="produk" data-kategori="oleh-oleh" data-nama="Keripik Tahu Bulat" data-harga250="17000" data-harga500="33000" data-harga1000="66000">
+        <img src="keripik-tahu-bulat.png" alt="Keripik Tahu Bulat" loading="lazy">
+        <h3>Keripik Tahu Bulat</h3>
+        <div class="pilihan-berat">
+            <label><input type="radio" name="b29" value="250"> 250g - Rp 17.000</label>
+            <label><input type="radio" name="b29" value="500"> 500g - Rp 33.000</label>
+            <label><input type="radio" name="b29" value="1000"> 1000g - Rp 66.000</label>
+        </div>
+        <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
+    </div>
+    <div class="produk" data-kategori="oleh-oleh" data-nama="Keripik Tempe Ori" data-harga250="15000" data-harga500="29000" data-harga1000="58000">
+        <img src="keripik-tempe-ori.png" alt="Keripik Tempe Ori" loading="lazy">
+        <h3>Keripik Tempe Ori</h3>
+        <div class="pilihan-berat">
+            <label><input type="radio" name="b30" value="250"> 250g - Rp 15.000</label>
+            <label><input type="radio" name="b30" value="500"> 500g - Rp 29.000</label>
+            <label><input type="radio" name="b30" value="1000"> 1000g - Rp 58.000</label>
+        </div>
+        <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
+    </div>
+    <div class="produk" data-kategori="oleh-oleh" data-nama="Keripik Tempe Sagu" data-harga250="17000" data-harga500="33000" data-harga1000="66000">
+        <img src="keripik-tempe-sagu.png" alt="Keripik Tempe Sagu" loading="lazy">
+        <h3>Keripik Tempe Sagu</h3>
+        <div class="pilihan-berat">
+            <label><input type="radio" name="b31" value="250"> 250g - Rp 17.000</label>
+            <label><input type="radio" name="b31" value="500"> 500g - Rp 33.000</label>
+            <label><input type="radio" name="b31" value="1000"> 1000g - Rp 66.000</label>
+        </div>
+        <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
+    </div>
+    <div class="produk" data-kategori="oleh-oleh" data-nama="Sale Lidah" data-harga250="17000" data-harga500="33000" data-harga1000="66000">
+        <img src="sale-lidah.png" alt="Sale Lidah" loading="lazy">
+        <h3>Sale Lidah</h3>
+        <div class="pilihan-berat">
+            <label><input type="radio" name="b32" value="250"> 250g - Rp 17.000</label>
+            <label><input type="radio" name="b32" value="500"> 500g - Rp 33.000</label>
+            <label><input type="radio" name="b32" value="1000"> 1000g - Rp 66.000</label>
+        </div>
+        <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
+    </div>
+    <div class="produk" data-kategori="oleh-oleh" data-nama="Sale Jari" data-harga250="15000" data-harga500="29000" data-harga1000="58000">
+        <img src="sale-jari.png" alt="Sale Jari" loading="lazy">
+        <h3>Sale Jari</h3>
+        <div class="pilihan-berat">
+            <label><input type="radio" name="b33" value="250"> 250g - Rp 15.000</label>
+            <label><input type="radio" name="b33" value="500"> 500g - Rp 29.000</label>
+            <label><input type="radio" name="b33" value="1000"> 1000g - Rp 58.000</label>
+        </div>
+        <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
+    </div>
+    <div class="produk" data-kategori="oleh-oleh" data-nama="Gurilem Cililin Pedas" data-harga250="14000" data-harga500="27000" data-harga1000="54000">
+        <img src="gurilem-cililin-pedas.png" alt="Gurilem Cililin Pedas" loading="lazy">
+        <h3>Gurilem Cililin Pedas</h3>
+        <div class="pilihan-berat">
+            <label><input type="radio" name="b34" value="250"> 250g - Rp 14.000</label>
+            <label><input type="radio" name="b34" value="500"> 500g - Rp 27.000</label>
+            <label><input type="radio" name="b34" value="1000"> 1000g - Rp 54.000</label>
+        </div>
+        <button class="tambah-keranjang" onclick="tambahKeKeranjang(this)">+ Tambah ke Keranjang</button>
+    </div>
+    <div class="produk" data-kategori="oleh-oleh" data-nama="Gurilem Cililin Bumbu Kacang" data-harga250="14000" data-harga500="27000" data-harga1000="54000">
+        <img src="gurilem-cililin-bumbu-kacang.png" alt="Gurilem Cililin Bumbu Kacang" loading="lazy">
+        <h3>Gurilem Cililin Bumbu Kacang</h3>
+        <div class="pilihan
