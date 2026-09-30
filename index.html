@@ -3,1927 +3,759 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yanika Snack - Cemilan & Oleh-Oleh Khas Bandung</title>
+    <title>Yanika Snack — Cemilan & Oleh-Oleh Khas Bandung</title>
     <style>
-        * {margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif;}
-        body {background:#fff9f0; padding-bottom:80px;}
-        header {background:#d84315; color:white; padding:15px; text-align:center;}
-        header h1 {font-size:20px;}
-        header p {font-size:13px; margin-top:5px;}
-        .search {padding:10px; background:white; position:sticky; top:0; z-index:90;}
-        .search input {width:100%; padding:10px; border:2px solid #eee; border-radius:20px; font-size:14px; outline:none;}
-        .kategori-bar {display:flex; overflow-x:auto; gap:8px; padding:10px; background:white; border-bottom:1px solid #eee;}
-        .kategori-btn {padding:8px 14px; background:#f0f0f0; border:none; border-radius:20px; white-space:nowrap; cursor:pointer; font-size:13px;}
-        .kategori-btn.aktif {background:#d84315; color:white;}
-        .container {padding:12px; max-width:600px; margin:0 auto;}
-        h2 {font-size:16px; color:#d84315; margin:15px 0 5px; padding-bottom:5px; border-bottom:2px solid #ffe0b2;}
-        .grid {display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; margin-bottom:10px;}
-        .product {background:white; border-radius:8px; overflow:hidden; box-shadow:0 2px 4px rgba(0,0,0,.05);}
-        .img-box {height:100px; background:#f5f5f5; display:flex; align-items:center; justify-content:center; color:#aaa; font-size:12px;}
-        .img-box img {width:100%; height:100%; object-fit:cover;}
-        .info {padding:10px;}
-        .name {font-size:12px; font-weight:bold; margin-bottom:6px; line-height:1.3; min-height:32px;}
-        select {width:100%; padding:5px; border:1px solid #ddd; border-radius:4px; font-size:12px; margin-bottom:6px;}
-        .add {width:100%; background:#d84315; color:white; border:none; padding:6px; border-radius:4px; cursor:pointer; font-size:13px;}
-        .cart-bar {position:fixed; bottom:0; left:0; right:0; background:white; padding:10px 15px; box-shadow:0 -2px 8px rgba(0,0,0,.1); z-index:100;}
-        .cart-inner {max-width:600px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;}
-        .cart-text {font-weight:bold; color:#d84315; font-size:13px;}
-        .cart-btn {background:#d84315; color:white; border:none; padding:7px 15px; border-radius:20px; cursor:pointer; font-size:13px;}
-        .modal {display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.5); z-index:200; align-items:center; justify-content:center; padding:15px;}
-        .modal.show {display:flex;}
-        .modal-content {background:white; border-radius:10px; width:100%; max-width:360px; max-height:80vh; overflow-y:auto; padding:20px;}
-        .modal h3 {text-align:center; color:#d84315; margin-bottom:15px; font-size:17px;}
-        .item {padding:8px 0; border-bottom:1px solid #eee; font-size:13px;}
-        .qty {display:flex; gap:8px; margin:5px 0; align-items:center;}
-        .qty button {width:26px; height:26px; border:none; background:#ffe0b2; border-radius:50%; cursor:pointer; color:#d84315; font-weight:bold;}
-        .del {background:#ffebee; color:#c62828; border:none; padding:3px 6px; border-radius:3px; margin-left:auto; cursor:pointer; font-size:11px;}
-        .total {text-align:right; font-size:16px; font-weight:bold; color:#d84315; margin-top:10px; padding-top:10px; border-top:2px solid #eee;}
-        .btns {display:flex; gap:10px; margin-top:15px;}
-        .close {flex:1; padding:8px; border:none; border-radius:5px; background:#eee; cursor:pointer;}
-        .wa-btn {flex:1; padding:8px; border:none; border-radius:5px; background:#25d366; color:white; cursor:pointer; font-weight:bold;}
-        .empty {text-align:center; color:#999; padding:30px;}
-        .hidden {display:none !important;}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff9f0 0%, #fff3e0 100%);
+            min-height: 100vh;
+            padding-bottom: 90px;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, #e64a19 0%, #d84315 100%);
+            color: white;
+            padding: 22px 15px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(216, 67, 21, 0.25);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        header p {
+            font-size: 14px;
+            margin-top: 6px;
+            opacity: 0.92;
+        }
+
+        /* ===== SEARCH ===== */
+        .search-container {
+            padding: 14px 15px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 92px;
+            z-index: 99;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 18px;
+            border: 2px solid #ffe0b2;
+            border-radius: 50px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box:focus {
+            border-color: #e64a19;
+        }
+
+        /* ===== CATEGORY TABS ===== */
+        .categories {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding: 14px 15px;
+            background: #fff;
+            border-bottom: 1px solid #ffe8cc;
+            scrollbar-width: none;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cat-btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            background: #fbe9e7;
+            color: #d84315;
+        }
+
+        .cat-btn.active {
+            background: linear-gradient(135deg, #e64a19 0%, #d84315 100%);
+            color: white;
+            box-shadow: 0 3px 10px rgba(216, 67, 21, 0.35);
+        }
+
+        .cat-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ===== WELCOME BANNER ===== */
+        .welcome {
+            margin: 16px 15px;
+            padding: 18px;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            border-left: 4px solid #ff9800;
+        }
+
+        .welcome h2 {
+            font-size: 17px;
+            color: #e64a19;
+            margin-bottom: 5px;
+        }
+
+        .welcome p {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* ===== PRODUCT SECTION ===== */
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #5d4037;
+            margin: 24px 15px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+            gap: 16px;
+            padding: 0 15px 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 22px rgba(0,0,0,0.1);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 140px;
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 14px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 12px;
+        }
+
+        .product-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .weight-select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ffcc80;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 10px;
+            background: #fff9f0;
+            outline: none;
+        }
+
+        .add-cart-btn {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #e64a19 0%, #d84315 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .add-cart-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* ===== CART BOTTOM BAR ===== */
+        .cart-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 12px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -4px 14px rgba(0,0,0,0.12);
+            z-index: 200;
+        }
+
+        .cart-info {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .cart-total {
+            color: #e64a19;
+            font-weight: 700;
+        }
+
+        .cart-btn {
+            padding: 10px 22px;
+            background: linear-gradient(135deg, #e64a19 0%, #d84315 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* ===== CART MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 300;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-height: 80vh;
+            border-radius: 20px 20px 0 0;
+            padding: 22px;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .close-btn {
+            font-size: 24px;
+            color: #999;
+            cursor: pointer;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .item-qty {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: none;
+            background: #f0f0f0;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wa-order-btn {
+            width: 100%;
+            padding: 14px;
+            background: #25d366;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+        }
+
+        .hidden {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>🍪 Yanika Snack</h1>
-    <p>Cemilan & Oleh-Oleh Khas Bandung — Hubungi: 0857-2134-9673</p>
-</header>
+    <!-- HEADER -->
+    <header>
+        <h1>🍪 Yanika Snack</h1>
+        <p>Cemilan & Oleh-Oleh Khas Bandung — Hubungi: 0857-2134-9673</p>
+    </header>
 
-<div class="search">
-    <input type="text" id="cari" placeholder="🔍 Cari nama produk...">
-</div>
-
-<div class="kategori-bar">
-    <button class="kategori-btn aktif" data-kategori="semua">Semua</button>
-    <button class="kategori-btn" data-kategori="cemilan">📦 Cemilan</button>
-    <button class="kategori-btn" data-kategori="permen">🍬 Permen & Coklat</button>
-    <button class="kategori-btn" data-kategori="oleh">🎁 Oleh-Oleh Bandung</button>
-    <button class="kategori-btn" data-kategori="kuekering">🍪 Kue Kering</button>
-</div>
-
-<div class="container">
-
-    <!-- ==================================== -->
-    <h2 id="cemilan">📦 CEMILAN</h2>
-    <div class="grid kategori-cemilan">
-<div class="product" data-name="Keripik Sukun">
-    <div class="img-box"><img src="keripik-sukun.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Keripik Sukun</div>
-        <select class="size">
-            <option value="17000">250g — Rp 17.000</option>
-            <option value="33000">500g — Rp 33.000</option>
-            <option value="66000">1kg — Rp 66.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Ciki Bantal Keju">
-    <div class="img-box"><img src="ciki-bantal-keju.png" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Ciki Bantal Keju</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-       <div class="product" data-name="Pilus Rujak">
-    <div class="img-box"><img src="pilus-rujak.png" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Pilus Rujak</div>
-        <select class="size">
-            <option value="12500">250g — Rp 12.500</option>
-            <option value="25000">500g — Rp 25.000</option>
-            <option value="50000">1kg — Rp 50.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Pilus Ikan">
-    <div class="img-box"><img src="pilus-ikan.png" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Pilus Ikan</div>
-        <select class="size">
-            <option value="12500">250g — Rp 12.500</option>
-            <option value="25000">500g — Rp 25.000</option>
-            <option value="50000">1kg — Rp 50.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Cimol Kering Pedas">
-    <div class="img-box"><img src="cimol-kering-pedas.png" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Cimol Kering Pedas</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Cimol Ori">
-    <div class="img-box"><img src="cimol-ori.png" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Cimol Ori</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kucai Singkong">
-    <div class="img-box"><img src="kucai-singkong.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kucai Singkong</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="30000">500g — Rp 30.000</option>
-            <option value="60000">1kg — Rp 60.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kicimpring">
-    <div class="img-box"><img src="kicimpring.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kicimpring</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="30000">500g — Rp 30.000</option>
-            <option value="60000">1kg — Rp 60.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Ranginang Ebi">
-    <div class="img-box"><img src="ranginang-ebi.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Ranginang Ebi</div>
-        <select class="size">
-            <option value="18000">250g — Rp 18.000</option>
-            <option value="35500">500g — Rp 35.500</option>
-            <option value="70000">1kg — Rp 70.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Pangsit Ubi Ungu">
-    <div class="img-box"><img src="pangsit-ubi-ungu.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Pangsit Ubi Ungu</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="24000">500g — Rp 24.000</option>
-            <option value="28000">1kg — Rp 28.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kerupuk Rambak">
-    <div class="img-box"><img src="kerupuk-rambak.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kerupuk Rambak</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="30000">500g — Rp 30.000</option>
-            <option value="60000">1kg — Rp 60.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Stik Balado">
-    <div class="img-box"><img src="stik-balado.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Stik Balado</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="30000">500g — Rp 30.000</option>
-            <option value="60000">1kg — Rp 60.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Stik Keju">
-    <div class="img-box"><img src="stik-keju.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Stik Keju</div>
-        <select class="size">
-            <option value="17000">250g — Rp 17.000</option>
-            <option value="34000">500g — Rp 34.000</option>
-            <option value="68000">1kg — Rp 68.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Potato Keju">
-    <div class="img-box"><img src="potato-keju.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Potato Keju</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="28000">500g — Rp 28.000</option>
-            <option value="56000">1kg — Rp 56.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-     <div class="product" data-name="Popcorn Asin">
-    <div class="img-box"><img src="popcorn-asin.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Popcorn Asin</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="30000">500g — Rp 30.000</option>
-            <option value="60000">1kg — Rp 60.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kerupuk Koin Pedas">
-    <div class="img-box"><img src="kerupuk-koin-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kerupuk Koin Pedas</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Seblak Mix">
-    <div class="img-box"><img src="seblak-mix.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Seblak Mix</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Seblak Beton Pedas">
-    <div class="img-box"><img src="seblak-beton-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Seblak Beton Pedas</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Seblak Bantat Coyoh">
-    <div class="img-box"><img src="seblak-bantat-coyoh.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Seblak Bantat Coyoh</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Moring Pedas">
-    <div class="img-box"><img src="moring-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Moring Pedas</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="24000">500g — Rp 24.000</option>
-            <option value="48000">1kg — Rp 48.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kerupuk Stik Ebi Pedas">
-    <div class="img-box"><img src="kerupuk-stik-ebi-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kerupuk Stik Ebi Pedas</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="27000">500g — Rp 27.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Seblak Rafaelle">
-    <div class="img-box"><img src="seblak-rafaelle.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Seblak Rafaelle</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="27000">500g — Rp 27.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kerupuk Seblak Putih">
-    <div class="img-box"><img src="kerupuk-seblak-putih.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kerupuk Seblak Putih</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="24000">500g — Rp 24.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Solondok Pedas">
-    <div class="img-box"><img src="solondok-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Solondok Pedas</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="28000">500g — Rp 28.000</option>
-            <option value="56000">1kg — Rp 56.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Solondok Ori">
-    <div class="img-box"><img src="solondok-ori.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Solondok Ori</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="28000">500g — Rp 28.000</option>
-            <option value="56000">1kg — Rp 56.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kerupuk Melati">
-    <div class="img-box"><img src="kerupuk-melati.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kerupuk Melati</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="30000">500g — Rp 30.000</option>
-            <option value="60000">1kg — Rp 60.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kerupuk Merah Pedas">
-    <div class="img-box"><img src="kerupuk-merah-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kerupuk Merah Pedas</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="30000">500g — Rp 30.000</option>
-            <option value="60000">1kg — Rp 60.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Donat Kering">
-    <div class="img-box"><img src="donat-kering.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Donat Kering</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="27000">500g — Rp 27.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Tiktak Pilus Cikur">
-    <div class="img-box"><img src="tiktak-pilus-cikur.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Tiktak Pilus Cikur</div>
-        <select class="size">
-            <option value="10000">250g — Rp 10.000</option>
-            <option value="20000">500g — Rp 20.000</option>
-            <option value="40000">1kg — Rp 40.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-       <div class="product" data-name="Keciput Wijen Bulat">
-    <div class="img-box"><img src="keciput-wijen-bulat.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Keciput Wijen Bulat</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="27000">500g — Rp 27.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Teng Teng Kacang">
-    <div class="img-box"><img src="teng-teng-kacang.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Teng Teng Kacang</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="28000">500g — Rp 28.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Samosa Manis Pedas">
-    <div class="img-box"><img src="samosa-manis-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Samosa Manis Pedas</div>
-        <select class="size">
-            <option value="22000">250g — Rp 22.000</option>
-            <option value="43000">500g — Rp 43.000</option>
-            <option value="86000">1kg — Rp 86.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kuping Tikus">
-    <div class="img-box"><img src="kuping-tikus.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kuping Tikus</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kuping Gajah">
-    <div class="img-box"><img src="kuping-gajah.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kuping Gajah</div>
-        <select class="size">
-            <option value="10000">250g — Rp 10.000</option>
-            <option value="19000">500g — Rp 19.000</option>
-            <option value="38000">1kg — Rp 38.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Sakura Gurih">
-    <div class="img-box"><img src="sakura-gurih.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Sakura Gurih</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Pang Pang Manis Asin">
-    <div class="img-box"><img src="pang-pang-manis-asin.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Pang Pang Manis Asin</div>
-        <select class="size">
-            <option value="10000">250g — Rp 10.000</option>
-            <option value="20000">500g — Rp 20.000</option>
-            <option value="40000">1kg — Rp 40.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kolontong Tasik">
-    <div class="img-box"><img src="kolontong-tasik.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kolontong Tasik</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Cheestik Keju Spc">
-    <div class="img-box"><img src="cheestik-keju-spc.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Cheestik Keju Spesial</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="30000">500g — Rp 30.000</option>
-            <option value="60000">1kg — Rp 60.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Sistik Gurih">
-    <div class="img-box"><img src="sistik-gurih.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Sistik Gurih</div>
-        <select class="size">
-            <option value="10000">250g — Rp 10.000</option>
-            <option value="20000">500g — Rp 20.000</option>
-            <option value="40000">1kg — Rp 40.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Sistik Mie Pedas">
-    <div class="img-box"><img src="sistik-mie-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Sistik Mie Pedas</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Chitos Balado">
-    <div class="img-box"><img src="chitos-balado.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Chitos Balado</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="30000">500g — Rp 30.000</option>
-            <option value="60000">1kg — Rp 60.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-       <div class="product" data-name="Emping Melinjo Balado">
-    <div class="img-box"><img src="emping-melinjo-balado.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Emping Melinjo Balado</div>
-        <select class="size">
-            <option value="20000">250g — Rp 20.000</option>
-            <option value="39000">500g — Rp 39.000</option>
-            <option value="78000">1kg — Rp 78.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kacang Polong">
-    <div class="img-box"><img src="kacang-polong.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kacang Polong</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="24000">500g — Rp 24.000</option>
-            <option value="48000">1kg — Rp 48.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kacang Mix">
-    <div class="img-box"><img src="kacang-mix.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kacang Mix</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="24000">500g — Rp 24.000</option>
-            <option value="48000">1kg — Rp 48.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kacang Bandung">
-    <div class="img-box"><img src="kacang-bandung.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kacang Bandung</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="24000">500g — Rp 24.000</option>
-            <option value="48000">1kg — Rp 48.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kacang Sangrai">
-    <div class="img-box"><img src="kacang-sangrai.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kacang Sangrai</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="30000">500g — Rp 30.000</option>
-            <option value="60000">1kg — Rp 60.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Sukro">
-    <div class="img-box"><img src="sukro.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Sukro</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="24000">500g — Rp 24.000</option>
-            <option value="48000">1kg — Rp 48.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kacang Atom">
-    <div class="img-box"><img src="kacang-atom.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kacang Atom</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="30000">500g — Rp 30.000</option>
-            <option value="60000">1kg — Rp 60.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kacang Telor">
-    <div class="img-box"><img src="kacang-telor.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kacang Telor</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="24000">500g — Rp 24.000</option>
-            <option value="48000">1kg — Rp 48.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kacang Koro Kulit">
-    <div class="img-box"><img src="kacang-koro-kulit.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kacang Koro Kulit</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="30000">500g — Rp 30.000</option>
-            <option value="60000">1kg — Rp 60.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kacang Koro Putih">
-    <div class="img-box"><img src="kacang-koro-putih.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kacang Koro Putih</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="24000">500g — Rp 24.000</option>
-            <option value="48000">1kg — Rp 48.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Jagung Marning Pedas">
-    <div class="img-box"><img src="jagung-marning-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Jagung Marning Pedas</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="24000">500g — Rp 24.000</option>
-            <option value="48000">1kg — Rp 48.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Astor Mini Vanilla">
-    <div class="img-box"><img src="astor-mini-vanilla.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Astor Mini Vanilla</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="27000">500g — Rp 27.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Astor Mini Pandan">
-    <div class="img-box"><img src="astor-mini-pandan.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Astor Mini Pandan</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="27000">500g — Rp 27.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Astor Mini Vanilla Hitam">
-    <div class="img-box"><img src="astor-mini-vanilla-hitam.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Astor Mini Vanilla Hitam</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="27000">500g — Rp 27.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Astor Mini Stoberi">
-    <div class="img-box"><img src="astor-mini-stoberi.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Astor Mini Stoberi</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="27000">500g — Rp 27.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Astor Mini Coklat">
-    <div class="img-box"><img src="astor-mini-coklat.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Astor Mini Coklat</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="27000">500g — Rp 27.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Astor Mini Bluberi">
-    <div class="img-box"><img src="astor-mini-bluberi.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Astor Mini Bluberi</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="27000">500g — Rp 27.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-      <div class="product" data-name="Keripik Usus Ayam Pedas">
-    <div class="img-box"><img src="keripik-usus-ayam-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Keripik Usus Ayam Pedas</div>
-        <select class="size">
-            <option value="18000">250g — Rp 18.000</option>
-            <option value="35000">500g — Rp 35.000</option>
-            <option value="70000">1kg — Rp 70.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kerupuk Melarat">
-    <div class="img-box"><img src="kerupuk-melarat.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kerupuk Melarat</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="27000">500g — Rp 27.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kurma Mesir">
-    <div class="img-box"><img src="kurma-mesir.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kurma Mesir</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Mie Lidi Pedas">
-    <div class="img-box"><img src="mie-lidi-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Mie Lidi Pedas</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Mie Lidi Asin">
-    <div class="img-box"><img src="mie-lidi-asin.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Mie Lidi Asin</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kwaci Matahari">
-    <div class="img-box"><img src="kwaci-matahari.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kwaci Matahari</div>
-        <select class="size">
-            <option value="20000">250g — Rp 20.000</option>
-            <option value="39000">500g — Rp 39.000</option>
-            <option value="78000">1kg — Rp 78.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kripca Cabe Merah">
-    <div class="img-box"><img src="kripca-cabe-merah.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kripca Cabe Merah</div>
-        <select class="size">
-            <option value="20000">250g — Rp 20.000</option>
-            <option value="39000">500g — Rp 39.000</option>
-            <option value="78000">1kg — Rp 78.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kripca Cabe Ijo">
-    <div class="img-box"><img src="kripca-cabe-ijo.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kripca Cabe Ijo</div>
-        <select class="size">
-            <option value="20000">250g — Rp 20.000</option>
-            <option value="39000">500g — Rp 39.000</option>
-            <option value="78000">1kg — Rp 78.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kripca Ori">
-    <div class="img-box"><img src="kripca-ori.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kripca Ori</div>
-        <select class="size">
-            <option value="20000">250g — Rp 20.000</option>
-            <option value="39000">500g — Rp 39.000</option>
-            <option value="78000">1kg — Rp 78.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Pisang Aroma Karamel">
-    <div class="img-box"><img src="pisang-aroma-karamel.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Pisang Aroma Karamel</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Keripik Kentang Asli">
-    <div class="img-box"><img src="keripik-kentang-asli.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Keripik Kentang Asli</div>
-        <select class="size">
-            <option value="27500">250g — Rp 27.500</option>
-            <option value="54000">500g — Rp 54.000</option>
-            <option value="108000">1kg — Rp 108.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Tortilla Barbeque">
-    <div class="img-box"><img src="tortilla-barbeque.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Tortilla Barbeque</div>
-        <select class="size">
-            <option value="20000">250g — Rp 20.000</option>
-            <option value="39000">500g — Rp 39.000</option>
-            <option value="78000">1kg — Rp 78.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Makroni Ori">
-    <div class="img-box"><img src="makroni-ori.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Makroni Ori</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Makroni Rujak">
-    <div class="img-box"><img src="makroni-rujak.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Makroni Rujak</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Telor Gabus Manis Wijen">
-    <div class="img-box"><img src="telor-gabus-manis-wijen.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Telor Gabus Manis Wijen</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="28000">500g — Rp 28.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-       <div class="product" data-name="Liliput Wijen Special">
-    <div class="img-box"><img src="liliput-wijen-special.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Liliput Wijen Special</div>
-        <select class="size">
-            <option value="20000">250g — Rp 20.000</option>
-            <option value="39000">500g — Rp 39.000</option>
-            <option value="78000">1kg — Rp 78.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Makroni Mini Keju">
-    <div class="img-box"><img src="makroni-mini-keju.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Makroni Mini Keju</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Makroni Mini Pedas">
-    <div class="img-box"><img src="makroni-mini-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Makroni Mini Pedas</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Makroni Mini Cikruh">
-    <div class="img-box"><img src="makroni-mini-cikruh.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Makroni Mini Cikruh</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Lanting">
-    <div class="img-box"><img src="lanting.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Lanting</div>
-        <select class="size">
-            <option value="10000">250g — Rp 10.000</option>
-            <option value="19000">500g — Rp 19.000</option>
-            <option value="38000">1kg — Rp 38.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Pangsit Jeruk Pedas">
-    <div class="img-box"><img src="pangsit-jeruk-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Pangsit Jeruk Pedas</div>
-        <select class="size">
-            <option value="10000">250g — Rp 10.000</option>
-            <option value="19000">500g — Rp 19.000</option>
-            <option value="38000">1kg — Rp 38.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Pangsit">
-    <div class="img-box"><img src="pangsit.png" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Pangsit</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Comring">
-    <div class="img-box"><img src="comring.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Comring</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Keripik Chuba Balado">
-    <div class="img-box"><img src="keripik-chuba-balado.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Keripik Chuba Balado</div>
-        <select class="size">
-            <option value="20000">250g — Rp 20.000</option>
-            <option value="39000">500g — Rp 39.000</option>
-            <option value="78000">1kg — Rp 78.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kerupik Chuba Keju">
-    <div class="img-box"><img src="kerupik-chuba-keju.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kerupik Chuba Keju</div>
-        <select class="size">
-            <option value="20000">250g — Rp 20.000</option>
-            <option value="39000">500g — Rp 39.000</option>
-            <option value="78000">1kg — Rp 78.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Keripik Talas Stik">
-    <div class="img-box"><img src="keripik-talas-stik.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Keripik Talas Stik</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Keripik Pisang Gurih">
-    <div class="img-box"><img src="keripik-pisang-gurih.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Keripik Pisang Gurih</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Keripik Pisang Madu">
-    <div class="img-box"><img src="keripik-pisang-madu.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Keripik Pisang Madu</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Telor Gabus Keju">
-    <div class="img-box"><img src="telor-gabus-keju.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Telor Gabus Keju</div>
-        <select class="size">
-            <option value="12500">250g — Rp 12.500</option>
-            <option value="24000">500g — Rp 24.000</option>
-            <option value="48000">1kg — Rp 48.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Keripik Singkong Pedas Jadul">
-    <div class="img-box"><img src="keripik-singkong-pedas-jadul.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Keripik Singkong Pedas Jadul</div>
-        <select class="size">
-            <option value="12500">250g — Rp 12.500</option>
-            <option value="24000">500g — Rp 24.000</option>
-            <option value="48000">1kg — Rp 48.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Keripik Singkong Bawang">
-    <div class="img-box"><img src="keripik-singkong-bawang.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Keripik Singkong Bawang</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Keripik Singkong Ori">
-    <div class="img-box"><img src="keripik-singkong-ori.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Keripik Singkong Ori</div>
-        <select class="size">
-            <option value="10000">250g — Rp 10.000</option>
-            <option value="19000">500g — Rp 19.000</option>
-            <option value="38000">1kg — Rp 38.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Keripik Singkong Kriwil">
-    <div class="img-box"><img src="keripik-singkong-kriwil.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Keripik Singkong Kriwil</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Keripik Singkong Padang">
-    <div class="img-box"><img src="keripik-singkong-padang.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Keripik Singkong Padang</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Semprong Lipat">
-    <div class="img-box"><img src="semprong-lipat.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Semprong Lipat</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
- 
-<div class="product" data-name="Kacang Thailad">
-    <div class="img-box"><img src="kacang-thailad.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kacang Thailad</div>
-        <select class="size">
-            <option value="20000">250g — Rp 20.000</option>
-            <option value="40000">500g — Rp 40.000</option>
-            <option value="80000">1kg — Rp 80.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Soes Asin Spc">
-    <div class="img-box"><img src="soes-asin-spc.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Soes Asin Spesial</div>
-        <select class="size">
-            <option value="20000">250g — Rp 20.000</option>
-            <option value="39000">500g — Rp 39.000</option>
-            <option value="78000">1kg — Rp 78.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Soes Cokelat">
-    <div class="img-box"><img src="soes-cokelat.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Soes Cokelat</div>
-        <select class="size">
-            <option value="20000">250g — Rp 20.000</option>
-            <option value="39000">500g — Rp 39.000</option>
-            <option value="78000">1kg — Rp 78.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-  
-<div class="product" data-name="Eggroll Alladin">
-    <div class="img-box"><img src="eggroll-alladin.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Eggroll Alladin</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="27000">500g — Rp 27.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Astor Belang Alladin">
-    <div class="img-box"><img src="astor-belang-alladin.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Astor Belang Alladin</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="27000">500g — Rp 27.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
- 
-<div class="product" data-name="Chitos Barbeque">
-    <div class="img-box"><img src="chitos-barbeque.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Chitos Barbeque</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="30000">500g — Rp 30.000</option>
-            <option value="60000">1kg — Rp 60.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
- 
-<div class="product" data-name="Simping Kencur">
-    <div class="img-box"><img src="simping-kencur.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Simping Kencur</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="30000">500g — Rp 30.000</option>
-            <option value="60000">1kg — Rp 60.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-   
-<div class="product" data-name="Potato Saos">
-    <div class="img-box"><img src="potato-saos.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Potato Saos</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="28000">500g — Rp 28.000</option>
-            <option value="56000">1kg — Rp 56.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Ciki Kentang Kerucut">
-    <div class="img-box"><img src="ciki-kentang-kerucut.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Ciki Kentang Kerucut</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="28000">500g — Rp 28.000</option>
-            <option value="56000">1kg — Rp 56.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
- 
-<div class="product" data-name="Ciki Stik Coklat">
-    <div class="img-box"><img src="ciki-stik-coklat.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Ciki Stik Coklat</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Ciki Stik Pandan">
-    <div class="img-box"><img src="ciki-stik-pandan.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Ciki Stik Pandan</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Ciko Crunch Sereal">
-    <div class="img-box"><img src="ciko-crunch-sereal.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Ciko Crunch Sereal</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-
-        <div class="product" data-name="Kerupuk Jengkol">
-    <div class="img-box"><img src="kerupuk-jengkol.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kerupuk Jengkol</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="27000">500g — Rp 27.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Telor Gabus Keju Special">
-    <div class="img-box"><img src="telor-gabus-keju-special.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Telor Gabus Keju Special</div>
-        <select class="size">
-            <option value="22000">250g — Rp 22.000</option>
-            <option value="43000">500g — Rp 43.000</option>
-            <option value="86000">1kg — Rp 86.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Sumpia Udang">
-    <div class="img-box"><img src="sumpia-udang.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Sumpia Udang</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
+    <!-- SEARCH -->
+    <div class="search-container">
+        <input type="text" class="search-box" id="searchInput" placeholder="🔍 Cari nama produk...">
     </div>
 
-    <!-- ==================================== -->
-    <h2 id="permen">🍬 PERMEN & COKLAT</h2>
-    <div class="grid kategori-permen">
-<div class="product" data-name="Permen Jahe">
-    <div class="img-box"><img src="permen-jahe.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Permen Jahe</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Permen Asem">
-    <div class="img-box"><img src="permen-asem.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Permen Asem</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kue Balut Coklat">
-    <div class="img-box"><img src="kue-balut-coklat.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kue Balut Coklat</div>
-        <select class="size">
-            <option value="20000">250g — Rp 20.000</option>
-            <option value="39000">500g — Rp 39.000</option>
-            <option value="78000">1kg — Rp 78.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Chacha Warna">
-    <div class="img-box"><img src="chacha-warna.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Chacha Warna</div>
-        <select class="size">
-            <option value="20000">250g — Rp 20.000</option>
-            <option value="39000">500g — Rp 39.000</option>
-            <option value="78000">1kg — Rp 78.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Chacha Telor Puyuh">
-    <div class="img-box"><img src="chacha-telor-puyuh.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Chacha Telor Puyuh</div>
-        <select class="size">
-            <option value="20000">250g — Rp 20.000</option>
-            <option value="39000">500g — Rp 39.000</option>
-            <option value="78000">1kg — Rp 78.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Permen Jelly">
-    <div class="img-box"><img src="permen-jelly.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Permen Jelly</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
+    <!-- CATEGORIES -->
+    <div class="categories">
+        <button class="cat-btn active" data-category="all">Semua</button>
+        <button class="cat-btn" data-category="cemilan">📦 Cemilan</button>
+        <button class="cat-btn" data-category="permen">🍬 Permen & Coklat</button>
+        <button class="cat-btn" data-category="oleh">🎁 Oleh-Oleh Bandung</button>
+        <button class="cat-btn" data-category="kue">🧁 Kue Kering</button>
     </div>
 
-    <!-- ==================================== -->
-    <h2 id="oleh">🎁 OLEH-OLEH BANDUNG</h2>
-    <div class="grid kategori-oleh">
-<div class="product" data-name="Batagor Kering">
-    <div class="img-box"><img src="batagor-kering.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Batagor Kering</div>
-        <select class="size">
-            <option value="17000">250g — Rp 17.000</option>
-            <option value="33000">500g — Rp 33.000</option>
-            <option value="66000">1kg — Rp 66.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Batagor Kering Pedas">
-    <div class="img-box"><img src="batagor-kering-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Batagor Kering Pedas</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Basreng Bulat Pedas">
-    <div class="img-box"><img src="basreng-bulat-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Basreng Bulat Pedas</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Basreng Bulat Ori">
-    <div class="img-box"><img src="basreng-bulat-ori.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Basreng Bulat Ori</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Basreng Stik Pedas">
-    <div class="img-box"><img src="basreng-stik-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Basreng Stik Pedas</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Keripik Tahu Bulat">
-    <div class="img-box"><img src="keripik-tahu-bulat.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Keripik Tahu Bulat</div>
-        <select class="size">
-            <option value="17000">250g — Rp 17.000</option>
-            <option value="33000">500g — Rp 33.000</option>
-            <option value="66000">1kg — Rp 66.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Keripik Tempe Ori">
-    <div class="img-box"><img src="keripik-tempe-ori.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Keripik Tempe Ori</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Keripik Tempe Sagu">
-    <div class="img-box"><img src="keripik-tempe-sagu.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Keripik Tempe Sagu</div>
-        <select class="size">
-            <option value="17000">250g — Rp 17.000</option>
-            <option value="33000">500g — Rp 33.000</option>
-            <option value="66000">1kg — Rp 66.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Sale Lidah">
-    <div class="img-box"><img src="sale-lidah.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Sale Lidah</div>
-        <select class="size">
-            <option value="17000">250g — Rp 17.000</option>
-            <option value="33000">500g — Rp 33.000</option>
-            <option value="66000">1kg — Rp 66.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Sale Jari">
-    <div class="img-box"><img src="sale-jari.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Sale Jari</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Gurilem Cililin Pedas">
-    <div class="img-box"><img src="gurilem-cililin-pedas.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Gurilem Cililin Pedas</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="27000">500g — Rp 27.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Gurilem Cililin Bumbu Kacang">
-    <div class="img-box"><img src="gurilem-cililin-bumbu-kacang.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Gurilem Cililin Bumbu Kacang</div>
-        <select class="size">
-            <option value="14000">250g — Rp 14.000</option>
-            <option value="27000">500g — Rp 27.000</option>
-            <option value="54000">1kg — Rp 54.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
+    <!-- WELCOME BANNER -->
+    <div class="welcome">
+        <h2>👋 Selamat Datang di Yanika Snack!</h2>
+        <p>📍 Kualitas terjamin • Harga terbaik • Siap kirim ke seluruh Indonesia</p>
     </div>
 
-    <!-- ==================================== -->
-    <h2 id="kuekering">🍪 KUE KERING</h2>
-    <div class="grid kategori-kuekering">
-<div class="product" data-name="Bagelen Mini Butter">
-    <div class="img-box"><img src="bagelen-mini-butter.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Bagelen Mini Butter</div>
-        <select class="size">
-            <option value="17000">250g — Rp 17.000</option>
-            <option value="33000">500g — Rp 33.000</option>
-            <option value="66000">1kg — Rp 66.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
+    <!-- PRODUCTS CONTAINER -->
+    <div id="productsContainer">
+        <!-- PRODUCTS WILL RENDER HERE -->
     </div>
-</div>
-     <div class="product" data-name="Kue Semprit">
-    <div class="img-box"><img src="kue-semprit.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kue Semprit</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Sagu Keju Special">
-    <div class="img-box"><img src="sagu-keju-special.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Sagu Keju Special</div>
-        <select class="size">
-            <option value="22000">250g — Rp 22.000</option>
-            <option value="43000">500g — Rp 43.000</option>
-            <option value="86000">1kg — Rp 86.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kue Lidah Kucing">
-    <div class="img-box"><img src="kue-lidah-kucing.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kue Lidah Kucing</div>
-        <select class="size">
-            <option value="20000">250g — Rp 20.000</option>
-            <option value="39000">500g — Rp 39.000</option>
-            <option value="78000">1kg — Rp 78.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kue Tambang">
-    <div class="img-box"><img src="kue-tambang.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kue Tambang</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Bronis Kering">
-    <div class="img-box"><img src="bronis-kering.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Bronis Kering</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kue Bangket Jahe">
-    <div class="img-box"><img src="kue-bangket-jahe.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kue Bangket Jahe</div>
-        <select class="size">
-            <option value="17000">250g — Rp 17.000</option>
-            <option value="34000">500g — Rp 34.000</option>
-            <option value="68000">1kg — Rp 68.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kue Kancing">
-    <div class="img-box"><img src="kue-kancing.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kue Kancing</div>
-        <select class="size">
-            <option value="12000">250g — Rp 12.000</option>
-            <option value="23000">500g — Rp 23.000</option>
-            <option value="46000">1kg — Rp 46.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Wafer Krim Kacang">
-    <div class="img-box"><img src="wafer-krim-kacang.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Wafer Krim Kacang</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Sagon Kelapa Mini">
-    <div class="img-box"><img src="sagon-kelapa-mini.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Sagon Kelapa Mini</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-   
-<div class="product" data-name="Bagelen Butter">
-    <div class="img-box"><img src="bagelen-butter.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Bagelen Butter</div>
-        <select class="size">
-            <option value="22500">250g — Rp 22.500</option>
-            <option value="24000">500g — Rp 24.000</option>
-            <option value="48000">1kg — Rp 48.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Bagelen Keju">
-    <div class="img-box"><img src="bagelen-keju.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Bagelen Keju</div>
-        <select class="size">
-            <option value="25000">250g — Rp 25.000</option>
-            <option value="49000">500g — Rp 49.000</option>
-            <option value="98000">1kg — Rp 98.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Bolu Kering">
-    <div class="img-box"><img src="bolu-kering.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Bolu Kering</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Bolu Eggmoon">
-    <div class="img-box"><img src="bolu-eggmoon.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Bolu Eggmoon</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-<div class="product" data-name="Kue Semprit">
-    <div class="img-box"><img src="kue-semprit.jpg" alt="" onerror="this.style.display='none'">Foto</div>
-    <div class="info">
-        <div class="name">Kue Semprit</div>
-        <select class="size">
-            <option value="15000">250g — Rp 15.000</option>
-            <option value="29000">500g — Rp 29.000</option>
-            <option value="58000">1kg — Rp 58.000</option>
-        </select>
-        <button class="add">+ Keranjang</button>
-    </div>
-</div>
-    </div>
-</div>
 
-<!-- KERANJANG BAWAH -->
-<div class="cart-bar">
-    <div class="cart-inner">
-        <div class="cart-text" id="cart-info">🛒 Keranjang: 0 item — Rp 0</div>
-        <button class="cart-btn" id="cart-toggle">Lihat</button>
-    </div>
-</div>
-
-<!-- MODAL KERANJANG -->
-<div class="modal" id="cart-modal">
-    <div class="modal-content">
-        <h3>🛒 Pesanan Kamu</h3>
-        <div id="cart-list" class="empty">Keranjang masih kosong</div>
-        <div class="total" id="cart-total">Total: Rp 0</div>
-        <div class="btns">
-            <button class="close" id="cart-close">Tutup</button>
-            <button class="wa-btn" id="wa-order">Pesan via WA</button>
+    <!-- CART BAR -->
+    <div class="cart-bar">
+        <div class="cart-info">
+            🛒 Keranjang: <span id="cartCount">0</span> item — 
+            <span class="cart-total" id="cartTotal">Rp 0</span>
         </div>
+        <button class="cart-btn" id="openCart">Lihat</button>
     </div>
-</div>
 
-<script>
-let cart = [];
-const WA_NUMBER = '6285721349673';
-
-// Tambah ke keranjang
-document.querySelectorAll('.add').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const product = this.closest('.product');
-        const name = product.querySelector('.name').textContent;
-        const size = product.querySelector('.size option:checked').textContent;
-        const price = parseInt(product.querySelector('.size').value);
-        
-        const existing = cart.find(i => i.name === name && i.size === size);
-        if (existing) {
-            existing.qty++;
-        } else {
-            cart.push({ name, size, price, qty: 1 });
-        }
-        updateCart();
-    });
-});
-
-// Update tampilan keranjang
-function updateCart() {
-    const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
-    const totalPrice = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
-    
-    document.getElementById('cart-info').textContent = 
-        `🛒 Keranjang: ${totalItems} item — Rp ${totalPrice.toLocaleString('id-ID')}`;
-    
-    const listEl = document.getElementById('cart-list');
-    const totalEl = document.getElementById('cart-total');
-    
-    if (cart.length === 0) {
-        listEl.innerHTML = '<div class="empty">Keranjang masih kosong</div>';
-        totalEl.textContent = 'Total: Rp 0';
-        return;
-    }
-    
-    listEl.innerHTML = cart.map((item, idx) => `
-        <div class="item">
-            <div><strong>${item.name}</strong></div>
-            <div>${item.size}</div>
-            <div>Rp ${item.price.toLocaleString('id-ID')} × ${item.qty} = Rp ${(item.price * item.qty).toLocaleString('id-ID')}</div>
-            <div class="qty">
-                <button data-idx="${idx}" data-action="minus">−</button>
-                <span>${item.qty}</span>
-                <button data-idx="${idx}" data-action="plus">+</button>
-                <button class="del" data-idx="${idx}">Hapus</button>
+    <!-- CART MODAL -->
+    <div class="modal-overlay" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🛒 Keranjang Belanja</h3>
+                <span class="close-btn" id="closeCart">&times;</span>
+            </div>
+            <div id="cartItems"></div>
+            <div class="empty-cart" id="emptyCartMsg">Keranjang masih kosong, yuk pilih cemilan favoritmu! 😊</div>
+            <div id="cartSummary" class="hidden">
+                <div style="display:flex; justify-content:space-between; padding:15px 0; font-size:18px; font-weight:700; border-top:2px solid #eee; margin-top:10px;">
+                    <span>Total</span>
+                    <span id="modalTotal">Rp 0</span>
+                </div>
+                <button class="wa-order-btn" id="sendToWA">📲 Pesan via WhatsApp</button>
             </div>
         </div>
-    `).join('');
-    
-    totalEl.textContent = `Total: Rp ${totalPrice.toLocaleString('id-ID')}`;
-    
-    // Event tombol keranjang
-    listEl.querySelectorAll('.qty button').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const idx = parseInt(this.dataset.idx);
-            if (this.dataset.action === 'plus') cart[idx].qty++;
-            else if (this.dataset.action === 'minus') {
-                cart[idx].qty--;
-                if (cart[idx].qty <= 0) cart.splice(idx, 1);
-            } else if (this.classList.contains('del')) cart.splice(idx, 1);
-            updateCart();
-        });
-    });
-}
+    </div>
 
-// Buka/tutup modal
-document.getElementById('cart-toggle').addEventListener('click', () => {
-    document.getElementById('cart-modal').classList.add('show');
-});
-document.getElementById('cart-close').addEventListener('click', () => {
-    document.getElementById('cart-modal').classList.remove('show');
-});
+    <script>
+        // ========== DATA PRODUK ==========
+        const products = [
+           // === PERMEN & COKLAT ===
+{ id:1, name:"Permen Jahe", category:"permen", image:"permen-jahe.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+{ id:2, name:"Permen Asem", category:"permen", image:"permen-asem.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+{ id:3, name:"Kue Balut Coklat", category:"permen", image:"kue-balut-coklat.jpg", prices:[{weight:"250g", price:20000},{weight:"500g", price:39000},{weight:"1000g", price:78000}] },
+{ id:4, name:"Chacha Warna", category:"permen", image:"chacha-warna.jpg", prices:[{weight:"250g", price:20000},{weight:"500g", price:39000},{weight:"1000g", price:78000}] },
+{ id:5, name:"Chacha Telor Puyuh", category:"permen", image:"chacha-telor-puyuh.jpg", prices:[{weight:"250g", price:20000},{weight:"500g", price:39000},{weight:"1000g", price:78000}] },
+{ id:6, name:"Permen Jelly", category:"permen", image:"permen-jelly.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+ 
+  // === KUE KERING ===
+  { id:7, name:"Bagelen Mini Butter", category:"kue", image:"bagelen-mini-butter.jpg", prices:[{weight:"250g", price:17000},{weight:"500g", price:33000},{weight:"1000g", price:66000}] },
+  { id:8, name:"Bagelen Butter", category:"kue", image:"bagelen-butter.jpg", prices:[{weight:"250g", price:22500},{weight:"500g", price:24000},{weight:"1000g", price:48000}] },
+  { id:9, name:"Bagelen Keju", category:"kue", image:"bagelen-keju.jpg", prices:[{weight:"250g", price:25000},{weight:"500g", price:49000},{weight:"1000g", price:98000}] },
+  { id:10, name:"Bolu Kering", category:"kue", image:"bolu-kering.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
+  { id:11, name:"Bolu Eggmoon", category:"kue", image:"bolu-eggmoon.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
+  { id:12, name:"Kue Semprit", category:"kue", image:"kue-semprit.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
+  { id:13, name:"Sagu Keju Special", category:"kue", image:"sagu-keju-special.jpg", prices:[{weight:"250g", price:22000},{weight:"500g", price:43000},{weight:"1000g", price:86000}] },
+  { id:14, name:"Kue Lidah Kucing", category:"kue", image:"kue-lidah-kucing.jpg", prices:[{weight:"250g", price:20000},{weight:"500g", price:39000},{weight:"1000g", price:78000}] },
+  { id:15, name:"Kue Tambang", category:"kue", image:"kue-tambang.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:16, name:"Bronis Kering", category:"kue", image:"bronis-kering.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
 
-// Pesan via WA
-document.getElementById('wa-order').addEventListener('click', () => {
-    if (cart.length === 0) { alert('Keranjang masih kosong!'); return; }
-    
-    let text = 'Halo Yanika Snack! Saya mau pesan:\n\n';
-    cart.forEach(i => {
-        text += `✅ ${i.name} - ${i.size}\n   ${i.qty} pcs × Rp ${i.price.toLocaleString('id-ID')} = Rp ${(i.price * i.qty).toLocaleString('id-ID')}\n`;
-    });
-    const total = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
-    text += `\n💰 TOTAL: Rp ${total.toLocaleString('id-ID')}\n\nTerima kasih 🙏`;
-    
-    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`);
-});
+  // === OLEH-OLEH BANDUNG ===
+  { id:17, name:"Batagor Kering", category:"oleh", image:"batagor-kering.jpg", prices:[{weight:"250g", price:17000},{weight:"500g", price:33000},{weight:"1000g", price:66000}] },
+  { id:18, name:"Batagor Kering Pedas", category:"oleh", image:"batagor-kering-pedas.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
+  { id:19, name:"Basreng Bulat Pedas", category:"oleh", image:"basreng-bulat-pedas.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
+  { id:20, name:"Basreng Bulat Ori", category:"oleh", image:"basreng-bulat-ori.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
+  { id:21, name:"Basreng Stik Pedas", category:"oleh", image:"basreng-stik-pedas.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
+  { id:22, name:"Keripik Tahu Bulat", category:"oleh", image:"keripik-tahu-bulat.jpg", prices:[{weight:"250g", price:17000},{weight:"500g", price:33000},{weight:"1000g", price:66000}] },
+  { id:23, name:"Keripik Tempe Ori", category:"oleh", image:"keripik-tempe-ori.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
+  { id:24, name:"Keripik Tempe Sagu", category:"oleh", image:"keripik-tempe-sagu.jpg", prices:[{weight:"250g", price:17000},{weight:"500g", price:33000},{weight:"1000g", price:66000}] },
+  { id:25, name:"Sale Lidah", category:"oleh", image:"sale-lidah.jpg", prices:[{weight:"250g", price:17000},{weight:"500g", price:33000},{weight:"1000g", price:66000}] },
+  { id:26, name:"Sale Jari", category:"oleh", image:"sale-jari.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
+  { id:27, name:"Gurilem Cililin Pedas", category:"oleh", image:"gurilem-cililin-pedas.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:27000},{weight:"1000g", price:54000}] },
+  { id:28, name:"Gurilem Cililin Bumbu Kacang", category:"oleh", image:"gurilem-cililin-bumbu-kacang.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:27000},{weight:"1000g", price:54000}] },
 
-// Pencarian
-document.getElementById('cari').addEventListener('input', function() {
-    const keyword = this.value.toLowerCase();
-    document.querySelectorAll('.product').forEach(p => {
-        const name = p.dataset.name.toLowerCase();
-        p.classList.toggle('hidden', !name.includes(keyword));
-    });
-});
+ // === CEMILAN ===
+  { id:29, name:"Pangsit Ubi Ungu", category:"cemilan", image:"pangsit-ubi-ungu.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:24000},{weight:"1000g", price:28000}] },
+  { id:30, name:"Kerupuk Rambak", category:"cemilan", image:"kerupuk-rambak.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:30000},{weight:"1000g", price:60000}] },
+  { id:31, name:"Stik Balado", category:"cemilan", image:"stik-balado.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:30000},{weight:"1000g", price:60000}] },
+  { id:32, name:"Stik Keju", category:"cemilan", image:"stik-keju.jpg", prices:[{weight:"250g", price:17000},{weight:"500g", price:34000},{weight:"1000g", price:68000}] },
+  { id:33, name:"Potato Keju", category:"cemilan", image:"potato-keju.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:28000},{weight:"1000g", price:56000}] },
+  { id:34, name:"Potato Saos", category:"cemilan", image:"potato-saos.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:28000},{weight:"1000g", price:56000}] },
+  { id:35, name:"Ciki Kentang Kerucut", category:"cemilan", image:"ciki-kentang-kerucut.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:28000},{weight:"1000g", price:56000}] },
+  { id:36, name:"Ciki Bantal Keju", category:"cemilan", image:"ciki-bantal-keju.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:37, name:"Ciki Stik Coklat", category:"cemilan", image:"ciki-stik-coklat.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:38, name:"Ciki Stik Pandan", category:"cemilan", image:"ciki-stik-pandan.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:39, name:"Ciko Crunch Sereal", category:"cemilan", image:"ciko-crunch-sereal.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] }
+  { id:40, name:"Keripik Sukun", category:"cemilan", image:"keripik-sukun.jpg", prices:[{weight:"250g", price:17000},{weight:"500g", price:33000},{weight:"1000g", price:66000}] },
+  { id:41, name:"Kerupuk Jengkol", category:"cemilan", image:"kerupuk-jengkol.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:27000},{weight:"1000g", price:54000}] },
+  { id:42, name:"Telor Gabus Keju Special", category:"cemilan", image:"telor-gabus-keju-special.jpg", prices:[{weight:"250g", price:22000},{weight:"500g", price:43000},{weight:"1000g", price:86000}] },
+  { id:43, name:"Sumpia Udang", category:"cemilan", image:"sumpia-udang.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] }
 
-// Filter kategori
-document.querySelectorAll('.kategori-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        document.querySelectorAll('.kategori-btn').forEach(b => b.classList.remove('aktif'));
-        this.classList.add('aktif');
-        
-        const kat = this.dataset.kategori;
-        document.querySelectorAll('h2, .grid').forEach(el => el.classList.remove('hidden'));
-        
-        if (kat !== 'semua') {
-            document.querySelectorAll('h2').forEach(h => h.classList.toggle('hidden', h.id !== kat));
-            document.querySelectorAll('.grid').forEach(g => g.classList.toggle('hidden', !g.classList.contains(`kategori-${kat}`)));
+          { id:44, name:"Liliput Wijen Special", category:"cemilan", image:"liliput-wijen-special.jpg", prices:[{weight:"250g", price:20000},{weight:"500g", price:39000},{weight:"1000g", price:78000}] },
+  { id:45, name:"Makroni Mini Keju", category:"cemilan", image:"makroni-mini-keju.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:46, name:"Makroni Mini Pedas", category:"cemilan", image:"makroni-mini-pedas.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:47, name:"Makroni Mini Cikruh", category:"cemilan", image:"makroni-mini-cikruh.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:48, name:"Lanting", category:"cemilan", image:"lanting.jpg", prices:[{weight:"250g", price:10000},{weight:"500g", price:19000},{weight:"1000g", price:38000}] },
+  { id:49, name:"Pangsit Jeruk Pedas", category:"cemilan", image:"pangsit-jeruk-pedas.jpg", prices:[{weight:"250g", price:10000},{weight:"500g", price:19000},{weight:"1000g", price:38000}] },
+  { id:50, name:"Pangsit", category:"cemilan", image:"pangsit.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:51, name:"Comring", category:"cemilan", image:"comring.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:52, name:"Keripik Chuba Balado", category:"cemilan", image:"keripik-chuba-balado.jpg", prices:[{weight:"250g", price:20000},{weight:"500g", price:39000},{weight:"1000g", price:78000}] },
+  { id:53, name:"Kerupuk Chuba Keju", category:"cemilan", image:"kerupuk-chuba-keju.jpg", prices:[{weight:"250g", price:20000},{weight:"500g", price:39000},{weight:"1000g", price:78000}] },
+  { id:54, name:"Keripik Talas Stik", category:"cemilan", image:"keripik-talas-stik.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
+  { id:55, name:"Keripik Pisang Gurih", category:"cemilan", image:"keripik-pisang-gurih.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
+  { id:56, name:"Keripik Pisang Madu", category:"cemilan", image:"keripik-pisang-madu.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
+  { id:57, name:"Telor Gabus Keju", category:"cemilan", image:"telor-gabus-keju.jpg", prices:[{weight:"250g", price:12500},{weight:"500g", price:24000},{weight:"1000g", price:48000}] },
+  { id:58, name:"Keripik Singkong Pedas Jadul", category:"cemilan", image:"keripik-singkong-pedas-jadul.jpg", prices:[{weight:"250g", price:12500},{weight:"500g", price:24000},{weight:"1000g", price:48000}] }
+  { id:59, name:"Keripik Singkong Bawang", category:"cemilan", image:"keripik-singkong-bawang.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:60, name:"Keripik Singkong Ori", category:"cemilan", image:"keripik-singkong-ori.jpg", prices:[{weight:"250g", price:10000},{weight:"500g", price:19000},{weight:"1000g", price:38000}] },
+  { id:61, name:"Keripik Singkong Kriwil", category:"cemilan", image:"keripik-singkong-kriwil.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:62, name:"Keripik Singkong Padang", category:"cemilan", image:"keripik-singkong-padang.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:63, name:"Semprong Lipat", category:"cemilan", image:"semprong-lipat.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:64, name:"Keripik Usus Ayam Pedas", category:"cemilan", image:"keripik-usus-ayam-pedas.jpg", prices:[{weight:"250g", price:18000},{weight:"500g", price:35000},{weight:"1000g", price:70000}] },
+  { id:65, name:"Kerupuk Melarat", category:"cemilan", image:"kerupuk-melarat.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:27000},{weight:"1000g", price:54000}] },
+  { id:66, name:"Kurma Mesir", category:"cemilan", image:"kurma-mesir.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:67, name:"Mie Lidi Pedas", category:"cemilan", image:"mie-lidi-pedas.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
+  { id:68, name:"Mie Lidi Asin", category:"cemilan", image:"mie-lidi-asin.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
+  { id:69, name:"Kwaci Matahari", category:"cemilan", image:"kwaci-matahari.jpg", prices:[{weight:"250g", price:20000},{weight:"500g", price:39000},{weight:"1000g", price:78000}] },
+  { id:70, name:"Kripca Cabe Merah", category:"cemilan", image:"kripca-cabe-merah.jpg", prices:[{weight:"250g", price:20000},{weight:"500g", price:39000},{weight:"1000g", price:78000}] },
+  { id:71, name:"Kripca Cabe Ijo", category:"cemilan", image:"kripca-cabe-ijo.jpg", prices:[{weight:"250g", price:20000},{weight:"500g", price:39000},{weight:"1000g", price:78000}] },
+  { id:72, name:"Kripca Ori", category:"cemilan", image:"kripca-ori.jpg", prices:[{weight:"250g", price:20000},{weight:"500g", price:39000},{weight:"1000g", price:78000}] },
+  { id:73, name:"Pisang Aroma Karamel", category:"cemilan", image:"pisang-aroma-karamel.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] }
+  { id:74, name:"Keripik Kentang Asli", category:"cemilan", image:"keripik-kentang-asli.jpg", prices:[{weight:"250g", price:27500},{weight:"500g", price:54000},{weight:"1000g", price:108000}] },
+  { id:75, name:"Tortila Barbeque", category:"cemilan", image:"tortila-barbeque.jpg", prices:[{weight:"250g", price:20000},{weight:"500g", price:39000},{weight:"1000g", price:78000}] },
+  { id:76, name:"Makroni Ori", category:"cemilan", image:"makroni-ori.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:77, name:"Makroni Rujak", category:"cemilan", image:"makroni-rujak.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:78, name:"Telor Gabus Manis Wijen", category:"cemilan", image:"telor-gabus-manis-wijen.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:28000},{weight:"1000g", price:58000}] },
+  { id:79, name:"Kacang Thailand", category:"cemilan", image:"kacang-thailand.jpg", prices:[{weight:"250g", price:20000},{weight:"500g", price:40000},{weight:"1000g", price:80000}] },
+  { id:80, name:"Soes Asin Spesial", category:"cemilan", image:"soes-asin-spesial.jpg", prices:[{weight:"250g", price:20000},{weight:"500g", price:39000},{weight:"1000g", price:78000}] },
+  { id:81, name:"Soes Cokelat", category:"cemilan", image:"soes-cokelat.jpg", prices:[{weight:"250g", price:20000},{weight:"500g", price:39000},{weight:"1000g", price:78000}] },
+  { id:82, name:"Emping Melinjo Balado", category:"cemilan", image:"emping-melinjo-balado.jpg", prices:[{weight:"250g", price:20000},{weight:"500g", price:39000},{weight:"1000g", price:78000}] },
+  { id:83, name:"Kacang Polong", category:"cemilan", image:"kacang-polong.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:24000},{weight:"1000g", price:48000}] },
+  { id:84, name:"Kacang Mix", category:"cemilan", image:"kacang-mix.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:24000},{weight:"1000g", price:48000}] },
+  { id:85, name:"Kacang Bandung", category:"cemilan", image:"kacang-bandung.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:24000},{weight:"1000g", price:48000}] },
+  { id:86, name:"Kacang Sangrai", category:"cemilan", image:"kacang-sangrai.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:30000},{weight:"1000g", price:60000}] },
+  { id:87, name:"Sukro", category:"cemilan", image:"sukro.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:24000},{weight:"1000g", price:48000}] },
+  { id:88, name:"Kacang Atom", category:"cemilan", image:"kacang-atom.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:30000},{weight:"1000g", price:60000}] }
+  { id:89, name:"Kacang Telor", category:"cemilan", image:"kacang-telor.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:24000},{weight:"1000g", price:48000}] },
+  { id:90, name:"Kacang Koro Kulit", category:"cemilan", image:"kacang-koro-kulit.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:30000},{weight:"1000g", price:60000}] },
+  { id:91, name:"Kacang Koro Putih", category:"cemilan", image:"kacang-koro-putih.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:24000},{weight:"1000g", price:48000}] },
+  { id:92, name:"Jagung Marning Pedas", category:"cemilan", image:"jagung-marning-pedas.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:24000},{weight:"1000g", price:48000}] },
+  { id:93, name:"Astor Mini Vanilla", category:"cemilan", image:"astor-mini-vanilla.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:27000},{weight:"1000g", price:54000}] },
+  { id:94, name:"Astor Mini Pandan", category:"cemilan", image:"astor-mini-pandan.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:27000},{weight:"1000g", price:54000}] },
+  { id:95, name:"Astor Mini Vanilla Hitam", category:"cemilan", image:"astor-mini-vanilla-hitam.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:27000},{weight:"1000g", price:54000}] },
+  { id:96, name:"Astor Mini Stroberi", category:"cemilan", image:"astor-mini-stoberi.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:27000},{weight:"1000g", price:54000}] },
+  { id:97, name:"Astor Mini Coklat", category:"cemilan", image:"astor-mini-coklat.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:27000},{weight:"1000g", price:54000}] },
+  { id:98, name:"Astor Mini Blueberi", category:"cemilan", image:"astor-mini-blueberi.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:27000},{weight:"1000g", price:54000}] },
+  { id:99, name:"Eggroll Alladin", category:"cemilan", image:"eggroll-alladin.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:27000},{weight:"1000g", price:54000}] },
+  { id:100, name:"Astor Belang Alladin", category:"cemilan", image:"astor-belang-alladin.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:27000},{weight:"1000g", price:54000}] },
+  { id:101, name:"Keciput Wijen Bulat", category:"cemilan", image:"keciput-wijen-bulat.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:27000},{weight:"1000g", price:54000}] },
+  { id:102, name:"Teng Teng Kacang", category:"cemilan", image:"teng-teng-kacang.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:28000},{weight:"1000g", price:54000}] },
+  { id:103, name:"Samosa Manis Pedas", category:"cemilan", image:"samosa-manis-pedas.jpg", prices:[{weight:"250g", price:22000},{weight:"500g", price:43000},{weight:"1000g", price:86000}] },
+  { id:104, name:"Kuping Tikus", category:"cemilan", image:"kuping-tikus.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:105, name:"Kuping Gajah", category:"cemilan, image:"kuping-gajah.jpg", prices:[{weight:"250g", price:10000},{weight:"500g", price:19000},{weight:"1000g", price:38000}] },
+  { id:106, name:"Sakura Gurih", category:"cemilan", image:"sakura-gurih.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] }
+  { id:107, name:"Pang Pang Manis Asin", category:"cemilan", image:"pang-pang-manis-asin.jpg", prices:[{weight:"250g", price:10000},{weight:"500g", price:20000},{weight:"1000g", price:40000}] },
+  { id:108, name:"Kolontong Tasik", category:"cemilan", image:"kolontong-tasik.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
+  { id:109, name:"Cheestik Keju Spesial", category:"cemilan", image:"cheestik-keju-spesial.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:30000},{weight:"1000g", price:60000}] },
+  { id:110, name:"Sistik Gurih", category:"cemilan", image:"sistik-gurih.jpg", prices:[{weight:"250g", price:10000},{weight:"500g", price:20000},{weight:"1000g", price:40000}] },
+  { id:111, name:"Sistik Mie Pedas", category:"cemilan", image:"sistik-mie-pedas.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:112, name:"Chitos Balado", category:"cemilan", image:"chitos-balado.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:30000},{weight:"1000g", price:60000}] },
+  { id:113, name:"Chitos Barbeque", category:"cemilan", image:"chitos-barbeque.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:30000},{weight:"1000g", price:60000}] },
+  { id:114, name:"Popcorn Asin", category:"cemilan", image:"popcorn-asin.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:30000},{weight:"1000g", price:60000}] },
+  { id:115, name:"Kerupuk Koin Pedas", category:"cemilan", image:"kerupuk-koin-pedas.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:29000},{weight:"1000g", price:58000}] },
+  { id:116, name:"Seblak Mix", category:"cemilan", image:"seblak-mix.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:117, name:"Seblak Beton Pedas", category:"cemilan", image:"seblak-beton-pedas.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:118, name:"Seblak Bantat C Oyoh", category:"cemilan", image:"seblak-bantat-c-oyoh.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:119, name:"Moring Pedas", category:"cemilan", image:"moring-pedas.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:24000},{weight:"1000g", price:48000}] },
+  { id:120, name:"Kerupuk Stik Ebi Pedas", category:"cemilan", image:"kerupuk-stik-ebi-pedas.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:27000},{weight:"1000g", price:54000}] },
+  { id:121, name:"Seblak Rafaelle", category:"cemilan", image:"seblak-rafaelle.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:27000},{weight:"1000g", price:54000}] },
+  { id:122, name:"Kerupuk Seblak Putih", category:"cemilan", image:"kerupuk-seblak-putih.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:24000},{weight:"1000g", price:46000}] }
+  { id:123, name:"Solondok Pedas", category:"cemilan", image:"solondok-pedas.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:28000},{weight:"1000g", price:56000}] },
+  { id:124, name:"Solondok Ori", category:"cemilan", image:"solondok-ori.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:28000},{weight:"1000g", price:56000}] },
+  { id:125, name:"Kerupuk Melati", category:"cemilan", image:"kerupuk-melati.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:30000},{weight:"1000g", price:60000}] },
+  { id:126, name:"Kerupuk Merah Pedas", category:"cemilan", image:"kerupuk-merah-pedas.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:30000},{weight:"1000g", price:60000}] },
+  { id:127, name:"Donat Kering", category:"cemilan", image:"donat-kering.jpg", prices:[{weight:"250g", price:14000},{weight:"500g", price:27000},{weight:"1000g", price:54000}] },
+  { id:128, name:"Tiktak Pilus Cikur", category:"cemilan", image:"tiktak-pilus-cikur.jpg", prices:[{weight:"250g", price:10000},{weight:"500g", price:20000},{weight:"1000g", price:40000}] },
+  { id:129, name:"Simping Kencur", category:"cemilan", image:"simping-kencur.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:30000},{weight:"1000g", price:60000}] },
+  { id:130, name:"Pilus Rujak", category:"cemilan", image:"pilus-rujak.jpg", prices:[{weight:"250g", price:12500},{weight:"500g", price:25000},{weight:"1000g", price:50000}] },
+  { id:131, name:"Pilus Ikan", category:"cemilan", image:"pilus-ikan.jpg", prices:[{weight:"250g", price:12500},{weight:"500g", price:25000},{weight:"1000g", price:50000}] },
+  { id:132, name:"Cimol Kering Pedas", category:"cemilan", image:"cimol-kering-pedas.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:133, name:"Cimol Ori", category:"cemilan", image:"cimol-ori.jpg", prices:[{weight:"250g", price:12000},{weight:"500g", price:23000},{weight:"1000g", price:46000}] },
+  { id:134, name:"Kucai Singkong", category:"cemilan", image:"kucai-singkong.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:30000},{weight:"1000g", price:60000}] },
+  { id:135, name:"Kicimpring", category:"cemilan", image:"kicimpring.jpg", prices:[{weight:"250g", price:15000},{weight:"500g", price:30000},{weight:"1000g", price:60000}] },
+  { id:136, name:"Ranginang Ebi", category:"cemilan", image:"ranginang-ebi.jpg", prices:[{weight:"250g", price:18000},{weight:"500g", price:35000},{weight:"1000g", price:70000}] }
+];
+
+
+
+
+
+
+ iveCategory = 'all';
+
+        // ========== FORMAT RUPIAH ==========
+        function formatRupiah(angka) {
+            return 'Rp ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         }
-    });
-});
-</script>
 
+        // ========== RENDER PRODUK ==========
+        function renderProducts() {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '';
+            
+            let filtered = products;
+            if (activeCategory !== 'all') {
+                filtered = products.filter(p => p.category === activeCategory);
+            }
+
+            // Filter pencarian
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm) {
+                filtered = filtered.filter(p => p.name.toLowerCase().includes(searchTerm));
+            }
+
+            // Kelompokkan per kategori
+            const categories = {
+                cemilan: { title: '📦 CEMILAN', items: filtered.filter(p => p.category === 'cemilan') },
+                permen: { title: '🍬 PERMEN & COKLAT', items: filtered.filter(p => p.category === 'permen') },
+                kue: { title: '🧁 KUE KERING', items: filtered.filter(p => p.category === 'kue') },
+                oleh: { title: '🎁 OLEH-OLEH BANDUNG', items: filtered.filter(p => p.category === 'oleh') }
+            };
+
+            Object.entries(categories).forEach(([key, cat]) => {
+                if (cat.items.length > 0) {
+                    container.innerHTML += `<h2 class="section-title">${cat.title}</h2>`;
+                    container.innerHTML += `<div class="product-grid" id="grid-${key}"></div>`;
+                    const grid = document.getElementById(`grid-${key}`);
+                    cat.items.forEach(product => {
+                        const priceOptions = product.prices.map((p, i) => 
+                            `<option value="${i}">${p.weight} — ${formatRupiah(p.price)}</option>`
+                        ).join('');
+
+                        grid.innerHTML += `
+                            <div class="product-card" data-name="${product.name.toLowerCase()}">
+                                <img src="${product.image}" alt="${product.name}" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="product-img" style="display:none;">Foto</div>
+                                <div class="product-info">
+                                    <div class="product-name">${product.name}</div>
+                                    <select class="weight-select" id="sel-${product.id}">
+                                        ${priceOptions}
+                                    </select>
+                                    <button class="add-cart-btn" data-id="${product.id}">+ Keranjang</button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+            });
+
+            // Pasang event listener tombol tambah keranjang
+            document.querySelectorAll('.add-cart-btn').forEach(btn => {
+                btn.addEventListener('click', addToCart);
+            });
+        }
+
+        // ========== KERANJANG FUNGSI ==========
+        function addToCart(e) {
+            const id = parseInt(e.target.dataset.id);
+            const product = products.find(p => p.id === id);
+            const select = document.getElementById(`sel-${id}`);
+            const priceIndex = parseInt(select.value);
+            const selectedPrice = product.prices[priceIndex];
+
+            const existingIndex = cart.findIndex(item => 
+                item.id === id && item.weight === selectedPrice.weight
+            );
+
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    weight: selectedPrice.weight,
+                    price: selectedPrice.price,
+                    qty: 1
+                });
+            }
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            
+            document.getElementById('cartCount').textContent = totalItems;
+            document.getElementById('cartTotal').textContent = formatRupiah(totalPrice);
+            
+            renderCartModal();
+        }
+
+        function renderCartModal() {
+            const container = document.getElementById('cartItems');
+            const emptyMsg = document.getElementById('emptyCartMsg');
+            const summary = document.getElementById('cartSummary');
+            
+            if (cart.length === 0) {
+                container.innerHTML = '';
+                emptyMsg.classList.remove('hidden');
+                summary.classList.add('hidden');
+                return;
+            }
+
+            emptyMsg.classList.add('hidden');
+            summary.classList.remove('hidden');
+            
+            container.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <div>
+                        <div style="font-weight:600; font-size:14px;">${item.name}</div>
+                        <div style="font-size:12px; color:#888;">${item.weight} • ${formatRupiah(item.price)}</div>
+                    </div>
+                    <div class="item-qty">
+                        <button class="qty-btn" data-action="minus" data-index="${index}">−</button>
+                        <span>${item.qty}</span>
+                        <button class="qty-btn" data-action="plus" data-index="${index}">+</button>
+                    </div>
+                </div>
+            `).join('');
+
+            const grandTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('modalTotal').textContent = formatRupiah(grandTotal);
+
+            // Event qty buttons
+            document.querySelectorAll('.qty-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const action = e.target.dataset.action;
+                    const idx = parseInt(e.target.dataset.index);
+                    if (action === 'plus') {
+                        cart[idx].qty += 1;
+                    } else {
+                        cart[idx].qty -= 1;
+                        if (cart[idx].qty <= 0) cart.splice(idx, 1);
+                    }
+                    updateCartDisplay();
+                });
+            });
+        }
+
+        // ========== KIRIM KE WHATSAPP ==========
+        function sendToWhatsApp() {
+            if (cart.length === 0) return;
+            
+            let message = "🛒 *PESANAN YANIKA SNACK*\n\n";
+            let total = 0;
+            cart.forEach(item => {
+                const subtotal = item.price * item.qty;
+                total += subtotal;
+                message += `✅ ${item.name} (${item.weight}) × ${item.qty} = ${formatRupiah(subtotal)}\n`;
+            });
+            message += `\n💰 *TOTAL: ${formatRupiah(total)}*\n\n`;
+            message += "Silakan konfirmasi pesanan Anda. Terima kasih! 😊";
+            
+            const waNumber = "6285721349673";
+            const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // ========== EVENT LISTENER ==========
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+
+            // Kategori klik
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    activeCategory = btn.dataset.category;
+                    renderProducts();
+                });
+            });
+
+            // Pencarian
+            document.getElementById('searchInput').addEventListener('input', renderProducts);
+
+            // Modal keranjang
+            document.getElementById('openCart').addEventListener('click', () => {
+                document.getElementById('cartModal').style.display = 'flex';
+                renderCartModal();
+            });
+            document.getElementById('closeCart').addEventListener('click', () => {
+                document.getElementById('cartModal').style.display = 'none';
+            });
+            document.getElementById('cartModal').addEventListener('click', (e) => {
+                if (e.target.id === 'cartModal') {
+                    document.getElementById('cartModal').style.display = 'none';
+                }
+            });
+
+            // Kirim ke WA
+            document.getElementById('sendToWA').addEventListener('click', sendToWhatsApp);
+        });
+    </script>
 </body>
 </html>
