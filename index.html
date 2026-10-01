@@ -10,6 +10,8 @@
         header { background: #d84315; color: white; padding: 20px; text-align: center; }
         header h1 { font-size: 22px; margin-bottom: 5px; }
         header p { font-size: 14px; opacity: 0.9; }
+        .qris-box { margin-top: 10px; padding: 8px; background: rgba(255,255,255,0.15); border-radius: 10px; display: inline-block; }
+        .qris-box img { width: 100px; height: 100px; border-radius: 6px; }
 
         .search-box { padding: 12px 15px; background: white; position: sticky; top: 0; z-index: 99; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .search-box input { width: 100%; padding: 10px 15px; border: 1px solid #ddd; border-radius: 25px; font-size: 15px; outline: none; }
@@ -49,6 +51,10 @@
 <header>
     <h1>🏪 Yanika Snack</h1>
     <p>Cemilan & Oleh-Oleh Khas Bandung — Hubungi: 085721349673</p>
+    <div class="qris-box">
+        <img src="qris-yanika.png" alt="QRIS Pembayaran Yanika Snack">
+        <p style="font-size:11px; margin-top:4px;">💳 Scan QRIS untuk bayar</p>
+    </div>
 </header>
 
 <div class="search-box">
@@ -89,59 +95,93 @@
 <script>
 const products = [
   // === OLEH-OLEH BANDUNG ===
-  { id:1, name:"Batagor Kering", category:"oleh", price250:17000, price500:33000, price1000:66000, image:"batagor-kering.jpg" },
-  { id:2, name:"Batagor Kering Pedas", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"batagor-kering-pedas.jpg" },
-  { id:3, name:"Basreng Bulat Pedas", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"basreng-bulat-pedas.jpg" },
-  { id:4, name:"Basreng Bulat Ori", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"basreng-bulat-ori.jpg" },
-  { id:5, name:"Basreng Stik Pedas", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"basreng-stik-pedas.jpg" },
-  { id:6, name:"Keripik Tahu Bulat", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"keripik-tahu-bulat.jpg" },
-  { id:7, name:"Keripik Tempe Ori", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"keripik-tempe-ori.jpg" },
-  { id:8, name:"Keripik Tempe Sagu", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"keripik-tempe-sagu.jpg" },
-  { id:9, name:"Sale Lidah", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"sale-lidah.jpg" },
-  { id:10, name:"Sale Jari", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"sale-jari.jpg" },
-  { id:11, name:"Gurilem Cililin Pedas", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"gurilem-cililin-pedas.jpg" },
-  { id:12, name:"Gurilem Cililin Bumbu Kacang", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"gurilem-cililin-bumbu-kacang.jpg" },
+  { id:1, name:"Batagor Kering", category:"oleh", price250:17000, price500:33000, price1000:66000, image:"img/batagor-kering.jpg" },
+  { id:2, name:"Batagor Kering Pedas", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"img/batagor-kering-pedas.jpg" },
+  { id:3, name:"Basreng Bulat Pedas", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"img/basreng-bulat-pedas.jpg" },
+  { id:4, name:"Basreng Bulat Ori", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"img/basreng-bulat-ori.jpg" },
+  { id:5, name:"Basreng Stik Pedas", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"img/basreng-stik-pedas.jpg" },
+  { id:6, name:"Keripik Tahu Bulat", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"img/keripik-tahu-bulat.jpg" },
+  { id:7, name:"Keripik Tempe Ori", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"img/keripik-tempe-ori.jpg" },
+  { id:8, name:"Keripik Tempe Sagu", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"img/keripik-tempe-sagu.jpg" },
+  { id:9, name:"Sale Lidah", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"img/sale-lidah.jpg" },
+  { id:10, name:"Sale Jari", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"img/sale-jari.jpg" },
+  { id:11, name:"Gurilem Cililin Pedas", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"img/gurilem-cililin-pedas.jpg" },
+  { id:12, name:"Gurilem Cililin Bumbu Kacang", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"img/gurilem-cililin-bumbu-kacang.jpg" },
 
   // === KUE KERING ===
-  { id:13, name:"Bagelen Mini Butter", category:"kue", price250:17000, price500:33000, price1000:66000, image:"bagelen-mini-butter.jpg" },
-  { id:14, name:"Bagelen Butter", category:"kue", price250:22500, price500:48000, price1000:96000, image:"bagelen-butter.jpg" },
-  { id:15, name:"Bagelen Keju", category:"kue", price250:25000, price500:49000, price1000:98000, image:"bagelen-keju.jpg" },
-  { id:16, name:"Bolu Kering", category:"kue", price250:15000, price500:29000, price1000:58000, image:"bolu-kering.jpg" },
-  { id:17, name:"Bolu Eggmoon", category:"kue", price250:15000, price500:29000, price1000:58000, image:"bolu-eggmoon.jpg" },
-  { id:18, name:"Kue Semprit", category:"kue", price250:15000, price500:29000, price1000:58000, image:"kue-semprit.jpg" },
-  { id:19, name:"Sagu Keju Special", category:"kue", price250:22000, price500:43000, price1000:86000, image:"sagu-keju-special.jpg" },
-  { id:20, name:"Kue Lidah Kucing", category:"kue", price250:20000, price500:39000, price1000:78000, image:"kue-lidah-kucing.jpg" },
-  { id:21, name:"Kue Tambang", category:"kue", price250:12000, price500:23000, price1000:46000, image:"kue-tambang.jpg" },
-  { id:22, name:"Bronis Kering", category:"kue", price250:15000, price500:29000, price1000:58000, image:"bronis-kering.jpg" },
+  { id:13, name:"Bagelen Mini Butter", category:"kue", price250:17000, price500:33000, price1000:66000, image:"img/bagelen-mini-butter.jpg" },
+  { id:14, name:"Bagelen Butter", category:"kue", price250:22500, price500:48000, price1000:96000, image:"img/bagelen-butter.jpg" },
+  { id:15, name:"Bagelen Keju", category:"kue", price250:25000, price500:49000, price1000:98000, image:"img/bagelen-keju.jpg" },
+  { id:16, name:"Bolu Kering", category:"kue", price250:15000, price500:29000, price1000:58000, image:"img/bolu-kering.jpg" },
+  { id:17, name:"Bolu Eggmoon", category:"kue", price250:15000, price500:29000, price1000:58000, image:"img/bolu-eggmoon.jpg" },
+  { id:18, name:"Kue Semprit", category:"kue", price250:15000, price500:29000, price1000:58000, image:"img/kue-semprit.jpg" },
+  { id:19, name:"Sagu Keju Special", category:"kue", price250:22000, price500:43000, price1000:86000, image:"img/sagu-keju-special.jpg" },
+  { id:20, name:"Kue Lidah Kucing", category:"kue", price250:20000, price500:39000, price1000:78000, image:"img/kue-lidah-kucing.jpg" },
+  { id:21, name:"Kue Tambang", category:"kue", price250:12000, price500:23000, price1000:46000, image:"img/kue-tambang.jpg" },
+  { id:22, name:"Bronis Kering", category:"kue", price250:15000, price500:29000, price1000:58000, image:"img/bronis-kering.jpg" },
 
   // === PERMEN & COKLAT ===
-  { id:23, name:"Permen Jahe", category:"permen", price250:12000, price500:23000, price1000:46000, image:"permen-jahe.jpg" },
-  { id:24, name:"Permen Asem", category:"permen", price250:12000, price500:23000, price1000:46000, image:"permen-asem.jpg" },
-  { id:25, name:"Kue Balut Coklat", category:"permen", price250:20000, price500:39000, price1000:78000, image:"kue-balut-coklat.jpg" },
-  { id:26, name:"Chacha Warna", category:"permen", price250:20000, price500:39000, price1000:78000, image:"chacha-warna.jpg" },
-  { id:27, name:"Chacha Telur Puyuh", category:"permen", price250:20000, price500:39000, price1000:78000, image:"chacha-telur-puyuh.jpg" },
-  { id:28, name:"Permen Jelly", category:"permen", price250:12000, price500:23000, price1000:46000, image:"permen-jelly.jpg" },
+  { id:23, name:"Permen Jahe", category:"permen", price250:12000, price500:23000, price1000:46000, image:"img/permen-jahe.jpg" },
+  { id:24, name:"Permen Asem", category:"permen", price250:12000, price500:23000, price1000:46000, image:"img/permen-asem.jpg" },
+  { id:25, name:"Kue Balut Coklat", category:"permen", price250:20000, price500:39000, price1000:78000, image:"img/kue-balut-coklat.jpg" },
+  { id:26, name:"Chacha Warna", category:"permen", price250:20000, price500:39000, price1000:78000, image:"img/chacha-warna.jpg" },
+  { id:27, name:"Chacha Telur Puyuh", category:"permen", price250:20000, price500:39000, price1000:78000, image:"img/chacha-telur-puyuh.jpg" },
+  { id:28, name:"Permen Jelly", category:"permen", price250:12000, price500:23000, price1000:46000, image:"img/permen-jelly.jpg" },
 
-  // === CEMILAN ===
-  { id:29, name:"Keripik Sukun", category:"cemilan", price250:17000, price500:33000, price1000:66000, image:"keripik-sukun.jpg" },
-  { id:30, name:"Kerupuk Jengkol", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"kerupuk-jengkol.jpg" },
-  { id:31, name:"Telor Gabus Keju Special", category:"cemilan", price250:22000, price500:43000, price1000:86000, image:"telor-gabus-keju-special.jpg" },
-  { id:32, name:"Sumpia Udang", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"sumpia-udang.jpg" },
-  { id:33, name:"Liliput Wijen Special", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"liliput-wijen-special.jpg" },
-  { id:34, name:"Makroni Mini Keju", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"makroni-mini-keju.jpg" },
-  { id:35, name:"Makroni Mini Pedas", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"makroni-mini-pedas.jpg" },
-  { id:36, name:"Makroni Mini Cikruh", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"makroni-mini-cikruh.jpg" },
-  { id:37, name:"Lanting", category:"cemilan", price250:10000, price500:19000, price1000:38000, image:"lanting.jpg" },
-  { id:38, name:"Pangsit Jeruk Pedas", category:"cemilan", price250:10000, price500:19000, price1000:38000, image:"pangsit-jeruk-pedas.jpg" },
-  { id:39, name:"Pangsit", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"pangsit.jpg" },
-  { id:40, name:"Comring", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"comring.jpg" },
-  { id:41, name:"Keripik Chuba Balado", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"keripik-chuba-balado.jpg" },
-  { id:42, name:"Kerupuk Chuba Keju", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"kerupuk-chuba-keju.jpg" },
-  { id:43, name:"Keripik Talas Stik", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"keripik-talas-stik.jpg" },
-  { id:44, name:"Keripik Pisang Gurih", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"keripik-pisang-gurih.jpg" },
-  { id:45, name:"Keripik Pisang Madu", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"keripik-pisang-madu.jpg" },
-  { id:46, name:"Telor Gabus Keju", category:"cemilan", price250:12500, price500:24000, price1000:48000, image:"telor-gabus-keju.jpg" },
-  { id:47, name:"Keripik Singkong Pedas Jadul", category:"cemilan", price250:12500, price500:24000, price1000:48000, image:"keripik-singkong-pedas-jadul.jpg" }
+  // === CEMILAN — LENGKAP ===
+  { id:29, name:"Keripik Sukun", category:"cemilan", price250:17000, price500:33000, price1000:66000, image:"img/keripik-sukun.jpg" },
+  { id:30, name:"Kerupuk Jengkol", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"img/kerupuk-jengkol.jpg" },
+  { id:31, name:"Telor Gabus Keju Special", category:"cemilan", price250:22000, price500:43000, price1000:86000, image:"img/telor-gabus-keju-special.jpg" },
+  { id:32, name:"Sumpia Udang", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/sumpia-udang.jpg" },
+  { id:33, name:"Ciki Bantal Keju", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/ciki-bantal-keju.jpg" },
+  { id:34, name:"Ciki Stik Coklat", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/ciki-stik-coklat.jpg" },
+  { id:35, name:"Ciki Stik Pandan", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/ciki-stik-pandan.jpg" },
+  { id:36, name:"Ciko Crunch Sereal", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/ciko-crunch-sereal.jpg" },
+  { id:37, name:"Pilus Rujak", category:"cemilan", price250:12500, price500:25000, price1000:50000, image:"img/pilus-rujak.jpg" },
+  { id:38, name:"Pilus Ikan", category:"cemilan", price250:12500, price500:25000, price1000:50000, image:"img/pilus-ikan.jpg" },
+  { id:39, name:"Cimol Kering Pedas", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/cimol-kering-pedas.jpg" },
+  { id:40, name:"Cimol Ori", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/cimol-ori.jpg" },
+  { id:41, name:"Kucai Singkong", category:"cemilan", price250:15000, price500:30000, price1000:60000, image:"img/kucai-singkong.jpg" },
+  { id:42, name:"Popcorn Asin", category:"cemilan", price250:15000, price500:30000, price1000:60000, image:"img/popcorn-asin.jpg" },
+  { id:43, name:"Kerupuk Koin Pedas", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"img/kerupuk-koin-pedas.jpg" },
+  { id:44, name:"Seblak Mix", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/seblak-mix.jpg" },
+  { id:45, name:"Seblak Beton Pedas", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/seblak-beton-pedas.jpg" },
+  { id:46, name:"Seblak Bantat C Oyoh", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/seblak-bantat-c-oyoh.jpg" },
+  { id:47, name:"Keciput Wijen Bulat", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"img/keciput-wijen-bulat.jpg" },
+  { id:48, name:"Teng Teng Kacang", category:"cemilan", price250:14000, price500:28000, price1000:54000, image:"img/teng-teng-kacang.jpg" },
+  { id:49, name:"Samosa Manis Pedas", category:"cemilan", price250:22000, price500:43000, price1000:86000, image:"img/samosa-manis-pedas.jpg" },
+  { id:50, name:"Kuping Tikus", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/kuping-tikus.jpg" },
+  { id:51, name:"Kuping Gajah", category:"cemilan", price250:10000, price500:19000, price1000:38000, image:"img/kuping-gajah.jpg" },
+  { id:52, name:"Emping Melinjo Balado", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"img/emping-melinjo-balado.jpg" },
+  { id:53, name:"Kacang Polong", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"img/kacang-polong.jpg" },
+  { id:54, name:"Kacang Mix", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"img/kacang-mix.jpg" },
+  { id:55, name:"Kacang Bandung", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"img/kacang-bandung.jpg" },
+  { id:56, name:"Kacang Sangrai", category:"cemilan", price250:15000, price500:30000, price1000:60000, image:"img/kacang-sangrai.jpg" },
+  { id:57, name:"Keripik Usus Ayam Pedas", category:"cemilan", price250:18000, price500:35000, price1000:70000, image:"img/keripik-usus-ayam-pedas.jpg" },
+  { id:58, name:"Kerupuk Melarat", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"img/kerupuk-melarat.jpg" },
+  { id:59, name:"Kurma Mesir", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/kurma-mesir.jpg" },
+  { id:60, name:"Mie Lidi Pedas", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"img/mie-lidi-pedas.jpg" },
+  { id:61, name:"Mie Lidi Asin", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"img/mie-lidi-asin.jpg" },
+  { id:62, name:"Liliput Wijen Special", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"img/liliput-wijen-special.jpg" },
+  { id:63, name:"Makroni Mini Keju", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/makroni-mini-keju.jpg" },
+  { id:64, name:"Makroni Mini Pedas", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/makroni-mini-pedas.jpg" },
+  { id:65, name:"Makroni Mini Cikruh", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/makroni-mini-cikruh.jpg" },
+  { id:66, name:"Lanting", category:"cemilan", price250:10000, price500:19000, price1000:38000, image:"img/lanting.jpg" },
+  { id:67, name:"Pangsit Jeruk Pedas", category:"cemilan", price250:10000, price500:19000, price1000:38000, image:"img/pangsit-jeruk-pedas.jpg" },
+  { id:68, name:"Pangsit", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/pangsit.jpg" },
+  { id:69, name:"Comring", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/comring.jpg" },
+  { id:70, name:"Keripik Chuba Balado", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"img/keripik-chuba-balado.jpg" },
+  { id:71, name:"Kerupuk Chuba Keju", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"img/kerupuk-chuba-keju.jpg" },
+  { id:72, name:"Keripik Talas Stik", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"img/keripik-talas-stik.jpg" },
+  { id:73, name:"Keripik Pisang Gurih", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"img/keripik-pisang-gurih.jpg" },
+  { id:74, name:"Keripik Pisang Madu", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"img/keripik-pisang-madu.jpg" },
+  { id:75, name:"Telor Gabus Keju", category:"cemilan", price250:12500, price500:24000, price1000:48000, image:"img/telor-gabus-keju.jpg" },
+  { id:76, name:"Keripik Singkong Pedas Jadul", category:"cemilan", price250:12500, price500:24000, price1000:48000, image:"img/keripik-singkong-pedas-jadul.jpg" },
+  { id:77, name:"Kacang Koro Putih", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"img/kacang-koro-putih.jpg" },
+  { id:78, name:"Jagung Marning Pedas", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"img/jagung-marning-pedas.jpg" },
+  { id:79, name:"Astor Mini Vanilla", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"img/astor-mini-vanilla.jpg" },
+  { id:80, name:"Astor Mini Pandan", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"img/astor-mini-pandan.jpg" },
+  { id:81, name:"Astor Mini Vanilla Hitam", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"img/astor-mini-vanilla-hitam.jpg" }
 ];
 
 let cart = [];
