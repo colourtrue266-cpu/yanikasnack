@@ -128,7 +128,7 @@ const products = [
   { id:27, name:"Chacha Telur Puyuh", category:"permen", price250:20000, price500:39000, price1000:78000, image:"img/chacha-telur-puyuh.jpg" },
   { id:28, name:"Permen Jelly", category:"permen", price250:12000, price500:23000, price1000:46000, image:"img/permen-jelly.jpg" },
 
-  // === CEMILAN — LENGKAP ===
+  // === CEMILAN ===
   { id:29, name:"Keripik Sukun", category:"cemilan", price250:17000, price500:33000, price1000:66000, image:"img/keripik-sukun.jpg" },
   { id:30, name:"Kerupuk Jengkol", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"img/kerupuk-jengkol.jpg" },
   { id:31, name:"Telor Gabus Keju Special", category:"cemilan", price250:22000, price500:43000, price1000:86000, image:"img/telor-gabus-keju-special.jpg" },
@@ -162,26 +162,11 @@ const products = [
   { id:59, name:"Kurma Mesir", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/kurma-mesir.jpg" },
   { id:60, name:"Mie Lidi Pedas", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"img/mie-lidi-pedas.jpg" },
   { id:61, name:"Mie Lidi Asin", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"img/mie-lidi-asin.jpg" },
-  { id:62, name:"Liliput Wijen Special", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"img/liliput-wijen-special.jpg" },
-  { id:63, name:"Makroni Mini Keju", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/makroni-mini-keju.jpg" },
-  { id:64, name:"Makroni Mini Pedas", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/makroni-mini-pedas.jpg" },
-  { id:65, name:"Makroni Mini Cikruh", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/makroni-mini-cikruh.jpg" },
-  { id:66, name:"Lanting", category:"cemilan", price250:10000, price500:19000, price1000:38000, image:"img/lanting.jpg" },
-  { id:67, name:"Pangsit Jeruk Pedas", category:"cemilan", price250:10000, price500:19000, price1000:38000, image:"img/pangsit-jeruk-pedas.jpg" },
-  { id:68, name:"Pangsit", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/pangsit.jpg" },
-  { id:69, name:"Comring", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"img/comring.jpg" },
-  { id:70, name:"Keripik Chuba Balado", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"img/keripik-chuba-balado.jpg" },
-  { id:71, name:"Kerupuk Chuba Keju", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"img/kerupuk-chuba-keju.jpg" },
-  { id:72, name:"Keripik Talas Stik", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"img/keripik-talas-stik.jpg" },
-  { id:73, name:"Keripik Pisang Gurih", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"img/keripik-pisang-gurih.jpg" },
-  { id:74, name:"Keripik Pisang Madu", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"img/keripik-pisang-madu.jpg" },
-  { id:75, name:"Telor Gabus Keju", category:"cemilan", price250:12500, price500:24000, price1000:48000, image:"img/telor-gabus-keju.jpg" },
-  { id:76, name:"Keripik Singkong Pedas Jadul", category:"cemilan", price250:12500, price500:24000, price1000:48000, image:"img/keripik-singkong-pedas-jadul.jpg" },
-  { id:77, name:"Kacang Koro Putih", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"img/kacang-koro-putih.jpg" },
-  { id:78, name:"Jagung Marning Pedas", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"img/jagung-marning-pedas.jpg" },
-  { id:79, name:"Astor Mini Vanilla", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"img/astor-mini-vanilla.jpg" },
-  { id:80, name:"Astor Mini Pandan", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"img/astor-mini-pandan.jpg" },
-  { id:81, name:"Astor Mini Vanilla Hitam", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"img/astor-mini-vanilla-hitam.jpg" }
+  { id:62, name:"Kacang Koro Putih", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"img/kacang-koro-putih.jpg" },
+  { id:63, name:"Jagung Marning Pedas", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"img/jagung-marning-pedas.jpg" },
+  { id:64, name:"Astor Mini Vanilla", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"img/astor-mini-vanilla.jpg" },
+  { id:65, name:"Astor Mini Pandan", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"img/astor-mini-pandan.jpg" },
+  { id:66, name:"Astor Mini Vanilla Hitam", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"img/astor-mini-vanilla-hitam.jpg" }
 ];
 
 let cart = [];
@@ -283,7 +268,7 @@ categoryBtns.forEach(btn => {
     });
 });
 
-searchInput.addEventListener('input', (e) => {
+searchInput.addEventListener('input', function(e) {
     searchKeyword = e.target.value;
     renderProducts();
 });
