@@ -5,213 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yanika Snack - Cemilan & Oleh-Oleh Khas Bandung</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-        }
-        body {
-            background: #fff8e1;
-            min-height: 100vh;
-            padding-bottom: 90px;
-        }
-        header {
-            background: #d84315;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Arial, sans-serif; }
+        body { background: #fff8e1; min-height: 100vh; padding-bottom: 90px; }
+        header { background: #d84315; color: white; padding: 20px; text-align: center; }
         header h1 { font-size: 22px; margin-bottom: 5px; }
         header p { font-size: 14px; opacity: 0.9; }
 
-        .search-box {
-            padding: 12px 15px;
-            background: white;
-            position: sticky;
-            top: 0;
-            z-index: 99;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .search-box input {
-            width: 100%;
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 25px;
-            font-size: 15px;
-            outline: none;
-        }
+        .search-box { padding: 12px 15px; background: white; position: sticky; top: 0; z-index: 99; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .search-box input { width: 100%; padding: 10px 15px; border: 1px solid #ddd; border-radius: 25px; font-size: 15px; outline: none; }
 
-        .category-menu {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            padding: 12px 15px;
-            background: #fff3e0;
-        }
-        .category-btn {
-            padding: 8px 16px;
-            background: white;
-            border: 2px solid #d84315;
-            color: #d84315;
-            border-radius: 20px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .category-btn.active, .category-btn:hover {
-            background: #d84315;
-            color: white;
-        }
+        .category-menu { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 15px; background: #fff3e0; }
+        .category-btn { padding: 8px 16px; background: white; border: 2px solid #d84315; color: #d84315; border-radius: 20px; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+        .category-btn.active, .category-btn:hover { background: #d84315; color: white; }
 
-        .products-container {
-            padding: 15px;
-        }
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 15px;
-        }
-        .product-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.08);
-        }
-        .product-img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            background: #f5f5f5;
-        }
-        .product-info {
-            padding: 10px;
-        }
-        .product-name {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #333;
-        }
-        .price-option {
-            font-size: 12px;
-            color: #666;
-            margin: 4px 0;
-            display: flex;
-            justify-content: space-between;
-        }
-        .add-cart-btn {
-            width: 100%;
-            padding: 8px;
-            margin-top: 8px;
-            background: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 13px;
-            cursor: pointer;
-        }
+        .products-container { padding: 15px; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+        .product-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 6px rgba(0,0,0,0.08); }
+        .product-img { width: 100%; height: 140px; object-fit: cover; background: #f5f5f5; }
+        .product-info { padding: 10px; }
+        .product-name { font-size: 14px; font-weight: 600; margin-bottom: 8px; color: #333; }
+        .price-option { font-size: 12px; color: #666; margin: 4px 0; display: flex; justify-content: space-between; }
+        .add-cart-btn { width: 100%; padding: 8px; margin-top: 8px; background: #4caf50; color: white; border: none; border-radius: 5px; font-size: 13px; cursor: pointer; }
         .add-cart-btn:hover { background: #43a047; }
 
-        .cart-icon {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: #d84315;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 26px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            cursor: pointer;
-            z-index: 100;
-        }
-        .cart-count {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #e53935;
-            color: white;
-            font-size: 12px;
-            font-weight: bold;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        .cart-icon { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #d84315; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 26px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); cursor: pointer; z-index: 100; }
+        .cart-count { position: absolute; top: -5px; right: -5px; background: #e53935; color: white; font-size: 12px; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 
-        .cart-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            z-index: 200;
-            overflow-y: auto;
-        }
+        .cart-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 200; overflow-y: auto; }
         .cart-modal.show { display: flex; align-items: center; justify-content: center; }
-        .cart-content {
-            background: white;
-            width: 90%;
-            max-width: 420px;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px;
-        }
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
+        .cart-content { background: white; width: 90%; max-width: 420px; border-radius: 12px; padding: 20px; margin: 20px; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .close-btn { font-size: 24px; cursor: pointer; color: #888; }
-        .cart-item {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .remove-btn {
-            background: #e53935;
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            cursor: pointer;
-        }
-        .cart-total {
-            margin-top: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: right;
-        }
-        .wa-order-btn {
-            width: 100%;
-            padding: 12px;
-            margin-top: 15px;
-            background: #25d366;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .empty-cart {
-            text-align: center;
-            padding: 30px;
-            color: #888;
-        }
+        .cart-item { padding: 10px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .remove-btn { background: #e53935; color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer; }
+        .cart-total { margin-top: 15px; font-size: 18px; font-weight: bold; text-align: right; }
+        .wa-order-btn { width: 100%; padding: 12px; margin-top: 15px; background: #25d366; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        .empty-cart { text-align: center; padding: 30px; color: #888; }
         .hidden { display: none !important; }
     </style>
 </head>
@@ -226,7 +55,7 @@
     <input type="text" id="searchInput" placeholder="🔍 Cari produk...">
 </div>
 
-<div class="category-menu" id="categoryMenu">
+<div class="category-menu">
     <button class="category-btn active" data-category="all">Semua</button>
     <button class="category-btn" data-category="oleh">Oleh-Oleh Bandung</button>
     <button class="category-btn" data-category="kue">Kue Kering</button>
@@ -239,8 +68,7 @@
 </div>
 
 <div class="cart-icon" id="cartIcon">
-    🛒
-    <span class="cart-count" id="cartCount">0</span>
+    🛒 <span class="cart-count" id="cartCount">0</span>
 </div>
 
 <div class="cart-modal" id="cartModal">
@@ -250,7 +78,7 @@
             <span class="close-btn" id="closeCart">&times;</span>
         </div>
         <div id="cartItems"></div>
-        <div class="empty-cart hidden" id="emptyCart">Keranjang masih kosong</div>
+        <div class="empty-cart" id="emptyCart">Keranjang masih kosong</div>
         <div id="cartSummary" class="hidden">
             <div class="cart-total">Total: <span id="modalTotal">Rp 0</span></div>
             <button class="wa-order-btn" id="waOrderBtn">📲 Pesan via WhatsApp</button>
@@ -260,140 +88,60 @@
 
 <script>
 const products = [
-  // ===== OLEH-OLEH BANDUNG =====
-  { id:17, name:"Batagor Kering", category:"oleh", price250:17000, price500:33000, price1000:66000, image:"batagor-kering.jpg" },
-  { id:18, name:"Batagor Kering Pedas", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"batagor-kering-pedas.jpg" },
-  { id:19, name:"Basreng Bulat Pedas", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"basreng-bulat-pedas.jpg" },
-  { id:20, name:"Basreng Bulat Ori", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"basreng-bulat-ori.jpg" },
-  { id:21, name:"Basreng Stik Pedas", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"basreng-stik-pedas.jpg" },
-  { id:22, name:"Keripik Tahu Bulat", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"keripik-tahu-bulat.jpg" },
-  { id:23, name:"Keripik Tempe Ori", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"keripik-tempe-ori.jpg" },
-  { id:24, name:"Keripik Tempe Sagu", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"keripik-tempe-sagu.jpg" },
-  { id:25, name:"Sale Lidah", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"sale-lidah.jpg" },
-  { id:26, name:"Sale Jari", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"sale-jari.jpg" },
-  { id:27, name:"Gurilem Cililin Pedas", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"gurilem-cililin-pedas.jpg" },
-  { id:28, name:"Gurilem Cililin Bumbu Kacang", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"gurilem-cililin-bumbu-kacang.jpg" },
+  // === OLEH-OLEH BANDUNG ===
+  { id:1, name:"Batagor Kering", category:"oleh", price250:17000, price500:33000, price1000:66000, image:"batagor-kering.jpg" },
+  { id:2, name:"Batagor Kering Pedas", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"batagor-kering-pedas.jpg" },
+  { id:3, name:"Basreng Bulat Pedas", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"basreng-bulat-pedas.jpg" },
+  { id:4, name:"Basreng Bulat Ori", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"basreng-bulat-ori.jpg" },
+  { id:5, name:"Basreng Stik Pedas", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"basreng-stik-pedas.jpg" },
+  { id:6, name:"Keripik Tahu Bulat", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"keripik-tahu-bulat.jpg" },
+  { id:7, name:"Keripik Tempe Ori", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"keripik-tempe-ori.jpg" },
+  { id:8, name:"Keripik Tempe Sagu", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"keripik-tempe-sagu.jpg" },
+  { id:9, name:"Sale Lidah", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"sale-lidah.jpg" },
+  { id:10, name:"Sale Jari", category:"oleh", price250:14000, price500:27000, price1000:54000, image:"sale-jari.jpg" },
+  { id:11, name:"Gurilem Cililin Pedas", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"gurilem-cililin-pedas.jpg" },
+  { id:12, name:"Gurilem Cililin Bumbu Kacang", category:"oleh", price250:15000, price500:29000, price1000:58000, image:"gurilem-cililin-bumbu-kacang.jpg" },
 
-  // ===== KUE KERING =====
-  { id:7, name:"Bagelen Mini Butter", category:"kue", price250:17000, price500:33000, price1000:66000, image:"bagelen-mini-butter.jpg" },
-  { id:8, name:"Bagelen Butter", category:"kue", price250:22500, price500:48000, price1000:96000, image:"bagelen-butter.jpg" },
-  { id:9, name:"Bagelen Keju", category:"kue", price250:25000, price500:49000, price1000:98000, image:"bagelen-keju.jpg" },
-  { id:10, name:"Bolu Kering", category:"kue", price250:15000, price500:29000, price1000:58000, image:"bolu-kering.jpg" },
-  { id:11, name:"Bolu Eggmoon", category:"kue", price250:15000, price500:29000, price1000:58000, image:"bolu-eggmoon.jpg" },
-  { id:12, name:"Kue Semprit", category:"kue", price250:15000, price500:29000, price1000:58000, image:"kue-semprit.jpg" },
-  { id:13, name:"Sagu Keju Special", category:"kue", price250:22000, price500:43000, price1000:86000, image:"sagu-keju-special.jpg" },
-  { id:14, name:"Kue Lidah Kucing", category:"kue", price250:20000, price500:39000, price1000:78000, image:"kue-lidah-kucing.jpg" },
-  { id:15, name:"Kue Tambang", category:"kue", price250:12000, price500:23000, price1000:46000, image:"kue-tambang.jpg" },
-  { id:16, name:"Bronis Kering", category:"kue", price250:15000, price500:29000, price1000:58000, image:"bronis-kering.jpg" },
+  // === KUE KERING ===
+  { id:13, name:"Bagelen Mini Butter", category:"kue", price250:17000, price500:33000, price1000:66000, image:"bagelen-mini-butter.jpg" },
+  { id:14, name:"Bagelen Butter", category:"kue", price250:22500, price500:48000, price1000:96000, image:"bagelen-butter.jpg" },
+  { id:15, name:"Bagelen Keju", category:"kue", price250:25000, price500:49000, price1000:98000, image:"bagelen-keju.jpg" },
+  { id:16, name:"Bolu Kering", category:"kue", price250:15000, price500:29000, price1000:58000, image:"bolu-kering.jpg" },
+  { id:17, name:"Bolu Eggmoon", category:"kue", price250:15000, price500:29000, price1000:58000, image:"bolu-eggmoon.jpg" },
+  { id:18, name:"Kue Semprit", category:"kue", price250:15000, price500:29000, price1000:58000, image:"kue-semprit.jpg" },
+  { id:19, name:"Sagu Keju Special", category:"kue", price250:22000, price500:43000, price1000:86000, image:"sagu-keju-special.jpg" },
+  { id:20, name:"Kue Lidah Kucing", category:"kue", price250:20000, price500:39000, price1000:78000, image:"kue-lidah-kucing.jpg" },
+  { id:21, name:"Kue Tambang", category:"kue", price250:12000, price500:23000, price1000:46000, image:"kue-tambang.jpg" },
+  { id:22, name:"Bronis Kering", category:"kue", price250:15000, price500:29000, price1000:58000, image:"bronis-kering.jpg" },
 
-  // ===== PERMEN & COKLAT =====
-  { id:1, name:"Permen Jahe", category:"permen", price250:12000, price500:23000, price1000:46000, image:"permen-jahe.jpg" },
-  { id:2, name:"Permen Asem", category:"permen", price250:12000, price500:23000, price1000:46000, image:"permen-asem.jpg" },
-  { id:3, name:"Kue Balut Coklat", category:"permen", price250:20000, price500:39000, price1000:78000, image:"kue-balut-coklat.jpg" },
-  { id:4, name:"Chacha Warna", category:"permen", price250:20000, price500:39000, price1000:78000, image:"chacha-warna.jpg" },
-  { id:5, name:"Chacha Telur Puyuh", category:"permen", price250:20000, price500:39000, price1000:78000, image:"chacha-telur-puyuh.jpg" },
-  { id:6, name:"Permen Jelly", category:"permen", price250:12000, price500:23000, price1000:46000, image:"permen-jelly.jpg" },
+  // === PERMEN & COKLAT ===
+  { id:23, name:"Permen Jahe", category:"permen", price250:12000, price500:23000, price1000:46000, image:"permen-jahe.jpg" },
+  { id:24, name:"Permen Asem", category:"permen", price250:12000, price500:23000, price1000:46000, image:"permen-asem.jpg" },
+  { id:25, name:"Kue Balut Coklat", category:"permen", price250:20000, price500:39000, price1000:78000, image:"kue-balut-coklat.jpg" },
+  { id:26, name:"Chacha Warna", category:"permen", price250:20000, price500:39000, price1000:78000, image:"chacha-warna.jpg" },
+  { id:27, name:"Chacha Telur Puyuh", category:"permen", price250:20000, price500:39000, price1000:78000, image:"chacha-telur-puyuh.jpg" },
+  { id:28, name:"Permen Jelly", category:"permen", price250:12000, price500:23000, price1000:46000, image:"permen-jelly.jpg" },
 
-  // ===== CEMILAN =====
-  { id:29, name:"Pangsit Ubi Ungu", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"pangsit-ubi-ungu.jpg" },
-  { id:30, name:"Kerupuk Rambak", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"kerupuk-rambak.jpg" },
-  { id:31, name:"Stik Balado", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"stik-balado.jpg" },
-  { id:32, name:"Stik Keju", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"stik-keju.jpg" },
-  { id:33, name:"Potato Keju", category:"cemilan", price250:17000, price500:33000, price1000:66000, image:"potato-keju.jpg" },
-  { id:34, name:"Potato Saos", category:"cemilan", price250:17000, price500:33000, price1000:66000, image:"potato-saos.jpg" },
-  { id:35, name:"Solondok Pedas", category:"cemilan", price250:14000, price500:28000, price1000:56000, image:"solondok-pedas.jpg" },
-  { id:36, name:"Solondok Ori", category:"cemilan", price250:14000, price500:28000, price1000:56000, image:"solondok-ori.jpg" },
-  { id:37, name:"Kerupuk Melati", category:"cemilan", price250:15000, price500:30000, price1000:60000, image:"kerupuk-melati.jpg" },
-  { id:38, name:"Kerupuk Merah Pedas", category:"cemilan", price250:15000, price500:30000, price1000:60000, image:"kerupuk-merah-pedas.jpg" },
-  { id:39, name:"Donat Kering", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"donat-kering.jpg" },
-  { id:40, name:"Tiktak Pilus Cikur", category:"cemilan", price250:10000, price500:20000, price1000:40000, image:"tiktak-pilus-cikur.jpg" },
-  { id:41, name:"Simping Kencur", category:"cemilan", price250:15000, price500:30000, price1000:60000, image:"simping-kencur.jpg" },
-  { id:42, name:"Pilus Rujak", category:"cemilan", price250:12500, price500:25000, price1000:50000, image:"pilus-rujak.jpg" },
-  { id:43, name:"Pilus Ikan", category:"cemilan", price250:12500, price500:25000, price1000:50000, image:"pilus-ikan.jpg" },
-  { id:44, name:"Cimol Kering Pedas", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"cimol-kering-pedas.jpg" },
-  { id:45, name:"Cimol Ori", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"cimol-ori.jpg" },
-  { id:46, name:"Kucai Singkong", category:"cemilan", price250:15000, price500:30000, price1000:60000, image:"kucai-singkong.jpg" },
-  { id:47, name:"Kicimpring", category:"cemilan", price250:15000, price500:30000, price1000:60000, image:"kicimpring.jpg" },
-  { id:48, name:"Ranginang Ebi", category:"cemilan", price250:18000, price500:35000, price1000:70000, image:"ranginang-ebi.jpg" },
-  { id:49, name:"Pang Pang Manis Asin", category:"cemilan", price250:10000, price500:20000, price1000:40000, image:"pang-pang-manis-asin.jpg" },
-  { id:50, name:"Kolontong Tasik", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"kolontong-tasik.jpg" },
-  { id:51, name:"Cheestik Keju Special", category:"cemilan", price250:15000, price500:30000, price1000:60000, image:"cheestik-keju-special.jpg" },
-  { id:52, name:"Sistik Gurih", category:"cemilan", price250:10000, price500:20000, price1000:40000, image:"sistik-gurih.jpg" },
-  { id:53, name:"Sistik Mie Pedas", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"sistik-mie-pedas.jpg" },
-  { id:54, name:"Chitos Balado", category:"cemilan", price250:15000, price500:30000, price1000:60000, image:"chitos-balado.jpg" },
-  { id:55, name:"Chitos Barbeque", category:"cemilan", price250:15000, price500:30000, price1000:60000, image:"chitos-barbeque.jpg" },
-  { id:56, name:"Popcorn Asin", category:"cemilan", price250:15000, price500:30000, price1000:60000, image:"popcorn-asin.jpg" },
-  { id:57, name:"Kerupuk Koin Pedas", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"kerupuk-koin-pedas.jpg" },
-  { id:58, name:"Seblak Mix", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"seblak-mix.jpg" },
-  { id:59, name:"Seblak Beton Pedas", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"seblak-beton-pedas.jpg" },
-  { id:60, name:"Seblak Bantat C Oyoh", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"seblak-bantat-c-oyoh.jpg" },
-  { id:61, name:"Moring Pedas", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"moring-pedas.jpg" },
-  { id:62, name:"Kerupuk Stik Ebi Pedas", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"kerupuk-stik-ebi-pedas.jpg" },
-  { id:63, name:"Seblak Rafaelle", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"seblak-rafaelle.jpg" },
-  { id:64, name:"Kerupuk Seblak Putih", category:"cemilan", price250:12000, price500:24000, price1000:46000, image:"kerupuk-seblak-putih.jpg" },
-  { id:65, name:"Kacang Telur", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"kacang-telur.jpg" },
-  { id:66, name:"Kacang Koro Kulit", category:"cemilan", price250:15000, price500:30000, price1000:60000, image:"kacang-koro-kulit.jpg" },
-  { id:67, name:"Kacang Koro Putih", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"kacang-koro-putih.jpg" },
-  { id:68, name:"Jagung Marning Pedas", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"jagung-marning-pedas.jpg" },
-  { id:69, name:"Astor Mini Vanilla", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"astor-mini-vanilla.jpg" },
-  { id:70, name:"Astor Mini Pandan", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"astor-mini-pandan.jpg" },
-  { id:71, name:"Astor Mini Vanilla Hitam", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"astor-mini-vanilla-hitam.jpg" },
-  { id:72, name:"Astor Mini Stroberi", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"astor-mini-stroberi.jpg" },
-  { id:73, name:"Astor Mini Coklat", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"astor-mini-coklat.jpg" },
-  { id:74, name:"Astor Mini Blueberry", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"astor-mini-blueberry.jpg" },
-  { id:75, name:"Eggroll Alladin", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"eggroll-alladin.jpg" },
-  { id:76, name:"Astor Belang Alladin", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"astor-belang-alladin.jpg" },
-  { id:77, name:"Keciput Wijen Bulat", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"keciput-wijen-bulat.jpg" },
-  { id:78, name:"Teng Teng Kacang", category:"cemilan", price250:14000, price500:28000, price1000:54000, image:"teng-teng-kacang.jpg" },
-  { id:79, name:"Samosa Manis Pedas", category:"cemilan", price250:22000, price500:43000, price1000:86000, image:"samosa-manis-pedas.jpg" },
-  { id:80, name:"Kuping Tikus", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"kuping-tikus.jpg" },
-  { id:81, name:"Kuping Gajah", category:"cemilan", price250:10000, price500:19000, price1000:38000, image:"kuping-gajah.jpg" },
-  { id:82, name:"Sakura Gurih", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"sakura-gurih.jpg" },
-  { id:83, name:"Keripik Kentang Asli", category:"cemilan", price250:27500, price500:54000, price1000:108000, image:"keripik-kentang-asli.jpg" },
-  { id:84, name:"Tortila Barbeque", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"tortila-barbeque.jpg" },
-  { id:85, name:"Makroni Ori", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"makroni-ori.jpg" },
-  { id:86, name:"Makroni Rujak", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"makroni-rujak.jpg" },
-  { id:87, name:"Telor Gabus Manis Wijen", category:"cemilan", price250:15000, price500:28000, price1000:58000, image:"telor-gabus-manis-wijen.jpg" },
-  { id:88, name:"Kacang Thailand", category:"cemilan", price250:20000, price500:40000, price1000:80000, image:"kacang-thailand.jpg" },
-  { id:89, name:"Soes Asin Special", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"soes-asin-special.jpg" },
-  { id:90, name:"Soes Cokelat", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"soes-cokelat.jpg" },
-  { id:91, name:"Emping Melinjo Balado", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"emping-melinjo-balado.jpg" },
-  { id:92, name:"Kacang Polong", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"kacang-polong.jpg" },
-  { id:93, name:"Kacang Mix", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"kacang-mix.jpg" },
-  { id:94, name:"Kacang Bandung", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"kacang-bandung.jpg" },
-  { id:95, name:"Kacang Sangrai", category:"cemilan", price250:15000, price500:30000, price1000:60000, image:"kacang-sangrai.jpg" },
-  { id:96, name:"Sukro", category:"cemilan", price250:12000, price500:24000, price1000:48000, image:"sukro.jpg" },
-  { id:97, name:"Kacang Atom", category:"cemilan", price250:15000, price500:30000, price1000:60000, image:"kacang-atom.jpg" },
-  { id:98, name:"Keripik Singkong Bawang", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"keripik-singkong-bawang.jpg" },
-  { id:99, name:"Keripik Singkong Ori", category:"cemilan", price250:10000, price500:19000, price1000:38000, image:"keripik-singkong-ori.jpg" },
-  { id:100, name:"Keripik Singkong Kriwil", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"keripik-singkong-kriwil.jpg" },
-  { id:101, name:"Keripik Singkong Padang", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"keripik-singkong-padang.jpg" },
-  { id:102, name:"Semprong Lipat", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"semprong-lipat.jpg" },
-  { id:103, name:"Keripik Usus Ayam Pedas", category:"cemilan", price250:18000, price500:35000, price1000:70000, image:"keripik-usus-ayam-pedas.jpg" },
-  { id:104, name:"Kerupuk Melarat", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"kerupuk-melarat.jpg" },
-  { id:105, name:"Kurma Mesir", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"kurma-mesir.jpg" },
-  { id:106, name:"Mie Lidi Pedas", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"mie-lidi-pedas.jpg" },
-  { id:107, name:"Mie Lidi Asin", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"mie-lidi-asin.jpg" },
-  { id:108, name:"Kwaci Matahari", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"kwaci-matahari.jpg" },
-  { id:109, name:"Kripca Cabe Merah", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"kripca-cabe-merah.jpg" },
-  { id:110, name:"Kripca Cabe Ijo", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"kripca-cabe-ijo.jpg" },
-  { id:111, name:"Kripca Ori", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"kripca-ori.jpg" },
-  { id:112, name:"Pisang Aroma Karamel", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"pisang-aroma-karamel.jpg" },
-  { id:113, name:"Liliput Wijen Special", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"liliput-wijen-special.jpg" },
-  { id:114, name:"Makroni Mini Keju", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"makroni-mini-keju.jpg" },
-  { id:115, name:"Makroni Mini Pedas", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"makroni-mini-pedas.jpg" },
-  { id:116, name:"Makroni Mini Cikruh", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"makroni-mini-cikruh.jpg" },
-  { id:117, name:"Lanting", category:"cemilan", price250:10000, price500:19000, price1000:38000, image:"lanting.jpg" },
-  { id:118, name:"Pangsit Jeruk Pedas", category:"cemilan", price250:10000, price500:19000, price1000:38000, image:"pangsit-jeruk-pedas.jpg" },
-  { id:119, name:"Pangsit", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"pangsit.jpg" },
-  { id:120, name:"Comring", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"comring.jpg" },
-  { id:121, name:"Keripik Chuba Balado", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"keripik-chuba-balado.jpg" },
-  { id:122, name:"Kerupuk Chuba Keju", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"kerupuk-chuba-keju.jpg" },
-  { id:123, name:"Keripik Talas Stik", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"keripik-talas-stik.jpg" },
-  { id:124, name:"Keripik Pisang Gurih", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"keripik-pisang-gurih.jpg" },
-  { id:125, name:"Keripik Pisang Madu", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"keripik-pisang-madu.jpg" },
-  { id:126, name:"Telor Gabus Keju", category:"cemilan", price250:12500, price500:24000, price1000:48000, image:"telor-gabus-keju.jpg" },
-  { id:127, name:"Keripik Singkong Pedas Jadul", category:"cemilan", price250:12500, price500:24000, price1000:48000, image:"keripik-singkong-pedas-jadul.jpg" }
+  // === CEMILAN ===
+  { id:29, name:"Keripik Sukun", category:"cemilan", price250:17000, price500:33000, price1000:66000, image:"keripik-sukun.jpg" },
+  { id:30, name:"Kerupuk Jengkol", category:"cemilan", price250:14000, price500:27000, price1000:54000, image:"kerupuk-jengkol.jpg" },
+  { id:31, name:"Telor Gabus Keju Special", category:"cemilan", price250:22000, price500:43000, price1000:86000, image:"telor-gabus-keju-special.jpg" },
+  { id:32, name:"Sumpia Udang", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"sumpia-udang.jpg" },
+  { id:33, name:"Liliput Wijen Special", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"liliput-wijen-special.jpg" },
+  { id:34, name:"Makroni Mini Keju", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"makroni-mini-keju.jpg" },
+  { id:35, name:"Makroni Mini Pedas", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"makroni-mini-pedas.jpg" },
+  { id:36, name:"Makroni Mini Cikruh", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"makroni-mini-cikruh.jpg" },
+  { id:37, name:"Lanting", category:"cemilan", price250:10000, price500:19000, price1000:38000, image:"lanting.jpg" },
+  { id:38, name:"Pangsit Jeruk Pedas", category:"cemilan", price250:10000, price500:19000, price1000:38000, image:"pangsit-jeruk-pedas.jpg" },
+  { id:39, name:"Pangsit", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"pangsit.jpg" },
+  { id:40, name:"Comring", category:"cemilan", price250:12000, price500:23000, price1000:46000, image:"comring.jpg" },
+  { id:41, name:"Keripik Chuba Balado", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"keripik-chuba-balado.jpg" },
+  { id:42, name:"Kerupuk Chuba Keju", category:"cemilan", price250:20000, price500:39000, price1000:78000, image:"kerupuk-chuba-keju.jpg" },
+  { id:43, name:"Keripik Talas Stik", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"keripik-talas-stik.jpg" },
+  { id:44, name:"Keripik Pisang Gurih", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"keripik-pisang-gurih.jpg" },
+  { id:45, name:"Keripik Pisang Madu", category:"cemilan", price250:15000, price500:29000, price1000:58000, image:"keripik-pisang-madu.jpg" },
+  { id:46, name:"Telor Gabus Keju", category:"cemilan", price250:12500, price500:24000, price1000:48000, image:"telor-gabus-keju.jpg" },
+  { id:47, name:"Keripik Singkong Pedas Jadul", category:"cemilan", price250:12500, price500:24000, price1000:48000, image:"keripik-singkong-pedas-jadul.jpg" }
 ];
 
 let cart = [];
@@ -428,7 +176,7 @@ function renderProducts() {
     
     productsGrid.innerHTML = filtered.map(p => `
         <div class="product-card">
-            <img src="${p.image}" alt="${p.name}" class="product-img" onerror="this.src='https://via.placeholder.com/160x140/fff3e0/d84315?text=${encodeURIComponent(p.name.substring(0,8))}'">
+            <img src="${p.image}" alt="${p.name}" class="product-img" onerror="this.src='https://via.placeholder.com/160x140/fff3e0/d84315?text=${encodeURIComponent(p.name.substring(0,9))}'">
             <div class="product-info">
                 <div class="product-name">${p.name}</div>
                 <div class="price-option"><span>250g</span><span>${formatRupiah(p.price250)}</span></div>
@@ -509,4 +257,26 @@ closeCart.addEventListener('click', () => {
 });
 
 waOrderBtn.addEventListener('click', () => {
-    if (
+    if (cart.length === 0) return;
+    
+    let message = 'PESANAN YANIKA SNACK:\n\n';
+    cart.forEach(item => {
+        message += `✅ ${item.name} (${item.weight}) — ${formatRupiah(item.price)}\n`;
+    });
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    message += `\n💰 TOTAL: ${formatRupiah(total)}`;
+    message += '\n\nSilakan konfirmasi pesanan Anda 🙏';
+    
+    const url = `https://wa.me/6285721349673?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+    
+    cart = [];
+    updateCart();
+    cartModal.classList.remove('show');
+});
+
+renderProducts();
+</script>
+
+</body>
+</html>
